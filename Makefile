@@ -7,14 +7,17 @@ SRC_DIR := src
 
 .PHONY: all install clean
 
-install: src/*.sv
+install: src/*.sv src/*.vh
 
 $(SRC_DIR):
 	@mkdir -p $(SRC_DIR)
+	@mkdir -p $(SRC_DIR)/include
 
 src/*.sv: $(WALLY)/src/debug/*.sv | $(SRC_DIR)
 	@cp $(WALLY)/src/debug/*.sv $(SRC_DIR)/
-	@cp $(WALLY)/src/debug/*.vh $(SRC_DIR)/
+
+src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
+	@cp $(WALLY)/src/debug/*.vh $(SRC_DIR)/include
 
 clean:
 	@rm -rf $(SRC_DIR)
