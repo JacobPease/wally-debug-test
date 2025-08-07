@@ -5,7 +5,9 @@ endif
 
 SRC_DIR := src
 
-.PHONY: all install clean
+.PHONY: all install clean sim
+
+all: clean install sim
 
 install: src/*.sv src/*.vh
 
@@ -15,9 +17,13 @@ $(SRC_DIR):
 
 src/*.sv: $(WALLY)/src/debug/*.sv | $(SRC_DIR)
 	@cp $(WALLY)/src/debug/*.sv $(SRC_DIR)/
+	@cp $(WALLY)/src/generic/flop/synchronizer.sv $(SRC_DIR)/
 
 src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 	@cp $(WALLY)/src/debug/*.vh $(SRC_DIR)/include
 
 clean:
 	@rm -rf $(SRC_DIR)
+
+sim:
+	vsim -do setup.tcl -c
