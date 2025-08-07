@@ -47,7 +47,7 @@ module debug_tb;
                 
             tms = 0;
             // Instruction Shifting 
-            for (int i = 5; i >= 0; i--) begin
+            for (int i = 4; i >= 0; i--) begin
                 #(tcktime) tck = ~tck; 
                 tdi = INST[i];
                 #(tcktime) tck = ~tck;
@@ -114,6 +114,7 @@ module debug_tb;
         write_instr(5'b00001);
         read_datareg(data);
         assert(data == 32'h1002AC05);
+        $finish;
     end
     
 endmodule
