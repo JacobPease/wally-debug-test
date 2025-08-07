@@ -6,7 +6,7 @@ First clone my fork of wally, checkout the debug branch, and source `setup.sh`:
 ```bash
 git clone --recurse-submodules https://www.github.com/jacobpease/cvw.git
 cd cvw
-git fetch debug
+git fetch origin debug
 git checkout debug
 source setup.sh
 ```
