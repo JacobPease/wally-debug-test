@@ -5,9 +5,9 @@ endif
 
 SRC_DIR := src
 
-.PHONY: all install clean sim
+.PHONY: all install clean sim gui
 
-all: clean install sim
+all: clean install
 
 install: src/*.sv src/*.vh
 
@@ -27,3 +27,6 @@ clean:
 
 sim:
 	vsim -do setup.tcl -c
+
+gui:
+	vsim -do setup.tcl
