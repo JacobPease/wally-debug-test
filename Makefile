@@ -1,6 +1,6 @@
 # Check for $WALLY environment variable
 ifndef WALLY
-$(error WALLY is not set. Source setup.tcl in your local cvw, and then run make)
+$(error WALLY is not set. Source setup.sh in your local cvw, and then run make)
 endif
 
 SRC_DIR := src

@@ -1,8 +1,11 @@
 `include "debug.vh"
 `timescale 10ns/1ns
 module debug_tb;
+    // Want the period of clk over the period of tck to not be an
+    // integer. This will test the synchronizers.
     int tcktime = 52;
-    
+
+    // DTM Signals
     logic clk, rst;
     logic tck, tms, tdi, tdo;
     dmi_t dmi_req;
@@ -23,17 +26,12 @@ module debug_tb;
 
     // Set of tasks to automate communicating over JTAG.
     task write_instr(input logic [4:0] INST);
-        // logic [] tms_seq;
-        logic [4:0] tms_begin_seq; 
-        logic [2:0] tms_end_seq;
         logic [11:0] tms_seq;
         logic [11:0] tdi_seq;
         begin
             tms_seq = {4'b0110, 5'b0, 3'b110};
             // Reverse instruction so LSB is first
             tdi_seq = {5'b0, {<<{INST}}, 2'b0};
-            //tms_begin_seq = 5'b01100;
-            //tms_end_seq = 3'b110;
 
             // Clock should be idling high, TMS should be low keeping
             // us in the Run-test/Idle state and the input should not
@@ -49,67 +47,38 @@ module debug_tb;
                 tdi = tdi_seq[i];
                 #(tcktime) tck = ~tck; // high
             end
-                
-            // tms = 0;
-            // // Instruction Shifting 
-            // for (int i = 4; i >= 0; i--) begin
-            //     #(tcktime) tck = ~tck; 
-            //     tdi = INST[i];
-            //     #(tcktime) tck = ~tck;
-            // end
-                
-            // tdi = 0;
-            // for (int i = 2; i >= 0; i--) begin
-            //     #(tcktime) tck = ~tck;
-            //     tms = tms_end_seq[i];
-            //     #(tcktime) tck = ~tck;
-            // end          
-            // tms = 0;
         end   
     endtask // instr
 
-    task read_datareg(output logic [32:0] result);
-        logic [3:0] tms_begin_seq; 
-        logic [2:0] tms_end_seq;
-        begin
-            tms_begin_seq = 4'b0100;
-            tms_end_seq = 3'b110;
-
-            // SelectDR -> CaptureDR -> ShiftDR
-            for (int i = 3; i >= 0; i--) begin
-                #(tcktime) tck = ~tck; // low
-                tms = tms_begin_seq[i];
-                #(tcktime) tck = ~tck; // high
-            end
-
-            for (int i = 0; i < 32; i++) begin
+    // JTAG_DR Class that generalizes the task of reading and writing
+    // to the Test Data Regisers. 
+    class JTAG_DR #(parameter WIDTH = 32);
+        task read(output logic [WIDTH-1:0] result);
+            logic [5 + WIDTH + 2 - 1:0] tms_seq = {5'b01000, {(WIDTH-1){1'b0}}, 1'b1, 2'b10};
+            for (int i = 5 + WIDTH + 2 - 1; i >= 0; i--) begin
                 #(tcktime) tck = ~tck; 
                 tdi = 0;
-                result[i] = tdo;
+                tms = tms_seq[i];
+                if ((i < WIDTH + 2) && (i >= 2))
+                  $display(WIDTH - i + 2-1);
+                    result[WIDTH - i + 2-1] = tdo;
                 #(tcktime) tck = ~tck;
             end
-
-            // SelectDR -> CaptureDR -> ShiftDR
-            for (int i = 2; i >= 0; i--) begin
-                #(tcktime) tck = ~tck; // low
-                tms = tms_end_seq[i];
-                #(tcktime) tck = ~tck; // high
-            end 
-        end
-    endtask
-
-     
+        endtask
+    endclass
+    
     
     // Want the period of clk over the period of tck to not be an
     // integer. This will test the synchronizers.
-    // initial begin
-    //     tck = 1'b1;
-    //     forever #52 tck = ~tck;
-    // end
-
-    // Main test block
     initial begin
-        logic [31:0] data;
+        JTAG_DR #(32) idcode = new;
+        JTAG_DR #(32) dtmcs = new;
+        JTAG_DR #(32 + 2 + 7) dmireg = new;
+
+        logic [31:0] idcode_result;
+        logic [31:0] dtmcs_result;
+        logic [32+2+7-1:0] dmi_result;
+        
         rst = 0;
         tms = 1;
         @(posedge clk) tms = 0; rst = 1;
@@ -117,10 +86,15 @@ module debug_tb;
 
         // Read IDCODE
         write_instr(5'b00001);
-        read_datareg(data);
-        assert(data == 32'h1002AC05);
-        $finish;
+        // read_datareg(data);
+        idcode.read(idcode_result);
+        
+        assert(idcode_result == 32'h1002AC05) $display("Received IDCODE");
+        else $display("IDCODE was corrupted.");
+
+        test($bits(idcode_result));
+        
+        $stop;
     end
     
 endmodule
-
