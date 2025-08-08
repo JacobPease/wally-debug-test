@@ -60,7 +60,6 @@ module debug_tb;
                 tdi = 0;
                 tms = tms_seq[i];
                 if ((i < WIDTH + 2) && (i >= 2))
-                  $display(WIDTH - i + 2-1);
                     result[WIDTH - i + 2-1] = tdo;
                 #(tcktime) tck = ~tck;
             end
@@ -86,13 +85,16 @@ module debug_tb;
 
         // Read IDCODE
         write_instr(5'b00001);
-        // read_datareg(data);
         idcode.read(idcode_result);
         
         assert(idcode_result == 32'h1002AC05) $display("Received IDCODE");
         else $display("IDCODE was corrupted.");
 
-        test($bits(idcode_result));
+        // Reading DTMCS value
+        write_instr(5'b10000);
+        dtmcs.read(dtmcs_result);
+        assert(dtmcs_result == 32'h00100071) $display("DTMCS properly captures default value.");
+        else $display("Something is wrong with DTMCS on reset and capture: dtmcs = 0x%0h", dtmcs_result);
         
         $stop;
     end
