@@ -7,3 +7,11 @@ transcript
 \#*\#
 .\#*
 *.wlf
+
+# Ignore system files
+*~
+.DS_Store
+*.swp
+*.bak
+*.tmp
+**/work/

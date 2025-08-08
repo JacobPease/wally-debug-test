@@ -1,0 +1,4292 @@
+===== Running Test: andi.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:34 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:34 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:34 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:34 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: andi.memfile =====
+
+===== Running Test: add.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:35 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:35 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:35 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 4835 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:36 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: add.memfile =====
+
+===== Running Test: addi.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:36 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:36 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:36 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2185 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:37 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: addi.memfile =====
+
+===== Running Test: lui.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:37 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:37 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:37 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 295 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:38 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lui.memfile =====
+
+===== Running Test: lhu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:38 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:38 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:38 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2675 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:39 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lhu.memfile =====
+
+===== Running Test: lh.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:39 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:39 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:39 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2605 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:40 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lh.memfile =====
+
+===== Running Test: lbu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:40 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:40 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:40 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2485 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:41 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lbu.memfile =====
+
+===== Running Test: lb.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:41 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:41 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:41 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2485 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:42 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lb.memfile =====
+
+===== Running Test: jal.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:42 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:42 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:42 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 155 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:43 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: jal.memfile =====
+
+===== Running Test: jalr.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:43 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:43 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:43 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 905 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:44 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: jalr.memfile =====
+
+===== Running Test: bne.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:44 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:44 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:44 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 3025 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:45 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: bne.memfile =====
+
+===== Running Test: bltu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:45 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:45 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:45 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 3235 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:46 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: bltu.memfile =====
+
+===== Running Test: blt.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:46 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:46 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:46 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2985 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:47 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: blt.memfile =====
+
+===== Running Test: bgeu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:47 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:47 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:47 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 3595 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:48 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: bgeu.memfile =====
+
+===== Running Test: bge.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:48 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:49 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:49 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 3345 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:49 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: bge.memfile =====
+
+===== Running Test: beq.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:50 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:50 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:50 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2985 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:50 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: beq.memfile =====
+
+===== Running Test: auipc.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:51 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:51 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:51 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 345 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:51 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: auipc.memfile =====
+
+===== Running Test: and.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:52 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:52 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:52 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5035 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:52 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: and.memfile =====
+
+===== Running Test: srl.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:53 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:53 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:53 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5245 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:53 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: srl.memfile =====
+
+===== Running Test: srli.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:54 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:54 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:54 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2265 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:54 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: srli.memfile =====
+
+===== Running Test: sra.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:55 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:55 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:55 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5305 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:55 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: sra.memfile =====
+
+===== Running Test: srai.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:56 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:56 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:56 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2325 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:56 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: srai.memfile =====
+
+===== Running Test: sltu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:57 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:57 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:57 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 4775 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:57 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: sltu.memfile =====
+
+===== Running Test: slt.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:58 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:58 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:58 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 4775 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:58 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: slt.memfile =====
+
+===== Running Test: sltiu.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:51:59 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:51:59 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:51:59 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2135 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:51:59 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: sltiu.memfile =====
+
+===== Running Test: slti.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:00 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:00 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:00 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2135 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:00 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: slti.memfile =====
+
+===== Running Test: sll.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:01 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:01 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:01 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5115 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:01 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: sll.memfile =====
+
+===== Running Test: slli.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:02 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:02 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:02 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2175 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:02 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+===== End Test: slli.memfile =====
+
+===== Running Test: sh.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:03 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:03 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:03 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5025 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:04 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: sh.memfile =====
+
+===== Running Test: sb.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:04 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:04 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:04 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 4495 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:05 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: sb.memfile =====
+
+===== Running Test: or.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:05 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:05 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:05 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5065 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:06 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: or.memfile =====
+
+===== Running Test: ori.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:06 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:06 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:06 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 1815 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:07 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: ori.memfile =====
+
+===== Running Test: lw.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:07 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:07 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:07 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 2725 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:08 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: lw.memfile =====
+
+===== Running Test: xor.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:08 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:08 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:08 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5055 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:09 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: xor.memfile =====
+
+===== Running Test: xori.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:09 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:09 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:09 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 1835 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:10 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: xori.memfile =====
+
+===== Running Test: sw.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:10 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:10 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:10 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 5135 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:11 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: sw.memfile =====
+
+===== Running Test: sub.memfile =====
+Reading pref.tcl
+
+# 2023.4_3
+
+# do riscv_pipelined.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 17:52:11 on Aug 07,2025
+# vlog riscv_pipelined.sv 
+# -- Compiling module testbench
+# -- Compiling module top
+# -- Compiling module riscv
+# -- Compiling module controller
+# -- Compiling module bu
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module lsu
+# -- Compiling module datapath
+# -- Compiling module hazard
+# -- Compiling module regfile
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module flopenrc
+# -- Compiling module floprc
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module imem
+# -- Compiling module dmem
+# -- Compiling module alu
+# -- Compiling module zeroextend
+# -- Compiling module signextend
+# -- Compiling module wdunit
+# 
+# Top level modules:
+# 	testbench
+# End time: 17:52:11 on Aug 07,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 17:52:11 on Aug 07,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=8192, type=RAM at location riscv_pipelined.sv:654
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.top(fast)
+# Loading work.riscv(fast)
+# Loading work.controller(fast)
+# Loading work.maindec(fast)
+# Loading work.aludec(fast)
+# Loading work.floprc(fast)
+# Loading work.bu(fast)
+# Loading work.lsu(fast)
+# Loading work.flopr(fast)
+# Loading work.flopr(fast__1)
+# Loading work.datapath(fast)
+# Loading work.mux2(fast)
+# Loading work.flopenr(fast)
+# Loading work.adder(fast)
+# Loading work.flopenrc(fast)
+# Loading work.regfile(fast)
+# Loading work.extend(fast)
+# Loading work.floprc(fast__1)
+# Loading work.mux3(fast)
+# Loading work.alu(fast)
+# Loading work.flopr(fast__2)
+# Loading work.mux4(fast)
+# Loading work.mux2(fast__1)
+# Loading work.zeroextend(fast)
+# Loading work.signextend(fast)
+# Loading work.zeroextend(fast__1)
+# Loading work.signextend(fast__1)
+# Loading work.mux5(fast)
+# Loading work.wdunit(fast)
+# Loading work.mux4(fast__1)
+# Loading work.hazard(fast)
+# Loading work.imem(fast)
+# Loading work.dmem(fast)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# Simulation succeeded
+# ** Note: $stop    : riscv_pipelined.sv(120)
+#    Time: 4755 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_pipelined.sv line 120
+# Stopped at riscv_pipelined.sv line 120
+# add schematic not supported in batch mode
+# End time: 17:52:12 on Aug 07,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+===== End Test: sub.memfile =====
+
