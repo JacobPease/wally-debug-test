@@ -18,6 +18,7 @@ $(SRC_DIR):
 src/*.sv: $(WALLY)/src/debug/*.sv | $(SRC_DIR)
 	@cp $(WALLY)/src/debug/*.sv $(SRC_DIR)/
 	@cp $(WALLY)/src/generic/flop/synchronizer.sv $(SRC_DIR)/
+	@cp $(WALLY)/src/generic/flop/flop.sv $(SRC_DIR)/
 
 src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 	@cp $(WALLY)/src/debug/*.vh $(SRC_DIR)/include

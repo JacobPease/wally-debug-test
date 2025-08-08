@@ -26,10 +26,14 @@ module debug_tb;
         // logic [] tms_seq;
         logic [4:0] tms_begin_seq; 
         logic [2:0] tms_end_seq;
+        logic [11:0] tms_seq;
+        logic [11:0] tdi_seq;
         begin
-            // tms_seq = {6'b01100, 5'b0, 3'b110};
-            tms_begin_seq = 5'b01100;
-            tms_end_seq = 3'b110;
+            tms_seq = {4'b0110, 5'b0, 3'b110};
+            // Reverse instruction so LSB is first
+            tdi_seq = {5'b0, {<<{INST}}, 2'b0};
+            //tms_begin_seq = 5'b01100;
+            //tms_end_seq = 3'b110;
 
             // Clock should be idling high, TMS should be low keeping
             // us in the Run-test/Idle state and the input should not
@@ -39,27 +43,28 @@ module debug_tb;
             tdi = 0;
             
             // SelectIR -> CaptureIR -> ShiftIR
-            for (int i = 4; i >= 0; i--) begin
+            for (int i = 11; i >= 0; i--) begin
                 #(tcktime) tck = ~tck; // low
-                tms = tms_begin_seq[i];
+                tms = tms_seq[i];
+                tdi = tdi_seq[i];
                 #(tcktime) tck = ~tck; // high
             end
                 
-            tms = 0;
-            // Instruction Shifting 
-            for (int i = 4; i >= 0; i--) begin
-                #(tcktime) tck = ~tck; 
-                tdi = INST[i];
-                #(tcktime) tck = ~tck;
-            end
-
-            tdi = 0;
-            for (int i = 2; i >= 0; i--) begin
-                #(tcktime) tck = ~tck;
-                tms = tms_end_seq[i];
-                #(tcktime) tck = ~tck;
-            end          
-            tms = 0;
+            // tms = 0;
+            // // Instruction Shifting 
+            // for (int i = 4; i >= 0; i--) begin
+            //     #(tcktime) tck = ~tck; 
+            //     tdi = INST[i];
+            //     #(tcktime) tck = ~tck;
+            // end
+                
+            // tdi = 0;
+            // for (int i = 2; i >= 0; i--) begin
+            //     #(tcktime) tck = ~tck;
+            //     tms = tms_end_seq[i];
+            //     #(tcktime) tck = ~tck;
+            // end          
+            // tms = 0;
         end   
     endtask // instr
 
