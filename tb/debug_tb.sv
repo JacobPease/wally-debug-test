@@ -15,6 +15,11 @@ module debug_tb;
    logic NDMReset;
    logic HaltReq;
    logic ResumeReq;
+   logic DebugMode;
+
+   // CPU Signals
+   logic [31:0] WriteDataM, DataAdrM;
+   logic        MemWriteM;
 
    // Dummy Debug Module FSM states
    enum logic {IDLE, WAIT} DMState;
@@ -32,7 +37,16 @@ module debug_tb;
       dmi_rsp,
       NDMReset,
       HaltReq,
-      ResumeReq
+      ResumeReq,
+      DebugMode
+   );
+
+   top rv32pipe(clk, rst,
+      WriteDataM, DataAdrM,
+      MemWriteM,
+      HaltReq,
+      ResumeReq,
+      DebugMode
    );
 
    initial begin
@@ -95,38 +109,16 @@ module debug_tb;
       endtask
    endclass
 
-   // always @(posedge clk) begin
-   //     if (rst) begin
-   //         DMState <= IDLE;
-   //         dmi_rsp.data = 32'h0;
-   //         dmi_rsp.op = 2'b0;
-   //         dmi_rsp.ack = 1'b0;
-   //     end else begin
-   //         case(DMState)
-   //             IDLE: begin
-   //                 if (dmi_req.op == RD | dmi_req.op == WR) begin
-   //                     DMState <= WAIT;
-   //                 end
-   //             end
-              
-   //             WAIT: begin
-   //                 #(tcktime * 6)
-   //                 dmi_rsp.data <= 32'hdeadbeef;
-   //                 dmi_rsp.op <= 2'b0;
-   //                 dmi_rsp.ack <= 1'b1;
-                    
-   //                 #(tcktime)
-   //                 dmi_rsp.data <= 32'h0;
-   //                 dmi_rsp.ack <= 1'b0;
-   //                 DMState <= IDLE;
-   //             end
-   //           default: DMState <= IDLE;
-   //         endcase
-   //     end
-   // end
-    
-   // Want the period of clk over the period of tck to not be an
-   // integer. This will test the synchronizers.
+   // Initialize CPU
+   initial begin
+	   string memfilename;
+	   string dmemfilename;
+      memfilename = {"./testing/add.memfile"};
+      $readmemh(memfilename, rv32pipe.imem.RAM);
+      $readmemh(memfilename, rv32pipe.dmem.RAM);	
+   end
+
+   // Debug Commands
    initial begin
       JTAG_DR #(32) idcode = new;
       JTAG_DR #(32) dtmcs = new;
@@ -165,7 +157,15 @@ module debug_tb;
       // Testing DTMHardReset
       // write_instr(5'b10000);
       // dtmcs.write(32'h00110071, dtmcs_result);
-      #(tcktime*10) $stop;
+
+      // Halting Processor
+      write_instr(5'b10001);
+      dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
+      #(tcktime*30)
+      assert(DebugMode) $display("Halted");
+      else $display("Not");
+
+      #(tcktime*20) $stop;
    end
     
 endmodule

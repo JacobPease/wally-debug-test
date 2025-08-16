@@ -85,67 +85,78 @@ module testbench();
 
    logic [31:0] WriteData, DataAdr;
    logic        MemWrite;
+   logic        HaltReq;
+   logic        ResumeReq;
+   logic        DebugMode;
 
    // instantiate device to be tested
-   top dut(clk, reset, WriteData, DataAdr, MemWrite);
+   top dut(clk, reset, WriteData, DataAdr, MemWrite,
+      HaltReq, ResumeReq, DebugMode
+   );
 
-   initial
-     begin
-	string memfilename;
-	string dmemfilename;
-        memfilename = {"../testing/template.memfile"};
-        $readmemh(memfilename, dut.imem.RAM);
-        $readmemh(memfilename, dut.dmem.RAM);	
-     end
-   
+   initial begin
+	   string memfilename;
+	   string dmemfilename;
+      memfilename = {"../testing/add.memfile"};
+      $readmemh(memfilename, dut.imem.RAM);
+      $readmemh(memfilename, dut.dmem.RAM);	
+   end
    
    // initialize test
-   initial
-     begin
-	reset <= 1; # 22; reset <= 0;
-     end
+   initial begin
+	   reset <= 1; # 22; reset <= 0;
+   end
 
    // generate clock to sequence tests
-   always
-     begin
-	clk <= 1; # 5; clk <= 0; # 5;
-     end
+   always begin
+	   clk <= 1; # 5; clk <= 0; # 5;
+   end
 
    // check results
    always @(negedge clk)
-     begin
-	if(MemWrite) begin
-           if(DataAdr === 100 & WriteData === 10) begin
-              $display("Simulation succeeded");
-              $stop;
-           end else if (DataAdr === 100 & WriteData === 17) begin
-              $display("Simulation failed");
-              $stop;
-           end
-	end
-     end
+      begin
+	      if(MemWrite) begin
+            if(DataAdr === 100 & WriteData === 10) begin
+               $display("Simulation succeeded");
+               $stop;
+            end else if (DataAdr === 100 & WriteData === 17) begin
+               $display("Simulation failed");
+               $stop;
+            end
+	      end
+      end
 endmodule
 
 module top(input  logic        clk, reset, 
            output logic [31:0] WriteDataM, DataAdrM, 
-           output logic        MemWriteM);
+           output logic        MemWriteM,
+           input logic HaltReq, ResumeReq,
+           output logic DebugMode
+);
 
    logic [31:0] 	       PCF, InstrF, ReadDataM;
    
    // instantiate processor and memories
    riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
-		   WriteDataM, ReadDataM);
+		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode);
    imem imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
 endmodule
 
-module riscv(input  logic        clk, reset,
-             output logic [31:0] PCF,
-             input logic [31:0]  InstrF,
-             output logic 	 MemWriteM,
-             output logic [31:0] ALUResultM, WriteDataM,
-             input logic [31:0]  ReadDataM);
+module riscv(
+   input  logic        clk, reset,
+   output logic [31:0] PCF,
+   input logic [31:0]  InstrF,
+   output logic 	 MemWriteM,
+   output logic [31:0] ALUResultM, WriteDataM,
+   input logic [31:0]  ReadDataM,
+
+   // Debug Stuff
+   input HaltReq,
+   input ResumeReq,
+   output DebugMode
+);
 
    logic [6:0] 			 opD;
    logic [2:0] 			 funct3D;
@@ -168,6 +179,10 @@ module riscv(input  logic        clk, reset,
    logic 			 StallF, StallD, FlushD, FlushE;
 
    logic [4:0] 			 Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW;
+
+   debugcsr d(clk, reset,
+      PCF, HaltReq, ResumeReq, DebugMode
+   );
    
    controller c(clk, reset,
 		opD, funct3D, funct7b5D, ImmSrcD,
@@ -185,7 +200,28 @@ module riscv(input  logic        clk, reset,
 
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
-              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE);			 
+              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE,
+      DebugMode
+   );			 
+endmodule
+
+module debugcsr(
+   input logic        clk, reset,
+   input logic [31:0] PC,
+   input              HaltReq,
+   input              ResumeReq,
+   output             DebugMode
+);
+   logic [31:0] dcsr;
+   logic [31:0] dpc;
+   logic [31:0] dscratch0;
+
+   logic [2:0]  dcause;
+
+   assign dcause = HaltReq ? 3'b011 : 3'b000;
+   flopr #(32) dcsr_reg(clk, reset, {23'b0, dcause, 6'b0}, dcsr);
+
+   assign DebugMode = |dcause;
 endmodule
 
 module controller(input  logic		 clk, reset,
@@ -487,7 +523,9 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               input logic 	 PCSrcE, ResultSrcEb0, 
               input logic 	 RegWriteM, RegWriteW,
               output logic [1:0] ForwardAE, ForwardBE,
-              output logic 	 StallF, StallD, FlushD, FlushE);
+              output logic 	 StallF, StallD, FlushD, FlushE,
+              input logic DebugMode
+);
 
    logic 			 lwStallD;
    
@@ -506,8 +544,9 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
    
    // stalls and flushes
    assign lwStallD = ResultSrcEb0 & ((Rs1D == RdE) | (Rs2D == RdE));  
-   assign StallD = lwStallD;
-   assign StallF = lwStallD;
+   assign StallD = lwStallD | DebugMode;
+   assign StallF = lwStallD | DebugMode;
+   
    assign FlushD = PCSrcE;
    assign FlushE = lwStallD | PCSrcE;
 endmodule

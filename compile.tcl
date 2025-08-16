@@ -4,8 +4,10 @@ proc recompile_project {library_file_list last_compiled inc_list} {
     foreach {library file_list} $library_file_list {
         vlib $library
         vmap work $library
+		  echo $file_list
         foreach f $file_list {
             if {$last_compiled < [file mtime $f]} {
+					 echo $f
                 vlog {*}${inc_dirs} -lint $f
             }
         }
