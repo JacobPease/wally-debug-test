@@ -165,7 +165,16 @@ module debug_tb;
       assert(DebugMode) $display("Halted");
       else $display("Not");
 
-      #(tcktime*20) $stop;
+      // Clear HaltReq
+      write_instr(5'b10001);
+      dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
+
+      #(tcktime*2)
+      
+      write_instr(5'b10001);
+      dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
+      
+      #(tcktime*100) $stop;
    end
     
 endmodule

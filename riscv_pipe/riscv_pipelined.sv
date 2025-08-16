@@ -218,10 +218,25 @@ module debugcsr(
 
    logic [2:0]  dcause;
 
+   enum logic {RUNNING, HALTED} DebugState;
+
+   always_ff @(posedge clk) begin
+      if (reset) begin
+         DebugState <= RUNNING;
+      end else begin
+         case(DebugState)
+            RUNNING: if (HaltReq) DebugState <= HALTED;
+            HALTED: if (ResumeReq) DebugState <= RUNNING;
+            default: DebugState <= RUNNING;
+         endcase
+      end
+   end
+
+   // Needs to update cause when halting, not after halt.
    assign dcause = HaltReq ? 3'b011 : 3'b000;
    flopr #(32) dcsr_reg(clk, reset, {23'b0, dcause, 6'b0}, dcsr);
 
-   assign DebugMode = |dcause;
+   assign DebugMode = (DebugState == HALTED);
 endmodule
 
 module controller(input  logic		 clk, reset,
