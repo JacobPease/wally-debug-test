@@ -1,15 +1,43 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /debug_tb/clk
-add wave -noupdate -divider -height 32 "bsr"
-add wave -noupdate -expand -group bsr /debug_tb/dut/clk
-add wave -noupdate -expand -group bsr /debug_tb/dut/rst
-add wave -noupdate -expand -group bsr /debug_tb/dut/tck
-add wave -noupdate -expand -group bsr /debug_tb/dut/tms
-add wave -noupdate -expand -group bsr /debug_tb/dut/tdi
-add wave -noupdate -expand -group bsr /debug_tb/dut/tdo
-add wave -noupdate -expand -group bsr /debug_tb/dut/dmi_req
-add wave -noupdate -expand -group bsr /debug_tb/dut/dmi_rsp
+
+# Original recursive add
+# add wave -hex -r /stimulus/*
+
+add wave -color gold -noupdate /debug_tb/clk
+add wave -noupdate -divider -height 32 "Top"
+add wave -noupdate -expand -group Top /debug_tb/*
+
+add wave -noupdate -divider -height 32 "dtm"
+add wave -noupdate -expand -group dtm /debug_tb/dtm/*
+
+add wave -noupdate -divider -height 32 "dm"
+add wave -noupdate -expand -group dm /debug_tb/debugmodule/*
+
+add wave -noupdate -divider -height 32 "Instructions"
+add wave -noupdate -expand -group Instructions -color Orange /debug_tb/proc2test/rv32pipe/*
+
+add wave -noupdate -divider -height 32 "Datapath"
+add wave -hex /debug_tb/proc2test/rv32pipe/d/*
+
+add wave -noupdate -divider -height 32 "Control"
+add wave -hex /debug_tb/proc2test/rv32pipe/c/*
+
+add wave -noupdate -divider -height 32 "Main Decoder"
+add wave -hex /debug_tb/proc2test/rv32pipe/c/md/*
+
+add wave -noupdate -divider -height 32 "ALU Decoder"
+add wave -hex /debug_tb/proc2test/rv32pipe/c/ad/*
+
+add wave -noupdate -divider -height 32 "Data Memory"
+add wave -hex /debug_tb/proc2test/dmem/*
+
+add wave -noupdate -divider -height 32 "Instruction Memory"
+add wave -hex /debug_tb/proc2test/imem/*
+
+add wave -noupdate -divider -height 32 "Register File"
+add wave -hex /debug_tb/proc2test/rv32pipe/dp/rf/*
+add wave -hex /debug_tb/proc2test/rv32pipe/dp/rf/rf
 
 
 TreeUpdate [SetDefaultTree]
