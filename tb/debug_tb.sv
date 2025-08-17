@@ -24,30 +24,14 @@ module debug_tb;
    // Dummy Debug Module FSM states
    enum logic {IDLE, WAIT} DMState;
     
-   dtm dut(
-      clk, rst,
-      tck, tms, tdi, tdo,
-      dmi_req,
-      dmi_rsp
-   );
+   dtm dtm (clk, rst, tck, tms, tdi, tdo,
+      dmi_req, dmi_rsp);
 
-   dm debugmodule(
-      clk, rst,
-      dmi_req,
-      dmi_rsp,
-      NDMReset,
-      HaltReq,
-      ResumeReq,
-      DebugMode
-   );
+   dm debugmodule (clk, rst, dmi_req,
+      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode);
 
-   top rv32pipe(clk, rst,
-      WriteDataM, DataAdrM,
-      MemWriteM,
-      HaltReq,
-      ResumeReq,
-      DebugMode
-   );
+   top proc2test (clk, rst, WriteDataM, DataAdrM,
+      MemWriteM, HaltReq, ResumeReq, DebugMode);
 
    initial begin
       tck = 1'b1;
@@ -113,9 +97,9 @@ module debug_tb;
    initial begin
 	   string memfilename;
 	   string dmemfilename;
-      memfilename = {"./testing/add.memfile"};
-      $readmemh(memfilename, rv32pipe.imem.RAM);
-      $readmemh(memfilename, rv32pipe.dmem.RAM);	
+      memfilename = {"./testing/riscvtest.memfile"};
+      $readmemh(memfilename, proc2test.imem.RAM);
+      $readmemh(memfilename, proc2test.dmem.RAM);	
    end
 
    // Debug Commands
