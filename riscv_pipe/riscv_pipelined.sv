@@ -152,13 +152,13 @@ module top(input logic         clk, reset,
 endmodule
 
 module riscv(
-   input logic         clk, reset,
+   input logic 	       clk, 
+   input logic 	       reset,
    output logic [31:0] PCF,
    input logic [31:0]  InstrF,
    output logic        MemWriteM,
    output logic [31:0] ALUResultM, WriteDataM,
    input logic [31:0]  ReadDataM,
-
    // Debug Stuff
    input logic         HaltReq,
    input logic         ResumeReq,
@@ -192,9 +192,7 @@ module riscv(
 
    logic [4:0] 			 Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW;
 
-   debugcsr d(clk, reset,
-      PCF, HaltReq, ResumeReq, DebugMode
-   );
+   debugcsr d(clk, reset, PCF, HaltReq, ResumeReq, DebugMode);
    
    controller c(clk, reset,
 		opD, funct3D, funct7b5D, ImmSrcD,
@@ -214,9 +212,7 @@ module riscv(
 
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
-              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE,
-              DebugMode
-   );			 
+              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE, DebugMode);
 endmodule
 
 module debugcsr(
@@ -249,7 +245,6 @@ module debugcsr(
    // Needs to update cause when halting, not after halt.
    assign dcause = HaltReq ? 3'b011 : 3'b000;
    flopr #(32) dcsr_reg(clk, reset, {23'b0, dcause, 6'b0}, dcsr);
-
    assign DebugMode = (DebugState == HALTED);
 endmodule
 

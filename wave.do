@@ -5,6 +5,7 @@ quietly WaveActivateNextPane {} 0
 # add wave -hex -r /stimulus/*
 
 add wave -color gold -noupdate /debug_tb/clk
+add wave -color gold -noupdate /debug_tb/rst
 add wave -noupdate -divider -height 32 "Top"
 add wave -noupdate -expand -group Top /debug_tb/*
 
