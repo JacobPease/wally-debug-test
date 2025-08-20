@@ -8,7 +8,7 @@ module debug_tb;
    // DTM Signals
    logic clk, rst;
    logic tck, tms, tdi, tdo;
-   dmi_t dmi_req;
+   dmi_req_t dmi_req;
    dmi_rsp_t dmi_rsp;
 
    // DM Signals
@@ -16,6 +16,13 @@ module debug_tb;
    logic HaltReq;
    logic ResumeReq;
    logic DebugMode;
+   logic DebugControl;
+
+   // Debug Register Access
+   logic [31:0] RegIn;
+   logic [31:0] RegOut;
+   logic [4:0]  RegAddr;
+   logic        DebugRegWrite;
 
    // CPU Signals
    logic [31:0] WriteDataM, DataAdrM;
@@ -28,10 +35,14 @@ module debug_tb;
       dmi_req, dmi_rsp);
 
    dm debugmodule (clk, rst, dmi_req,
-      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode);
+      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl,
+      RegIn, RegOut, RegAddr, DebugRegWrite
+   );
 
    top proc2test (clk, rst, WriteDataM, DataAdrM,
-      MemWriteM, HaltReq, ResumeReq, DebugMode);
+      MemWriteM, HaltReq, ResumeReq, DebugMode, DebugControl,
+      RegIn, RegOut, RegAddr, DebugRegWrite
+   );
 
    initial begin
       tck = 1'b1;
@@ -154,9 +165,17 @@ module debug_tb;
       dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
 
       #(tcktime*2)
-      
+      // Resume Processor
       write_instr(5'b10001);
       dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
+
+      #(tcktime*2)
+      // Halt processor again
+      dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
+      #(tcktime*30)
+      assert(DebugMode) $display("Halted");
+      else $display("Not");
+      #(tcktime*10) dmireg.write({7'h17, 32'h0020_0005, 2'b10}, dmi_result);
       
       #(tcktime*100) $stop;
    end

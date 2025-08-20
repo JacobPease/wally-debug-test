@@ -127,35 +127,47 @@ module testbench();
       end
 endmodule
 
-module top(input  logic        clk, reset, 
+module top(input logic         clk, reset, 
            output logic [31:0] WriteDataM, DataAdrM, 
            output logic        MemWriteM,
-           input logic HaltReq, ResumeReq,
-           output logic DebugMode
+           input logic         HaltReq, ResumeReq,
+           output logic        DebugMode,
+           input logic         DebugControl,
+           output logic [31:0] RegIn,
+           input logic [31:0]  RegOut,
+           input logic [4:0]    RegAddr,
+           input logic         DebugRegWrite
 );
 
    logic [31:0] 	       PCF, InstrF, ReadDataM;
    
    // instantiate processor and memories
    riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
-		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode);
+		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
+         RegIn, RegOut, RegAddr, DebugRegWrite
+   );
    imem imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
 endmodule
 
 module riscv(
-   input  logic        clk, reset,
+   input logic         clk, reset,
    output logic [31:0] PCF,
    input logic [31:0]  InstrF,
-   output logic 	 MemWriteM,
+   output logic        MemWriteM,
    output logic [31:0] ALUResultM, WriteDataM,
    input logic [31:0]  ReadDataM,
 
    // Debug Stuff
-   input HaltReq,
-   input ResumeReq,
-   output DebugMode
+   input logic         HaltReq,
+   input logic         ResumeReq,
+   output logic        DebugMode,
+   input logic         DebugControl,
+   output logic [31:0] RegIn,
+   input logic [31:0]  RegOut,
+   input logic [4:0]   RegAddr,
+   input logic         DebugRegWrite
 );
 
    logic [6:0] 			 opD;
@@ -196,12 +208,14 @@ module riscv(
 	       ALUSrcAE, ALUSrcBE, PCTargetSrcE, FlagsE,
                MemWriteM, WriteDataM, ALUResultM, ReadDataM,
 	       LoadTypeM, StoreTypeM, RegWriteW, ResultSrcW,
-               Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW);
+               Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
+       DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite
+   );
 
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
               ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE,
-      DebugMode
+              DebugMode
    );			 
 endmodule
 
@@ -408,38 +422,44 @@ module lsu (input  logic [2:0] funct3,
 
 endmodule // lsu
 
-module datapath(input logic clk, reset,
+module datapath(input logic         clk, reset,
                 // Fetch stage signals
-                input logic 	    StallF,
+                input logic         StallF,
                 output logic [31:0] PCF,
                 input logic [31:0]  InstrF,
                 // Decode stage signals
                 output logic [6:0]  opD,
                 output logic [2:0]  funct3D, 
-                output logic 	    funct7b5D,
-                input logic 	    StallD, FlushD,
+                output logic        funct7b5D,
+                input logic         StallD, FlushD,
                 input logic [2:0]   ImmSrcD,
                 // Execute stage signals
-                input logic 	    FlushE,
+                input logic         FlushE,
                 input logic [1:0]   ForwardAE, ForwardBE,
-                input logic 	    PCSrcE,
+                input logic         PCSrcE,
                 input logic [3:0]   ALUControlE,
-		input logic 	    ALUSrcAE,
-                input logic 	    ALUSrcBE,
-		input logic 	    PCTargetSrcE,
+		          input logic         ALUSrcAE,
+                input logic         ALUSrcBE,
+		          input logic         PCTargetSrcE,
                 output logic [3:0]  FlagsE,
                 // Memory stage signals
-                input logic 	    MemWriteM, 
+                input logic         MemWriteM, 
                 output logic [31:0] WriteDataM, ALUResultM,
                 input logic [31:0]  ReadDataM,
-		input logic [2:0]   LoadTypeM,
-		input logic [1:0]   StoreTypeM,
+		          input logic [2:0]   LoadTypeM,
+		          input logic [1:0]   StoreTypeM,
                 // Writeback stage signals
-                input logic 	    RegWriteW, 
+                input logic         RegWriteW, 
                 input logic [1:0]   ResultSrcW,
                 // Hazard Unit signals 
                 output logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E,
-                output logic [4:0]  RdE, RdM, RdW);
+                output logic [4:0]  RdE, RdM, RdW,
+                input logic DebugControl,
+                output logic [31:0] RegIn,
+                input logic [31:0]  RegOut,
+                input logic [4:0]   RegAddr,
+                input logic         DebugRegWrite
+  );
 
    // Fetch stage signals
    logic [31:0] 		    PCNextF, PCPlus4F;
@@ -474,8 +494,11 @@ module datapath(input logic clk, reset,
    logic [31:0] 		    ALUResultW;
    logic [31:0] 		    ReadDataW;
    logic [31:0] 		    PCPlus4W;
+   logic [31:0]          ResultW2;
    logic [31:0] 		    ResultW;
-   logic [31:0] 		    PCTargetW;   
+   logic [31:0] 		    PCTargetW;
+
+   logic [4:0]           Rs1, Rs2;
 
    // Fetch stage pipeline register and logic
    mux2    #(32) pcmux(PCPlus4F, PCTargetE, PCSrcE, PCNextF);
@@ -489,18 +512,22 @@ module datapath(input logic clk, reset,
    assign opD       = InstrD[6:0];
    assign funct3D   = InstrD[14:12];
    assign funct7b5D = InstrD[30];
-   assign Rs1D      = InstrD[19:15];
+   assign Rs1      = InstrD[19:15];
    assign Rs2D      = InstrD[24:20];
    assign RdD       = InstrD[11:7];
-   
-   regfile        rf(clk, RegWriteW, Rs1D, Rs2D, RdW, ResultW, RD1D, RD2D);
+
+   mux2 #(5) rs1mux(Rs1, RegAddr, DebugControl, Rs1D);
+
+   regfile        rf(clk, RegWriteW | DebugRegWrite, Rs1D, Rs2D, RdW, ResultW, RD1D, RD2D);
    extend         ext(InstrD[31:7], ImmSrcD, ImmExtD);
-   
+
+   assign RegIn = RD1D;
+
    // Execute stage pipeline register and logic
    floprc #(175) regE(clk, reset, FlushE, 
                       {RD1D, RD2D, PCD, Rs1D, Rs2D, RdD, ImmExtD, PCPlus4D}, 
                       {RD1E, RD2E, PCE, Rs1E, Rs2E, RdE, ImmExtE, PCPlus4E});
-   
+
    mux3   #(32)  faemux(RD1E, ResultW, ALUResultM, ForwardAE, SrcAEforward);
    mux3   #(32)  fbemux(RD2E, ResultW, ALUResultM, ForwardBE, WriteDataE);
    mux2   #(32)  srcamux(SrcAEforward, 32'h0, ALUSrcAE, SrcAE);   
@@ -513,60 +540,61 @@ module datapath(input logic clk, reset,
    flopr  #(133) regM(clk, reset, 
                       {ALUResultE, WriteDataE, RdE, PCPlus4E, PCTargetE},
                       {ALUResultM, WriteDataPreM, RdM, PCPlus4M, PCTargetM});
-   
+
    mux4 #(8) bytesel (ReadDataM[7:0], ReadDataM[15:8], ReadDataM[23:16], ReadDataM[31:24],
-		      ALUResultM[1:0], byteoutM);
+            ALUResultM[1:0], byteoutM);
    mux2 #(16) wordsel (ReadDataM[15:0], ReadDataM[31:16], ALUResultM[1], halfwordoutM);   
    zeroextend #(8) zeb (byteoutM, ZeroExtendByteM);
    signextend #(8) seb (byteoutM, SignExtendByteM);
    zeroextend #(16) zew (halfwordoutM, ZeroExtendWordM);   
    signextend #(16) sew (halfwordoutM, SignExtendWordM);   
    mux5 #(32) readdatamux (ReadDataM, ZeroExtendByteM, SignExtendByteM, 
-			   SignExtendWordM, ZeroExtendWordM, 
-			   LoadTypeM, ReadDataMuxM);  
+            SignExtendWordM, ZeroExtendWordM, 
+            LoadTypeM, ReadDataMuxM);  
    wdunit wdu (WriteDataPreM, ReadDataM, StoreTypeM, ALUResultM[1:0], WriteDataM); 
-   
+
    // Writeback stage pipeline register and logic
    flopr  #(133) regW(clk, reset, 
                       {ALUResultM, ReadDataMuxM, RdM, PCPlus4M, PCTargetM},
                       {ALUResultW, ReadDataW, RdW, PCPlus4W, PCTargetW});
-   mux4   #(32)  resultmux(ALUResultW, ReadDataW, PCPlus4W, PCTargetW, ResultSrcW, ResultW);	
-endmodule
+   mux4   #(32)  resultmux(ALUResultW, ReadDataW, PCPlus4W, PCTargetW, ResultSrcW, ResultW2);
+   mux2 #(32) debugwritemux(ResultW2, RegOut, DebugControl, ResultW);
+  endmodule
 
-// Hazard Unit: forward, stall, and flush
-module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
+  // Hazard Unit: forward, stall, and flush
+  module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               input logic 	 PCSrcE, ResultSrcEb0, 
               input logic 	 RegWriteM, RegWriteW,
               output logic [1:0] ForwardAE, ForwardBE,
               output logic 	 StallF, StallD, FlushD, FlushE,
               input logic DebugMode
-);
+  );
 
    logic 			 lwStallD;
-   
+
    // forwarding logic
    always_comb begin
       ForwardAE = 2'b00;
       ForwardBE = 2'b00;
       if (Rs1E != 5'b0)
-	if      ((Rs1E == RdM) & RegWriteM) ForwardAE = 2'b10;
-	else if ((Rs1E == RdW) & RegWriteW) ForwardAE = 2'b01;
-      
+   if      ((Rs1E == RdM) & RegWriteM) ForwardAE = 2'b10;
+   else if ((Rs1E == RdW) & RegWriteW) ForwardAE = 2'b01;
+
       if (Rs2E != 5'b0)
-	if      ((Rs2E == RdM) & RegWriteM) ForwardBE = 2'b10;
-	else if ((Rs2E == RdW) & RegWriteW) ForwardBE = 2'b01;
+   if      ((Rs2E == RdM) & RegWriteM) ForwardBE = 2'b10;
+   else if ((Rs2E == RdW) & RegWriteW) ForwardBE = 2'b01;
    end
-   
+
    // stalls and flushes
    assign lwStallD = ResultSrcEb0 & ((Rs1D == RdE) | (Rs2D == RdE));  
    assign StallD = lwStallD | DebugMode;
    assign StallF = lwStallD | DebugMode;
-   
+
    assign FlushD = PCSrcE;
    assign FlushE = lwStallD | PCSrcE;
-endmodule
+  endmodule
 
-module regfile(input  logic        clk, 
+  module regfile(input  logic        clk, 
                input logic 	   we3, 
                input logic [ 4:0]  a1, a2, a3, 
                input logic [31:0]  wd3, 
