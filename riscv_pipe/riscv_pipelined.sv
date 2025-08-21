@@ -130,13 +130,13 @@ endmodule
 module top(input logic         clk, reset, 
            output logic [31:0] WriteDataM, DataAdrM, 
            output logic        MemWriteM,
-           input logic         HaltReq, ResumeReq,
+           input logic 	       HaltReq, ResumeReq,
            output logic        DebugMode,
-           input logic         DebugControl,
+           input logic 	       DebugControl,
            output logic [31:0] RegIn,
            input logic [31:0]  RegOut,
-           input logic [4:0]    RegAddr,
-           input logic         DebugRegWrite
+           input logic [4:0]   RegAddr,
+           input logic 	       DebugRegWrite
 );
 
    logic [31:0] 	       PCF, InstrF, ReadDataM;
@@ -144,8 +144,7 @@ module top(input logic         clk, reset,
    // instantiate processor and memories
    riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
 		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
-         RegIn, RegOut, RegAddr, DebugRegWrite
-   );
+		   RegIn, RegOut, RegAddr, DebugRegWrite);
    imem imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
@@ -207,8 +206,7 @@ module riscv(
                MemWriteM, WriteDataM, ALUResultM, ReadDataM,
 	       LoadTypeM, StoreTypeM, RegWriteW, ResultSrcW,
                Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
-       DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite
-   );
+	       DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite);
 
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
@@ -449,7 +447,7 @@ module datapath(input logic         clk, reset,
                 // Hazard Unit signals 
                 output logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E,
                 output logic [4:0]  RdE, RdM, RdW,
-                input logic DebugControl,
+                input logic         DebugControl,
                 output logic [31:0] RegIn,
                 input logic [31:0]  RegOut,
                 input logic [4:0]   RegAddr,
@@ -511,8 +509,8 @@ module datapath(input logic         clk, reset,
    assign Rs2D      = InstrD[24:20];
    assign RdD       = InstrD[11:7];
 
+   // Mux to tie in input from Debug
    mux2 #(5) rs1mux(Rs1, RegAddr, DebugControl, Rs1D);
-
    regfile        rf(clk, RegWriteW | DebugRegWrite, Rs1D, Rs2D, RdW, ResultW, RD1D, RD2D);
    extend         ext(InstrD[31:7], ImmSrcD, ImmExtD);
 
