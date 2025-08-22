@@ -78,78 +78,78 @@
 //   sw           0100011   010       immediate
 //   jal          1101111   immediate immediate
 
-module testbench();
+// module testbench();
 
-   logic        clk;
-   logic        reset;
+//    logic        clk;
+//    logic        reset;
 
-   logic [31:0] WriteData, DataAdr;
-   logic        MemWrite;
-   logic        HaltReq;
-   logic        ResumeReq;
-   logic        DebugMode;
+//    logic [31:0] WriteData, DataAdr;
+//    logic        MemWrite;
+//    logic        HaltReq;
+//    logic        ResumeReq;
+//    logic        DebugMode;
 
-   // instantiate device to be tested
-   top dut(clk, reset, WriteData, DataAdr, MemWrite,
-      HaltReq, ResumeReq, DebugMode
-   );
+//    // instantiate device to be tested
+//    top dut(clk, reset, WriteData, DataAdr, MemWrite,
+//       HaltReq, ResumeReq, DebugMode
+//    );
 
-   initial begin
-	   string memfilename;
-	   string dmemfilename;
-      memfilename = {"../testing/add.memfile"};
-      $readmemh(memfilename, dut.imem.RAM);
-      $readmemh(memfilename, dut.dmem.RAM);	
-   end
+//    initial begin
+// 	   string memfilename;
+// 	   string dmemfilename;
+//       memfilename = {"../testing/add.memfile"};
+//       $readmemh(memfilename, dut.imem.RAM);
+//       $readmemh(memfilename, dut.dmem.RAM);	
+//    end
    
-   // initialize test
-   initial begin
-	   reset <= 1; # 22; reset <= 0;
-   end
+//    // initialize test
+//    initial begin
+// 	   reset <= 1; # 22; reset <= 0;
+//    end
 
-   // generate clock to sequence tests
-   always begin
-	   clk <= 1; # 5; clk <= 0; # 5;
-   end
+//    // generate clock to sequence tests
+//    always begin
+// 	   clk <= 1; # 5; clk <= 0; # 5;
+//    end
 
-   // check results
-   always @(negedge clk)
-      begin
-	      if(MemWrite) begin
-            if(DataAdr === 100 & WriteData === 10) begin
-               $display("Simulation succeeded");
-               $stop;
-            end else if (DataAdr === 100 & WriteData === 17) begin
-               $display("Simulation failed");
-               $stop;
-            end
-	      end
-      end
-endmodule
+//    // check results
+//    always @(negedge clk)
+//       begin
+// 	      if(MemWrite) begin
+//             if(DataAdr === 100 & WriteData === 10) begin
+//                $display("Simulation succeeded");
+//                $stop;
+//             end else if (DataAdr === 100 & WriteData === 17) begin
+//                $display("Simulation failed");
+//                $stop;
+//             end
+// 	      end
+//       end
+// endmodule
 
-module top(input logic         clk, reset, 
-           output logic [31:0] WriteDataM, DataAdrM, 
-           output logic        MemWriteM,
-           input logic         HaltReq, ResumeReq,
-           output logic        DebugMode,
-           input logic         DebugControl,
-           output logic [31:0] RegIn,
-           input logic [31:0]  RegOut,
-           input logic [4:0]    RegAddr,
-           input logic         DebugRegWrite
-);
+// module top(input logic         clk, reset, 
+//            output logic [31:0] WriteDataM, DataAdrM, 
+//            output logic        MemWriteM,
+//            input logic         HaltReq, ResumeReq,
+//            output logic        DebugMode,
+//            input logic         DebugControl,
+//            output logic [31:0] RegIn,
+//            input logic [31:0]  RegOut,
+//            input logic [4:0]    RegAddr,
+//            input logic         DebugRegWrite
+// );
 
-   logic [31:0] 	       PCF, InstrF, ReadDataM;
+//    logic [31:0] 	       PCF, InstrF, ReadDataM;
    
-   // instantiate processor and memories
-   riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
-		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
-         RegIn, RegOut, RegAddr, DebugRegWrite
-   );
-   imem imem (PCF, InstrF);
-   dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
+//    // instantiate processor and memories
+//    riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
+// 		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
+//          RegIn, RegOut, RegAddr, DebugRegWrite
+//    );
+//    imem imem (PCF, InstrF);
+//    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
-endmodule
+// endmodule
 
 module riscv(
    input logic 	       clk, 
@@ -715,10 +715,17 @@ module mux5 #(parameter WIDTH = 8) (
   assign y = s[2] ? d4 : (s[1] ? (s[0] ? d3 : d2) : (s[0] ? d1 : d0)); 
 endmodule
 
-module imem (input  logic [31:0] a,
-	     output logic [31:0] rd);
+module imem #(parameter MEM_INIT_FILE)
+    (input  logic [31:0] a,
+     output logic [31:0] rd);
    
-   logic [31:0] 		 RAM[2047:0];
+   logic [31:0]      RAM[63:0];
+
+   initial begin
+      if (MEM_INIT_FILE != "") begin
+        $readmemh(MEM_INIT_FILE, RAM);
+      end
+   end
    
    assign rd = RAM[a[31:2]]; // word aligned
    

@@ -25,6 +25,7 @@ src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 
 clean:
 	@rm -rf $(SRC_DIR)
+	@rm -rf ./debugfpga
 
 sim:
 	vsim -do setup.tcl -c

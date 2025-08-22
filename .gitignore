@@ -16,3 +16,12 @@ transcript
 *.bak
 *.tmp
 **/work/
+
+# Vivado specific files
+*.str
+*.log
+*.jou
+
+# This is the Vivado project. We don't want to track this because it
+# gets generated with vivado_newproj.tcl
+debugfpga/

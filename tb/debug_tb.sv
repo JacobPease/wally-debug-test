@@ -27,10 +27,12 @@ module debug_tb;
    // CPU Signals
    logic [31:0] WriteDataM, DataAdrM;
    logic        MemWriteM;
-
+   logic [31:0] 	       PCF, InstrF, ReadDataM;
+   
    // Dummy Debug Module FSM states
    enum logic {IDLE, WAIT} DMState;
-    
+
+   
    dtm dtm (clk, rst, tck, tms, tdi, tdo,
       dmi_req, dmi_rsp);
 
@@ -39,10 +41,18 @@ module debug_tb;
       RegIn, RegOut, RegAddr, DebugRegWrite
    );
 
-   top proc2test (clk, rst, WriteDataM, DataAdrM,
-      MemWriteM, HaltReq, ResumeReq, DebugMode, DebugControl,
-      RegIn, RegOut, RegAddr, DebugRegWrite
+   // top proc2test (clk, rst, WriteDataM, DataAdrM,
+   //    MemWriteM, HaltReq, ResumeReq, DebugMode, DebugControl,
+   //    RegIn, RegOut, RegAddr, DebugRegWrite
+   // );
+   
+   // instantiate processor and memories
+   riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
+		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
+         RegIn, RegOut, RegAddr, DebugRegWrite
    );
+   imem imem (PCF, InstrF);
+   dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
    initial begin
       tck = 1'b1;
@@ -109,8 +119,8 @@ module debug_tb;
 	   string memfilename;
 	   string dmemfilename;
       memfilename = {"./testing/riscvtest.memfile"};
-      $readmemh(memfilename, proc2test.imem.RAM);
-      $readmemh(memfilename, proc2test.dmem.RAM);	
+      $readmemh(memfilename, imem.RAM);
+      $readmemh(memfilename, dmem.RAM);	
    end
 
    // Debug Commands
@@ -154,19 +164,19 @@ module debug_tb;
       // dtmcs.write(32'h00110071, dtmcs_result);
 
       // Halting Processor
-      write_instr(5'b10001);
+      // write_instr(5'b10001);
       dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
       #(tcktime*30)
       assert(DebugMode) $display("Halted");
       else $display("Not");
 
       // Clear HaltReq
-      write_instr(5'b10001);
+      //write_instr(5'b10001);
       dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
 
       #(tcktime*2)
       // Resume Processor
-      write_instr(5'b10001);
+      // write_instr(5'b10001);
       dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
 
       #(tcktime*2)
