@@ -7,7 +7,9 @@
 # Clock signal
 
 set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { sysclk }]; #IO_L12P_T1_MRCC_35 Sch=gclk[100]
-create_clock -add -name sys_clk_pin -period 25.00 -waveform {0 12.5} [get_ports {sysclk}];
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {sysclk}];
+create_clock -add -name tck_pin -period 1000 -waveform {0 500} [get_ports {tck}];
+set_clock_groups -asynchronous -group [get_clocks sys_clk_pin] -group [get_clocks tck]
 
 
 #Switches
@@ -52,8 +54,8 @@ set_property -dict { PACKAGE_PIN B18   IOSTANDARD LVCMOS33 } [get_ports { ja[8] 
 set_property -dict { PACKAGE_PIN A18   IOSTANDARD LVCMOS33 } [get_ports { ja[9] }]; #IO_L10N_T1_AD11N_15 Sch=ja[9]
 set_property -dict { PACKAGE_PIN E15   IOSTANDARD LVCMOS33 } [get_ports { ja[10] }]; #IO_L11P_T1_SRCC_15 Sch=ja[10]
 
-set_input_delay -clock [get_clocks sys_clk_pin] -max 5.0 [get_ports {tck tms tdi}]
-set_input_delay -clock [get_clocks sys_clk_pin] -min 0.0 [get_ports {tck tms tdi}]
+set_input_delay -clock [get_clocks sys_clk_pin] -max 5.0 [get_ports {tms tdi}]
+set_input_delay -clock [get_clocks sys_clk_pin] -min 0.0 [get_ports {tms tdi}]
 
 # Issue with tck and implementation - seems to fix (jes)
 # Issue related to JTAG tck treating it as a global clock

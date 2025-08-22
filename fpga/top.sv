@@ -31,21 +31,31 @@ module top #(parameter IMEM_INIT_FILE="./testing/riscvtest.memfile") (
    (* mark_debug = "true" *) logic        MemWriteM;
 
    (* mark_debug = "true" *) logic [31:0] 	       PCF, InstrF, ReadDataM;
+
+   logic clk;
+   logic mmcm_locked;
    
-   dtm dtm (sysclk, sys_reset, tck, tms, tdi, tdo,
+   mmcm0 mmcm_instance (
+      .clk_in1 (sysclk),
+      .clk_out1(clk),
+      .reset(1'b0),
+      .locked(mmcm_locked)
+   );
+   
+   dtm dtm (clk, sys_reset, tck, tms, tdi, tdo,
       dmi_req, dmi_rsp);
 
-   dm debugmodule (sysclk, sys_reset, dmi_req,
+   dm debugmodule (clk, sys_reset, dmi_req,
       dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl,
       RegIn, RegOut, RegAddr, DebugRegWrite
    );
    
    // instantiate processor and memories
-   riscv rv32pipe (sysclk, sys_reset, PCF, InstrF, MemWriteM, DataAdrM, 
+   riscv rv32pipe (clk, sys_reset, PCF, InstrF, MemWriteM, DataAdrM, 
 		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
          RegIn, RegOut, RegAddr, DebugRegWrite
    );
    imem #(IMEM_INIT_FILE) imem (PCF, InstrF);
-   dmem dmem (sysclk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
+   dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
 endmodule
