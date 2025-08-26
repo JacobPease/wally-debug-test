@@ -215,11 +215,12 @@ module riscv(
 endmodule
 
 module debugcsr(
-   input logic        clk, reset,
+   input logic 	      clk, 
+   input logic 	      reset,
    input logic [31:0] PC,
-   input              HaltReq,
-   input              ResumeReq,
-   output             DebugMode
+   input logic 	      HaltReq,
+   input logic 	      ResumeReq,
+   output logic       DebugMode
 );
    logic [31:0] dcsr;
    logic [31:0] dpc;
