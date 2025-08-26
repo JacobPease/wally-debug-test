@@ -47,11 +47,11 @@ module debug_tb;
    // );
    
    // instantiate processor and memories
-   riscv rv32pipe (clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
+   riscv rv32pipe (clk, rst, PCF, InstrF, MemWriteM, DataAdrM, 
 		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
          RegIn, RegOut, RegAddr, DebugRegWrite
    );
-   imem #("./testing/riscvtest.memfile") imem (PCF, InstrF);
+   imem #("testing/riscvtest.memfile") imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
    initial begin
@@ -136,7 +136,7 @@ module debug_tb;
       rst = 0;
       tms = 1;
       @(negedge clk) tms = 0; rst = 1;
-      @(posedge clk) rst = 0;
+      @(negedge clk) rst = 0;
 
       // Read IDCODE
       write_instr(5'b00001);
@@ -188,8 +188,11 @@ module debug_tb;
       #(tcktime*10) dmireg.write({7'h17, 32'h0020_0005, 2'b10}, dmi_result);
 
       #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
+
+      #(tcktime*2) dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
+      #(tcktime*2) dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
       
-      #(tcktime*100) $stop;
+      #(tcktime*1000) $stop;
    end
     
 endmodule

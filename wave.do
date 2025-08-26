@@ -16,29 +16,29 @@ add wave -noupdate -divider -height 32 "dm"
 add wave -noupdate -expand -group dm /debug_tb/debugmodule/*
 
 add wave -noupdate -divider -height 32 "Instructions"
-add wave -noupdate -expand -group Instructions -color Orange /debug_tb/proc2test/rv32pipe/*
+add wave -noupdate -expand -group Instructions -color Orange /debug_tb/rv32pipe/*
 
 add wave -noupdate -divider -height 32 "Datapath"
-add wave -hex /debug_tb/proc2test/rv32pipe/d/*
+add wave -hex /debug_tb/rv32pipe/d/*
 
 add wave -noupdate -divider -height 32 "Control"
-add wave -hex /debug_tb/proc2test/rv32pipe/c/*
+add wave -hex /debug_tb/rv32pipe/c/*
 
 add wave -noupdate -divider -height 32 "Main Decoder"
-add wave -hex /debug_tb/proc2test/rv32pipe/c/md/*
+add wave -hex /debug_tb/rv32pipe/c/md/*
 
 add wave -noupdate -divider -height 32 "ALU Decoder"
-add wave -hex /debug_tb/proc2test/rv32pipe/c/ad/*
+add wave -hex /debug_tb/rv32pipe/c/ad/*
 
 add wave -noupdate -divider -height 32 "Data Memory"
-add wave -hex /debug_tb/proc2test/dmem/*
+add wave -hex /debug_tb/dmem/*
 
 add wave -noupdate -divider -height 32 "Instruction Memory"
-add wave -hex /debug_tb/proc2test/imem/*
+add wave -hex /debug_tb/imem/*
 
 add wave -noupdate -divider -height 32 "Register File"
-add wave -hex /debug_tb/proc2test/rv32pipe/dp/rf/*
-add wave -hex /debug_tb/proc2test/rv32pipe/dp/rf/rf
+add wave -hex /debug_tb/rv32pipe/dp/rf/*
+add wave -hex /debug_tb/rv32pipe/dp/rf/rf
 
 
 TreeUpdate [SetDefaultTree]

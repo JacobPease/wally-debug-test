@@ -9,7 +9,7 @@ set xdc_file          "./fpga/Arty_Master.xdc"                ;# XDC constraint 
 # ==== MMCM CONFIGURATION VARIABLES ====
 set mmcm_ip_name      "mmcm0"                        ;# Name of the MMCM IP
 set mmcm_input_freq   100.0                              ;# Input clock frequency (MHz)
-set mmcm_output_freq  50.0                               ;# Desired output clock frequency (MHz)
+set mmcm_output_freq  40.0                               ;# Desired output clock frequency (MHz)
 
 # ==== CALCULATE MMCM PARAMETERS ====
 # Ensure VCO frequency is within 600–1600 MHz
@@ -98,8 +98,8 @@ set_property -dict [list \
     CONFIG.PRIM_IN_FREQ $mmcm_input_freq \
     CONFIG.CLKOUT1_REQUESTED_OUT_FREQ $mmcm_output_freq \
     CONFIG.USE_SAFE_CLOCK_STARTUP {true} \
-    CONFIG.MMCM_CLKFBOUT_MULT_F 8.0 \
-    CONFIG.MMCM_CLKOUT0_DIVIDE_F 80.0 \
+    CONFIG.MMCM_CLKFBOUT_MULT_F $mmcm_m \
+    CONFIG.MMCM_CLKOUT0_DIVIDE_F $mmcm_o \
     CONFIG.CLKOUT1_JITTER {130.0} \
     CONFIG.CLKOUT1_PHASE_ERROR {98.0} \
 ] [get_ips $mmcm_ip_name]
@@ -116,9 +116,11 @@ puts "MMCM IP files imported into sources_1."
 update_compile_order -fileset sources_1
 
 # ==== (OPTIONAL) RUN SYNTHESIS AND IMPLEMENTATION ====
-# launch_runs synth_1
-# wait_on_run synth_1
-# launch_runs impl_1
-# wait_on_run impl_1
+launch_runs synth_1
+wait_on_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 16
 
 puts "Vivado project setup complete! Files are managed inside top.srcs"

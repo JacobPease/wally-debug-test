@@ -5,7 +5,7 @@ endif
 
 SRC_DIR := src
 
-.PHONY: all install clean sim gui
+.PHONY: all install clean sim gui lint
 
 all: clean install
 
@@ -26,9 +26,15 @@ src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 clean:
 	@rm -rf $(SRC_DIR)
 	@rm -rf ./debugfpga
+	@rm -rf *.jou
+	@rm -rf vivado_*.log
+	@rm -rf vivado_*.str
 
 sim:
 	vsim -do setup.tcl -c
 
 gui:
 	vsim -do setup.tcl
+
+lint: src/*.sv
+	verilator --lint-only src/*.sv tb/*.sv -Isrc/include --top-module debug_tb
