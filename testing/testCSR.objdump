@@ -1,0 +1,61 @@
+
+testCSR.elf:     file format elf32-littleriscv
+
+Contents of section .riscv.attributes:
+ 0000 41260000 00726973 63760001 1c000000  A&...riscv......
+ 0010 05727633 32693270 315f7a69 63737232  .rv32i2p1_zicsr2
+ 0020 70300008 010a0b                      p0.....         
+Contents of section .text:
+ 80000000 13015000 9301c000 938371ff 73250030  ..P.......q.s%.0
+ 80000010 13068008 f3150630 6398a500 f3260030  .......0c....&.0
+ 80000020 6394c600 63002100 1301f0ff 23222006  c...c.!.....#" .
+ 80000030 63000000                             c...            
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2641                	.insn	2, 0x2641
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <main-0x7fffffec>
+   c:	001c                	.insn	2, 0x001c
+   e:	0000                	.insn	2, 0x0000
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	5f31                	.insn	2, 0x5f31
+  1a:	697a                	.insn	2, 0x697a
+  1c:	32727363          	bgeu	tp,t2,342 <main-0x7ffffcbe>
+  20:	3070                	.insn	2, 0x3070
+  22:	0800                	.insn	2, 0x0800
+  24:	0a01                	.insn	2, 0x0a01
+  26:	0b                	.byte	0x0b
+
+Disassembly of section .text:
+
+80000000 <main>:
+main():
+80000000:	00500113          	li	sp,5
+80000004:	00c00193          	li	gp,12
+80000008:	ff718393          	addi	t2,gp,-9
+
+8000000c <csrtest>:
+csrtest():
+8000000c:	30002573          	csrr	a0,mstatus
+80000010:	08800613          	li	a2,136
+80000014:	300615f3          	csrrw	a1,mstatus,a2
+80000018:	00a59863          	bne	a1,a0,80000028 <fail>
+8000001c:	300026f3          	csrr	a3,mstatus
+80000020:	00c69463          	bne	a3,a2,80000028 <fail>
+
+80000024 <done>:
+done():
+80000024:	00210063          	beq	sp,sp,80000024 <done>
+
+80000028 <fail>:
+fail():
+80000028:	fff00113          	li	sp,-1
+8000002c:	06202223          	sw	sp,100(zero) # 64 <main-0x7fffff9c>
+80000030:	00000063          	beqz	zero,80000030 <fail+0x8>
