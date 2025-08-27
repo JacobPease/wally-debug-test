@@ -51,7 +51,7 @@ module debug_tb;
 		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
          RegIn, RegOut, RegAddr, DebugRegWrite
    );
-   imem #("testing/riscvtest.memfile") imem (PCF, InstrF);
+   imem #("testing/riscvtestCSR.memfile") imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
    initial begin

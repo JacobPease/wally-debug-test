@@ -5,7 +5,7 @@ set include_dir_list {
 }
 
 set library_file_list [list \
-	 design_library [glob -nocomplain ./src/*.sv ./riscv_pipe/*.sv] \
+	 design_library [glob -nocomplain ./src/*.sv ./riscv_pipe/riscv_pipelined2.sv] \
     test_library   [glob -nocomplain ./tb/*.sv]
 ]
 

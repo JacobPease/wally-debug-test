@@ -94,10 +94,12 @@ module testbench();
    logic [4:0] 	RegAddr;   
    logic 	DebugRegWrite;   
 
+   assign DebugControl = 1'b0;
+   
    // instantiate device to be tested
    top dut(clk, reset, WriteData, DataAdr, MemWrite, HaltReq, ResumeReq, 
 	   DebugMode, DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite);
-		     
+	
    initial begin
       string memfilename;
       string dmemfilename;
@@ -105,32 +107,32 @@ module testbench();
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end
-
+   
    // initialize test
    initial begin
       HaltReq = 0;
       ResumeReq = 0;      
       reset <= 1; # 22; reset <= 0;       
    end
-
+   
    // generate clock to sequence tests
    always begin
       clk <= 1; # 5; clk <= 0; # 5;
    end
-
+   
    // check results
    always @(negedge clk)
-     begin
-	if(MemWrite) begin
-           if(DataAdr === 100 & WriteData === 10) begin
-              $display("Simulation succeeded");
-              $stop;
+      begin
+	      if(MemWrite) begin
+            if(DataAdr === 100 & WriteData === 10) begin
+               $display("Simulation succeeded");
+               $stop;
            end else if (DataAdr === 100 & WriteData === 17) begin
               $display("Simulation failed");
               $stop;
            end
-	end
-     end
+	      end
+      end
 endmodule
 
 module top(input logic         clk, reset, 
@@ -151,7 +153,7 @@ module top(input logic         clk, reset,
    riscv rv32pipe(clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
 		  WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
 		  RegIn, RegOut, RegAddr, DebugRegWrite);
-   imem imem(PCF, InstrF);
+   imem #("../testing/riscvtestCSR.memfile") imem(PCF, InstrF);
    dmem dmem(clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
 endmodule
@@ -266,32 +268,34 @@ module debugcsr(
    assign DebugMode = (DebugState == HALTED);
 endmodule
 
-module controller(input  logic		 clk, reset,
-                  // Decode stage control signals
-                  input logic [6:0]  opD,
-                  input logic [2:0]  funct3D,
-                  input logic 	     funct7b5D,
-                  output logic [2:0] ImmSrcD,
-                  // Execute stage control signals
-                  input logic 	     FlushE, 
-                  input logic [3:0]  FlagsE, 
-                  output logic 	     PCSrcE, // for datapath and Hazard Unit
-                  output logic [3:0] ALUControlE,
-		  output logic 	     ALUSrcAE,
-                  output logic 	     ALUSrcBE,
-		  output logic 	     PCTargetSrcE,
-                  output logic 	     ResultSrcEb0, // for Hazard Unit
-                  // Memory stage control signals
-                  output logic 	     MemWriteM,
-                  output logic 	     RegWriteM, // for Hazard Unit
-		  output logic [2:0] LoadTypeM, 
-		  output logic [1:0] StoreTypeM,
-                  // Writeback stage control signals
-                  output logic 	     RegWriteW, // for datapath and Hazard Unit
-                  output logic [1:0] ResultSrcW,
-                  output logic 	     CsrEnE,
-                  output logic [1:0] CsrOpE,
-                  output logic 	     CsrImmE);
+module controller(
+   input  logic		 clk, reset,
+   // Decode stage control signals
+   input logic [6:0]  opD,
+   input logic [2:0]  funct3D,
+   input logic 	     funct7b5D,
+   output logic [2:0] ImmSrcD,
+   // Execute stage control signals
+   input logic 	     FlushE, 
+   input logic [3:0]  FlagsE, 
+   output logic 	     PCSrcE, // for datapath and Hazard Unit
+   output logic [3:0] ALUControlE,
+	output logic 	     ALUSrcAE,
+   output logic 	     ALUSrcBE,
+	output logic 	     PCTargetSrcE,
+   output logic 	     ResultSrcEb0, // for Hazard Unit
+   // Memory stage control signals
+   output logic 	     MemWriteM,
+   output logic 	     RegWriteM, // for Hazard Unit
+	output logic [2:0] LoadTypeM, 
+	output logic [1:0] StoreTypeM,
+   // Writeback stage control signals
+   output logic 	     RegWriteW, // for datapath and Hazard Unit
+   output logic [1:0] ResultSrcW,
+   output logic 	     CsrEnE,
+   output logic [1:0] CsrOpE,
+   output logic 	     CsrImmE
+);
 
    // pipelined control signals
    logic 			     RegWriteD;
@@ -449,54 +453,55 @@ module lsu (input  logic [2:0] funct3,
 
 endmodule // lsu
 
-module datapath(input logic         clk, reset,
-                // Fetch stage signals
-                input logic 	    StallF,
-                output logic [31:0] PCF,
-                input logic [31:0]  InstrF,
-                // Decode stage signals
-                output logic [6:0]  opD,
-                output logic [2:0]  funct3D, 
-                output logic 	    funct7b5D,
-                input logic 	    StallD, FlushD,
-                input logic [2:0]   ImmSrcD,
-                // Execute stage signals
-                input logic 	    FlushE,
-                input logic [1:0]   ForwardAE, ForwardBE,
-                input logic 	    PCSrcE,
-                input logic [3:0]   ALUControlE,
-		input logic 	    ALUSrcAE,
-                input logic 	    ALUSrcBE,
-		input logic 	    PCTargetSrcE,
-                output logic [3:0]  FlagsE,
-                // Memory stage signals
-                input logic 	    MemWriteM, 
-                output logic [31:0] WriteDataM, ALUResultM,
-                input logic [31:0]  ReadDataM,
-		input logic [2:0]   LoadTypeM,
-		input logic [1:0]   StoreTypeM,
-                // Writeback stage signals
-                input logic 	    RegWriteW, 
-                input logic [1:0]   ResultSrcW,
-                // Hazard Unit signals 
-                output logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E,
-                output logic [4:0]  RdE, RdM, RdW,
-                input logic 	    DebugControl,
-                output logic [31:0] RegIn,
-                input logic [31:0]  RegOut,
-                input logic [4:0]   RegAddr,
-                input logic 	    DebugRegWrite,
-		// CSR handshake with csr
-		output logic 	    csr_weE,
-		output logic [11:0] CSRAddrE,
-		output logic [31:0] csr_wdataE,
-		input logic [31:0]  csr_rdata,
-		// csr control from controller
-		input logic 	    CsrEnE,
-		input logic [1:0]   CsrOpE,
-		input logic 	    CsrImmE		
-  );
-
+module datapath(
+   input logic         clk, reset,
+   // Fetch stage signals
+   input logic 	    StallF,
+   output logic [31:0] PCF,
+   input logic [31:0]  InstrF,
+   // Decode stage signals
+   output logic [6:0]  opD,
+   output logic [2:0]  funct3D, 
+   output logic 	    funct7b5D,
+   input logic 	    StallD, FlushD,
+   input logic [2:0]   ImmSrcD,
+   // Execute stage signals
+   input logic 	    FlushE,
+   input logic [1:0]   ForwardAE, ForwardBE,
+   input logic 	    PCSrcE,
+   input logic [3:0]   ALUControlE,
+	input logic 	    ALUSrcAE,
+   input logic 	    ALUSrcBE,
+	input logic 	    PCTargetSrcE,
+   output logic [3:0]  FlagsE,
+   // Memory stage signals
+   input logic 	    MemWriteM, 
+   output logic [31:0] WriteDataM, ALUResultM,
+   input logic [31:0]  ReadDataM,
+	input logic [2:0]   LoadTypeM,
+	input logic [1:0]   StoreTypeM,
+   // Writeback stage signals
+   input logic 	    RegWriteW, 
+   input logic [1:0]   ResultSrcW,
+   // Hazard Unit signals 
+   output logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E,
+   output logic [4:0]  RdE, RdM, RdW,
+   input logic 	    DebugControl,
+   output logic [31:0] RegIn,
+   input logic [31:0]  RegOut,
+   input logic [4:0]   RegAddr,
+   input logic 	    DebugRegWrite,
+	// CSR handshake with csr
+	output logic 	    csr_weE,
+	output logic [11:0] CSRAddrE,
+	output logic [31:0] csr_wdataE,
+	input logic [31:0]  csr_rdata,
+	// csr control from controller
+	input logic 	    CsrEnE,
+	input logic [1:0]   CsrOpE,
+	input logic 	    CsrImmE		
+);
+   
    // Fetch stage signals
    logic [31:0] 		    PCNextF, PCPlus4F;
    // Decode stage signals
@@ -656,14 +661,14 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
       ForwardAE = 2'b00;
       ForwardBE = 2'b00;
       if (Rs1E != 5'b0)
-   if      ((Rs1E == RdM) & RegWriteM) ForwardAE = 2'b10;
-   else if ((Rs1E == RdW) & RegWriteW) ForwardAE = 2'b01;
+         if      ((Rs1E == RdM) & RegWriteM) ForwardAE = 2'b10;
+         else if ((Rs1E == RdW) & RegWriteW) ForwardAE = 2'b01;
 
       if (Rs2E != 5'b0)
-   if      ((Rs2E == RdM) & RegWriteM) ForwardBE = 2'b10;
-   else if ((Rs2E == RdW) & RegWriteW) ForwardBE = 2'b01;
+         if      ((Rs2E == RdM) & RegWriteM) ForwardBE = 2'b10;
+         else if ((Rs2E == RdW) & RegWriteW) ForwardBE = 2'b01;
    end
-
+   
    // stalls and flushes
    assign lwStallD = ResultSrcEb0 & ((Rs1D == RdE) | (Rs2D == RdE));  
    assign StallD = lwStallD | DebugMode;
@@ -688,7 +693,7 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
    // register 0 hardwired to 0
 
    always_ff @(negedge clk)
-     if (we3) rf[a3] <= wd3;	
+      if (we3) rf[a3] <= wd3;	
 
    assign rd1 = (a1 != 0) ? rf[a1] : 0;
    assign rd2 = (a2 != 0) ? rf[a2] : 0;
@@ -752,7 +757,7 @@ module flopenrc #(parameter WIDTH = 8)
        else       q <= d;
 endmodule 
 
-module csr_reg_en #(parameter WIDTH = 32)
+module csr_reg_en #(parameter WIDTH = 32, parameter ADDR = 12'h300)
    (input  logic             clk,
     input logic 	     reset,
     input logic 	     csr_we,
@@ -773,6 +778,8 @@ module misa_reg_en #(parameter WIDTH = 32)
     input logic [11:0] 	     csr_addr,
     input logic [WIDTH-1:0]  d_in,
     output logic [WIDTH-1:0] q);
+
+   localparam ADDR = 12'h7B0;
    
    logic 		     en;
    // misa default: RV32I => MXL=01 in [31:30], 'I' bit (bit 8) set, others 0.
@@ -831,12 +838,18 @@ module mux5 #(parameter WIDTH = 8) (
   assign y = s[2] ? d4 : (s[1] ? (s[0] ? d3 : d2) : (s[0] ? d1 : d0)); 
 endmodule
 
-module imem 
+module imem #(parameter MEM_INIT_FILE)
     (input  logic [31:0] a,
      output logic [31:0] rd);
    
    logic [31:0]      RAM[63:0];
 
+   initial begin
+      if (MEM_INIT_FILE != "") begin
+        $readmemh(MEM_INIT_FILE, RAM);
+      end
+   end
+   
    assign rd = RAM[a[31:2]]; // word aligned
    
 endmodule // imem
@@ -944,35 +957,36 @@ module wdunit (input  logic [31:0] rd2,
    
 endmodule // wdunit
 
-module csr(input logic 	       clk,
-	   input logic 	       reset,
-
-	   // PC for capturing into dpc on entry to debug
-	   input logic [31:0]  PC,
-
-	   // External debug requests
-	   input logic 	       HaltReq,
-	   input logic 	       ResumeReq,
-	   output logic        DebugMode,
-
-	   // Pipeline CSR access (E stage)
-	   input logic 	       csr_we, // write enable for CSR (after RS/RC zero-mask checks)
-	   input logic [11:0]  csr_addr, // CSR address from instruction
-	   input logic [31:0]  csr_wdata, // new value to write
-	   output logic [31:0] csr_rdata // old/current value (combinational)
-	   );
-
+module csr(
+   input logic 	       clk,
+	input logic 	       reset,
+   
+	// PC for capturing into dpc on entry to debug
+	input logic [31:0]  PC,
+   
+	// External debug requests
+	input logic 	       HaltReq,
+	input logic 	       ResumeReq,
+	output logic        DebugMode,
+   
+	// Pipeline CSR access (E stage)
+	input logic 	       csr_we, // write enable for CSR (after RS/RC zero-mask checks)
+	input logic [11:0]  csr_addr, // CSR address from instruction
+	input logic [31:0]  csr_wdata, // new value to write
+	output logic [31:0] csr_rdata // old/current value (combinational)
+);
+   
    // ----------------------------
    // Debug state machine
    // ----------------------------
    typedef enum 	       logic {RUNNING, HALTED} dbg_state_e;
    dbg_state_e state, state_n;
-
+   
    // Debug CSRs
    logic [31:0] 	       dcsr;       // 0x7B0
    logic [31:0] 	       dpc;        // 0x7B1
    logic [31:0] 	       dscratch0;  // 0x7B2
-
+   
    // Machine CSRs (basic, WARL/WIRI behavior ignored for simplicity)
    logic [31:0] 	       mstatus;    // 0x300
    logic [31:0] 	       misa;       // 0x301
@@ -981,87 +995,144 @@ module csr(input logic 	       clk,
    logic [31:0] 	       mcause;     // 0x342
    logic [31:0] 	       mtval;      // 0x343
 
+   // ----------------------------
+   // Debug Mode FSM
+   // ----------------------------     
    // Debug cause (3 = halt request)
    logic [2:0] 		       dcause;
    assign dcause = (HaltReq) ? 3'd3 : 3'd0;
 
+   // State Machine flop
+   always_ff @(posedge clk) begin
+      if (reset) begin
+         state <= RUNNING;
+      end else if (HaltReq | ResumeReq) begin // Using the requests as enables
+         state <= state_n;
+      end
+   end
+   
    // Next-state debug mode
    always_comb begin
-      state_n = state;
+      // state_n = state;
       unique case (state)
-	RUNNING: if (HaltReq) state_n = HALTED;
-	HALTED:  if (ResumeReq) state_n = RUNNING;
+	      RUNNING: if (HaltReq) state_n = HALTED;
+	      HALTED:  if (ResumeReq) state_n = RUNNING;
+         default: state_n = RUNNING;
       endcase
    end
-
+   
    assign DebugMode = (state == HALTED);
-
+   
    // ----------------------------
    // CSR read mux (combinational)
    // ----------------------------
    always_comb begin
       unique case (csr_addr)
-	12'h300: csr_rdata = mstatus;
-	12'h301: csr_rdata = misa;
-	12'h305: csr_rdata = mtvec;
-	12'h341: csr_rdata = mepc;
-	12'h342: csr_rdata = mcause;
-	12'h343: csr_rdata = mtval;
-	12'h7B0: csr_rdata = dcsr;
-	12'h7B1: csr_rdata = dpc;
-	12'h7B2: csr_rdata = dscratch0;
-	default: csr_rdata = 32'h0000_0000; 
+	      12'h300: csr_rdata = mstatus;
+	      12'h301: csr_rdata = misa;
+	      12'h305: csr_rdata = mtvec;
+	      12'h341: csr_rdata = mepc;
+	      12'h342: csr_rdata = mcause;
+	      12'h343: csr_rdata = mtval;
+	      12'h7B0: csr_rdata = dcsr;
+	      12'h7B1: csr_rdata = dpc;
+	      12'h7B2: csr_rdata = dscratch0;
+	      default: csr_rdata = 32'h0000_0000; 
       endcase
    end
-
+   
    // misa default: RV32I => MXL=01 in [31:30], 'I' bit (bit 8) set, others 0.
    localparam [31:0] MISA_RV32I = (32'h1 << 30) | (32'h1 << 8);
-
-   csr_reg_en #(32) mstatus_reg(clk, reset, csr_we, csr_addr, csr_wdata, mstatus);
-   csr_reg_en #(32) mtvec_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtvec);
-   csr_reg_en #(32) mepc_reg(clk, reset, csr_we, csr_addr, csr_wdata, mepc);
-   csr_reg_en #(32) mcause_reg(clk, reset, csr_we, csr_addr, csr_wdata, mcause);
-   csr_reg_en #(32) mtval_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtval);
-   csr_reg_en #(32) dcsr_reg(clk, reset, csr_we, csr_addr, csr_wdata, dcsr);   
-   csr_reg_en #(32) dpc_reg(clk, reset, csr_we, csr_addr, csr_wdata, dpc);
-   csr_reg_en #(32) dscratch0_reg(clk, reset, csr_we, csr_addr, csr_wdata, dscratch0);
+   
+   csr_reg_en #(32, 12'h300) mstatus_reg(clk, reset, csr_we, csr_addr, csr_wdata, mstatus);
+   csr_reg_en #(32, 12'h305) mtvec_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtvec);
+   csr_reg_en #(32, 12'h341) mepc_reg(clk, reset, csr_we, csr_addr, csr_wdata, mepc);
+   csr_reg_en #(32, 12'h342) mcause_reg(clk, reset, csr_we, csr_addr, csr_wdata, mcause);
+   csr_reg_en #(32, 12'h343) mtval_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtval);
+   // csr_reg_en #(32, 12'h7B0) dcsr_reg(clk, reset, csr_we, csr_addr, csr_wdata, dcsr);   
+   //csr_reg_en #(32, 12'h7B1) dpc_reg(clk, reset, csr_we, csr_addr, csr_wdata, dpc);
+   csr_reg_en #(32, 12'h7B2) dscratch0_reg(clk, reset, csr_we, csr_addr, csr_wdata, dscratch0);
    misa_reg_en #(32) misa_reg(clk, reset, csr_we, csr_addr, csr_wdata, misa);         
-
+   
    /// FIXME:  have to implement correctly as a FSM :(
+   // ----------------------------
+   // Debug Registers
+   // ----------------------------
 
+
+   // DPC
+   always_ff @(posedge clk) begin
+      if (reset) begin
+         dpc <= '0;
+      end else if (state == RUNNING && state_n == HALTED) begin
+         dpc <= PC; // needs address of next instruction on halt. PC can vary by cause
+      end else if (csr_we & csr_addr == 12'h7B1) begin
+         dpc <= csr_wdata;
+      end
+   end
+   
    // On entry to debug: latch PC into dpc and set dcsr.cause
-   if (state == RUNNING && state_n == HALTED) begin
-            dpc  <= PC;                                       // capture current PC
-      // dcsr[8:6] = cause (simplified placement into bits[8:6])
-      dcsr <= { dcsr[31:9], dcause, dcsr[5:0] };
+   always_ff @(posedge clk) begin
+      if (reset) begin
+                        // | Name      | Access | Status          | Description                                                                  |
+                        // |-----------+--------+-----------------+------------------------------------------------------------------------------|
+         dcsr <= {4'd4, // | debugver  | R      | implemented     | Debug Version                                                                |
+                  1'b0, // | reserved  | -      | -               |                                                                              |
+                  3'd0, // | extcause  | R      | optional=0      | Reserved for extra debug causes when dcause=other                            |
+                  4'd0, // | reserved  | -      | -               |                                                                              |
+                  1'b0, // | cetrig    | WARL   | unimplemented=0 | Optional Smdbltrp extension                                                  |
+                  1'b0, // | pelp      | WARL   | unimplemented=0 | Zicfilp extension                                                            |
+                  1'b0, // | ebreakvs  | WARL   | unimplemented=0 | VS-mode debug ebreak                                                         |
+                  1'b0, // | ebreakvu  | WARL   | unimplmeneted=0 | VU-mode debug ebreak                                                         |
+                  1'b0, // | ebreakm   | R/W    | mandatory       | M-mode debug ebreak                                                          |
+                  1'b0, // | reserved  | -      | -               | -                                                                            |
+                  1'b0, // | ebreaks   | WARL   | unimplemented=0 | S-mode debug ebreak                                                          |
+                  1'b0, // | ebreaku   | WARL   | unimplemented=0 | U-mode debug ebreak                                                          |
+                  1'b0, // | stepie    | WARL   | unimplemented=0 | Interrupt enable during single stepping.                                     |
+                  1'b0, // | stopcount | WARL   | continue=0      | Increment or freeze counters in debug mode (e.g.cycle)                       |
+                  1'b0, // | stoptime  | WARL   | continue=0      | Increment or freeze mtime                                                    |
+                  3'd0, // | cause     | R      | mandatory       | Explains why debug mode was entered                                          |
+                  1'b0, // | v         | WARL   | unimplemented=0 | Extends the prv field with virtualization enabled                            |
+                  1'b0, // | mprven    | WARL   | unimplemented=0 | 0 means mprv in mstatus is ignored in Debug Mode                             |
+                  1'b0, // | nmip      | R      | unimplemented=0 | Set = non-maskable interrupt. Implementation dependent                       |
+                  1'b0, // | step      | R/W    | mandatory       | Execute single instruction, re-enter debug mode. Debugger sets in Debug mode |
+                  2'd3  // | prv       | WARL   | reset=3         | Privileged mode when debug mode was entered                                  |
+         };
+      end else if (state == RUNNING && state_n == HALTED) begin // Debug Mode
+         // dcsr[8:6] = cause (simplified placement into bits[8:6])
+         dcsr <= { dcsr[31:9], dcause, dcsr[5:0] };
+      end else if (csr_we & csr_addr == 12'h7B0) begin
+         dcsr <= {4'd4, 12'd0, csr_wdata[15], 6'd0, dcause, 3'd0, csr_wdata[2], dcsr[1:0]};
+      end 
    end
 endmodule // csr
 
-module csrdec(input logic [6:0]  op, // Instr[6:0]
-	      input logic [2:0]  funct3, // Instr[14:12]
-	      output logic 	 CsrEn, // instruction is CSRR*
-	      output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
-	      output logic 	 CsrImm    // 1: immediate (zimm), 0: rs1
-	      );
+module csrdec(
+   input logic [6:0]  op, // Instr[6:0]
+	input logic [2:0]  funct3, // Instr[14:12]
+	output logic 	 CsrEn, // instruction is CSRR*
+	output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
+	output logic 	 CsrImm    // 1: immediate (zimm), 0: rs1
+);
    
    // SYSTEM opcode = 0x73 = 7'b1110011
    logic 			 is_system;
    
    assign is_system = (op == 7'b1110011);
-
+   
    always_comb begin
       CsrEn  = 1'b0;
       CsrOp  = 2'b00;
       CsrImm = 1'b0;
       if (is_system && (funct3 != 3'b000)) begin
-	 CsrEn  = 1'b1;
-	 CsrImm = funct3[2];
-	 unique case (funct3[1:0]) // lower 2 bits decide op
-           2'b01: CsrOp = 2'b01; // CSRRW / CSRRWI
-           2'b10: CsrOp = 2'b10; // CSRRS / CSRRSI
-           2'b11: CsrOp = 2'b11; // CSRRC / CSRRCI
-           default: CsrOp = 2'b00;
-	 endcase
+	      CsrEn  = 1'b1;
+	      CsrImm = funct3[2];
+	      unique case (funct3[1:0]) // lower 2 bits decide op
+            2'b01: CsrOp = 2'b01; // CSRRW / CSRRWI
+            2'b10: CsrOp = 2'b10; // CSRRS / CSRRSI
+            2'b11: CsrOp = 2'b11; // CSRRC / CSRRCI
+            default: CsrOp = 2'b00;
+	      endcase
       end
    end
 endmodule

@@ -27,7 +27,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog riscv_pipelined.sv
+vlog riscv_pipelined2.sv
 
 # start and run simulation
 vsim -debugdb -voptargs=+acc work.testbench
@@ -37,6 +37,32 @@ vsim -debugdb -voptargs=+acc work.testbench
 
 # Load Decoding
 do wave.do
+
+set all_signals [find signals /testbench/dut/rv32pipe/dp/*]
+# echo $all_signals
+
+set signal_groups {}
+foreach sig $all_signals {
+    # Extract the base name by removing the stage suffix (F, D, E, M, W)
+    set base_name [regsub {([FDEMW])$} [file tail $sig] ""]
+    if {$base_name != ""} {
+        # Add the signal to the group for this base name
+        dict lappend signal_groups $base_name $sig
+    }
+}
+
+set singletons {}
+foreach key [dict keys $signal_groups] {
+	 set value [dict get $signal_groups $key]
+	 if {[llength $value] == 1} {
+		  lappend singletons $value
+		  dict unset signal_groups $key
+	 }
+}
+
+foreach group $signal_groups {
+	 echo $group
+}
 
 -- display input and output signals as hexidecimal values
 # Diplays All Signals recursively
@@ -50,8 +76,23 @@ add wave -noupdate -expand -group Instructions -color Orange /testbench/dut/rv32
 add wave -noupdate -expand -group Instructions -color Orange -radix Instructions /testbench/dut/rv32pipe/InstrF
 add wave -noupdate -expand -group Instructions -color Orange /testbench/dut/rv32pipe/dp/InstrF
 add wave -noupdate -expand -group Instructions -color Orange -radix Instructions /testbench/dut/rv32pipe/dp/InstrF
+add wave -noupdate -divider -height 32 "CSR"
+add wave -hex /testbench/dut/rv32pipe/csr0/*
 add wave -noupdate -divider -height 32 "Datapath"
-add wave -hex /testbench/dut/rv32pipe/dp/*
+# add wave -hex /testbench/dut/rv32pipe/dp/*F
+# add wave -hex /testbench/dut/rv32pipe/dp/*D
+# add wave -hex /testbench/dut/rv32pipe/dp/*E
+# add wave -hex /testbench/dut/rv32pipe/dp/*M
+# add wave -hex /testbench/dut/rv32pipe/dp/*W
+foreach sig $singletons {
+	 add wave $sig
+}
+foreach key [dict keys $signal_groups] {
+	 foreach sig [dict get $signal_groups $key] {
+		  add wave -noupdate -expand -group $key $sig
+	 }
+}
+
 add wave -noupdate -divider -height 32 "ALU"
 add wave -hex /testbench/dut/rv32pipe/dp/alu/*
 add wave -noupdate -divider -height 32 "Hazard Detection Unit"
