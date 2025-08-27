@@ -1,5 +1,5 @@
 CC      = riscv64-unknown-elf-gcc
-CFLAGS  = -march=rv32i -mabi=ilp32 -mcmodel=medany -nostartfiles -Tlink.ld 
+CFLAGS  = -march=rv32i_zicsr -mabi=ilp32 -mcmodel=medany -nostartfiles -Tlink.ld 
 OBJDUMP = riscv64-unknown-elf-objdump
 ELF2HEX = riscv64-unknown-elf-elf2hex
 SRCS    = $(wildcard *.S)
