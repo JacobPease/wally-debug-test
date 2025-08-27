@@ -189,8 +189,8 @@ module debug_tb;
 
       #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
 
-      #(tcktime*2) dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
-      #(tcktime*2) dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
+      #(tcktime*10) dmireg.write({7'h17, 32'h0020_007f, 2'b10}, dmi_result);
+      
       
       #(tcktime*1000) $stop;
    end
