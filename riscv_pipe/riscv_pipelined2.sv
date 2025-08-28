@@ -594,6 +594,7 @@ module datapath(
    mux2 #(32)    jalrmux (PCRelativeTargetE, ALUResultE, PCTargetSrcE, PCTargetE);
 
    // ---- CSR operation (Execute) ----
+   // Used SrcAEforward instead for RD1E to get forwarded value
    assign csr_srcE = CsrImmE ? {27'b0, ZimmE} : SrcAEforward;
    assign csr_oldE = csr_rdata;
 
