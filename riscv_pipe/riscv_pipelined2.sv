@@ -231,7 +231,7 @@ module riscv(
 
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
-              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE, DebugMode);
+              ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE, CsrEnE, DebugMode);
 endmodule
 
 module debugcsr(
@@ -594,12 +594,12 @@ module datapath(
    mux2 #(32)    jalrmux (PCRelativeTargetE, ALUResultE, PCTargetSrcE, PCTargetE);
 
    // ---- CSR operation (Execute) ----
-   assign csr_srcE = CsrImmE ? {27'b0, ZimmE} : RD1E;
+   assign csr_srcE = CsrImmE ? {27'b0, ZimmE} : SrcAEforward;
    assign csr_oldE = csr_rdata;
 
   // Compute new CSR value per the op
   always_comb begin
-    unique case (CsrOpE)
+     case (CsrOpE)
       2'b01: csr_newE = csr_srcE;                 // CSRRW
       2'b10: csr_newE = csr_oldE | csr_srcE;      // CSRRS
       2'b11: csr_newE = csr_oldE & ~csr_srcE;     // CSRRC
@@ -647,16 +647,18 @@ module datapath(
    mux2 #(32) debugwritemux(ResultFinalW2, RegOut, DebugControl, ResultW);   
 endmodule
 
-// Hazard Unit: forward, stall, and flush
+// HazardUnit: forward, stall, and flush
 module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               input logic 	 PCSrcE, ResultSrcEb0, 
               input logic 	 RegWriteM, RegWriteW,
               output logic [1:0] ForwardAE, ForwardBE,
               output logic 	 StallF, StallD, FlushD, FlushE,
+	      input logic 	 UseCSRResultE,
               input logic 	 DebugMode
   );
 
    logic 			 lwStallD;
+   logic 			 csrStallD;   
 
    // forwarding logic
    always_comb begin
@@ -672,15 +674,17 @@ module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
    end
    
    // stalls and flushes
-   assign lwStallD = ResultSrcEb0 & ((Rs1D == RdE) | (Rs2D == RdE));  
-   assign StallD = lwStallD | DebugMode;
-   assign StallF = lwStallD | DebugMode;
+   assign lwStallD = ResultSrcEb0 & ((Rs1D == RdE) | (Rs2D == RdE));
+   assign csrStallD = UseCSRResultE & (RdE != 5'd0) &
+                      ((Rs1D == RdE) | (Rs2D == RdE));  
+   assign StallD = lwStallD | csrStallD | DebugMode;
+   assign StallF = lwStallD | csrStallD | DebugMode;
 
    assign FlushD = PCSrcE;
-   assign FlushE = lwStallD | PCSrcE;
-  endmodule
+   assign FlushE = lwStallD | csrStallD | PCSrcE;
+endmodule
 
-  module regfile(input  logic        clk, 
+module regfile(input  logic        clk, 
                input logic 	   we3, 
                input logic [ 4:0]  a1, a2, a3, 
                input logic [31:0]  wd3, 
@@ -759,39 +763,39 @@ module flopenrc #(parameter WIDTH = 8)
        else       q <= d;
 endmodule 
 
-module csr_reg_en #(parameter WIDTH = 32, parameter ADDR = 12'h300)
-   (input  logic             clk,
+module csr_reg_en #(parameter WIDTH = 32, ADDR = 12)
+   (input logic              clk,
     input logic 	     reset,
+    input logic [ADDR-1:0]   address,
     input logic 	     csr_we,
-    input logic [11:0] 	     csr_addr,
+    input logic [ADDR-1:0]   csr_addr,
     input logic [WIDTH-1:0]  d_in,
     output logic [WIDTH-1:0] q);
-   
-   logic 		     en;
 
-   assign en = csr_we & (csr_addr == ADDR);
-   flopenr #(WIDTH) u_reg (clk, reset, en, d_in, q);
+  logic           en;
+
+  assign en = csr_we & (csr_addr == address);
+  flopenr #(WIDTH) u_reg (clk, reset, en, d_in, q);
 endmodule // csr_reg_en
 
-module misa_reg_en #(parameter WIDTH = 32)
+module misa_reg_en #(parameter WIDTH = 32, ADDR = 12)
    (input  logic             clk,
     input logic 	     reset,
+    input logic [ADDR-1:0]   address, 
     input logic 	     csr_we,
-    input logic [11:0] 	     csr_addr,
+    input logic [ADDR-1:0]   csr_addr, 
     input logic [WIDTH-1:0]  d_in,
     output logic [WIDTH-1:0] q);
 
-   localparam ADDR = 12'h7B0;
-   
    logic 		     en;
    // misa default: RV32I => MXL=01 in [31:30], 'I' bit (bit 8) set, others 0.
    logic [31:0] 	     MISA_RV32I = (32'h1 << 30) | (32'h1 << 8);
 
-   assign en = csr_we & (csr_addr == ADDR);
+   assign en = csr_we & (csr_addr == address);
    always_ff @(posedge clk, posedge reset)
      if (reset)   q <= MISA_RV32I;
      else if (en) q <= d_in;
-endmodule
+endmodule // misa_reg_en
 
 module floprc #(parameter WIDTH = 8)
    (input  logic clk,
@@ -1002,6 +1006,7 @@ module csr(
    // ----------------------------     
    // Debug cause (3 = halt request)
    logic [2:0] 		       dcause;
+   
    assign dcause = (HaltReq) ? 3'd3 : 3'd0;
 
    // State Machine flop
@@ -1045,16 +1050,14 @@ module csr(
    
    // misa default: RV32I => MXL=01 in [31:30], 'I' bit (bit 8) set, others 0.
    localparam [31:0] MISA_RV32I = (32'h1 << 30) | (32'h1 << 8);
-   
-   csr_reg_en #(32, 12'h300) mstatus_reg(clk, reset, csr_we, csr_addr, csr_wdata, mstatus);
-   csr_reg_en #(32, 12'h305) mtvec_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtvec);
-   csr_reg_en #(32, 12'h341) mepc_reg(clk, reset, csr_we, csr_addr, csr_wdata, mepc);
-   csr_reg_en #(32, 12'h342) mcause_reg(clk, reset, csr_we, csr_addr, csr_wdata, mcause);
-   csr_reg_en #(32, 12'h343) mtval_reg(clk, reset, csr_we, csr_addr, csr_wdata, mtval);
-   // csr_reg_en #(32, 12'h7B0) dcsr_reg(clk, reset, csr_we, csr_addr, csr_wdata, dcsr);   
-   //csr_reg_en #(32, 12'h7B1) dpc_reg(clk, reset, csr_we, csr_addr, csr_wdata, dpc);
-   csr_reg_en #(32, 12'h7B2) dscratch0_reg(clk, reset, csr_we, csr_addr, csr_wdata, dscratch0);
-   misa_reg_en #(32) misa_reg(clk, reset, csr_we, csr_addr, csr_wdata, misa);         
+
+   csr_reg_en #(32, 12) mstatus_reg(clk, reset, 12'h300, csr_we, csr_addr, csr_wdata, mstatus);
+   csr_reg_en #(32, 12) mtvec_reg(clk, reset, 12'h305, csr_we, csr_addr, csr_wdata, mtvec);
+   csr_reg_en #(32, 12) mepc_reg(clk, reset, 12'h341, csr_we, csr_addr, csr_wdata, mepc);
+   csr_reg_en #(32, 12) mcause_reg(clk, reset, 12'h342, csr_we, csr_addr, csr_wdata, mcause);
+   csr_reg_en #(32, 12) mtval_reg(clk, reset, 12'h343, csr_we, csr_addr, csr_wdata, mtval);
+   csr_reg_en #(32, 12) dscratch0_reg(clk, reset, 12'h7b2, csr_we, csr_addr, csr_wdata, dscratch0);
+   misa_reg_en #(32, 12) misa_reg(clk, reset, 12'h301, csr_we, csr_addr, csr_wdata, misa);
    
    /// FIXME:  have to implement correctly as a FSM :(
    // ----------------------------
@@ -1109,19 +1112,18 @@ module csr(
    end
 endmodule // csr
 
-module csrdec(
-   input logic [6:0]  op, // Instr[6:0]
-   input logic [2:0]  funct3, // Instr[14:12]
-   output logic       CsrEn, // instruction is CSRR*
-   output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
-   output logic       CsrImm    // 1: immediate (zimm), 0: rs1
-);
+module csrdec(input logic [6:0]  op, // Instr[6:0]
+	      input logic [2:0]  funct3, // Instr[14:12]
+	      output logic 	 CsrEn, // instruction is CSRR*
+	      output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
+	      output logic 	 CsrImm    // 1: immediate (zimm), 0: rs1
+	      );
    
    // SYSTEM opcode = 0x73 = 7'b1110011
    logic 			 is_system;
    
    assign is_system = (op == 7'b1110011);
-   
+
    always_comb begin
       CsrEn  = 1'b0;
       CsrOp  = 2'b00;
@@ -1129,7 +1131,7 @@ module csrdec(
       if (is_system && (funct3 != 3'b000)) begin
 	 CsrEn  = 1'b1;
 	 CsrImm = funct3[2];
-	 case (funct3[1:0]) // lower 2 bits decide op
+	 unique case (funct3[1:0]) // lower 2 bits decide op
            2'b01: CsrOp = 2'b01; // CSRRW / CSRRWI
            2'b10: CsrOp = 2'b10; // CSRRS / CSRRSI
            2'b11: CsrOp = 2'b11; // CSRRC / CSRRCI
@@ -1137,4 +1139,4 @@ module csrdec(
 	 endcase
       end
    end
-endmodule
+endmodule 

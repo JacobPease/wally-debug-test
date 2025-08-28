@@ -52,6 +52,16 @@ add wave -noupdate -expand -group Instructions -color Orange /testbench/dut/rv32
 add wave -noupdate -expand -group Instructions -color Orange -radix Instructions /testbench/dut/rv32pipe/dp/InstrF
 add wave -noupdate -divider -height 32 "CSR"
 add wave -hex /testbench/dut/rv32pipe/csr0/*
+add wave -noupdate -divider -height 32 "CSR Regs"
+add wave -hex /testbench/dut/rv32pipe/csr0/mstatus
+add wave -hex /testbench/dut/rv32pipe/csr0/mtvec
+add wave -hex /testbench/dut/rv32pipe/csr0/mepc
+add wave -hex /testbench/dut/rv32pipe/csr0/mcause
+add wave -hex /testbench/dut/rv32pipe/csr0/mtval
+add wave -hex /testbench/dut/rv32pipe/csr0/dcsr
+add wave -hex /testbench/dut/rv32pipe/csr0/dpc
+add wave -hex /testbench/dut/rv32pipe/csr0/dscratch0
+add wave -hex /testbench/dut/rv32pipe/csr0/misa
 add wave -noupdate -divider -height 32 "CSR Decoder"
 add wave -hex /testbench/dut/rv32pipe/c/csrd/*
 add wave -noupdate -divider -height 32 "Datapath"
@@ -92,7 +102,7 @@ configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
 -- Run the Simulation
-run 180 ns
+run 380 ns
 
 -- Add schematic
 add schematic -full sim:/testbench/dut/rv32pipe
