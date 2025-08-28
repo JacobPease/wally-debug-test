@@ -88,14 +88,13 @@ module testbench();
    logic        HaltReq;
    logic        ResumeReq;
    logic        DebugMode;
+   logic 	DebugControl;   
 
    logic [31:0] RegIn;
    logic [31:0] RegOut;   
    logic [4:0] 	RegAddr;   
    logic 	DebugRegWrite;   
 
-   assign DebugControl = 1'b0;
-   
    // instantiate device to be tested
    top dut(clk, reset, WriteData, DataAdr, MemWrite, HaltReq, ResumeReq, 
 	   DebugMode, DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite);
@@ -103,7 +102,7 @@ module testbench();
    initial begin
       string memfilename;
       string dmemfilename;
-      memfilename = {"../testing/riscvtestCSR.memfile"};
+      memfilename = {"../testing/testCSR3.memfile"};
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end
@@ -111,7 +110,9 @@ module testbench();
    // initialize test
    initial begin
       HaltReq = 0;
-      ResumeReq = 0;      
+      ResumeReq = 0;
+      DebugRegWrite = 1'b0;
+      DebugControl = 1'b0;      
       reset <= 1; # 22; reset <= 0;       
    end
    
@@ -208,7 +209,6 @@ module riscv(
 
    logic [4:0] 			 Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW;
 
-   // debugcsr d(clk, reset, PCF, HaltReq, ResumeReq, DebugMode);  *remove*
    csr csr0(clk, reset, PCF, HaltReq, ResumeReq, DebugMode, 
 	    csr_weE, csr_addrE, csr_wdataE, csr_rdata);
    
@@ -269,32 +269,32 @@ module debugcsr(
 endmodule
 
 module controller(
-   input  logic		 clk, reset,
+   input logic 	      clk, reset,
    // Decode stage control signals
    input logic [6:0]  opD,
    input logic [2:0]  funct3D,
-   input logic 	     funct7b5D,
+   input logic 	      funct7b5D,
    output logic [2:0] ImmSrcD,
    // Execute stage control signals
-   input logic 	     FlushE, 
+   input logic 	      FlushE, 
    input logic [3:0]  FlagsE, 
-   output logic 	     PCSrcE, // for datapath and Hazard Unit
+   output logic       PCSrcE, // for datapath and Hazard Unit
    output logic [3:0] ALUControlE,
-	output logic 	     ALUSrcAE,
-   output logic 	     ALUSrcBE,
-	output logic 	     PCTargetSrcE,
-   output logic 	     ResultSrcEb0, // for Hazard Unit
+   output logic       ALUSrcAE,
+   output logic       ALUSrcBE,
+   output logic       PCTargetSrcE,
+   output logic       ResultSrcEb0, // for Hazard Unit
    // Memory stage control signals
-   output logic 	     MemWriteM,
-   output logic 	     RegWriteM, // for Hazard Unit
-	output logic [2:0] LoadTypeM, 
-	output logic [1:0] StoreTypeM,
+   output logic       MemWriteM,
+   output logic       RegWriteM, // for Hazard Unit
+   output logic [2:0] LoadTypeM, 
+   output logic [1:0] StoreTypeM,
    // Writeback stage control signals
-   output logic 	     RegWriteW, // for datapath and Hazard Unit
+   output logic       RegWriteW, // for datapath and Hazard Unit
    output logic [1:0] ResultSrcW,
-   output logic 	     CsrEnE,
+   output logic       CsrEnE,
    output logic [1:0] CsrOpE,
-   output logic 	     CsrImmE
+   output logic       CsrImmE
 );
 
    // pipelined control signals
@@ -454,52 +454,52 @@ module lsu (input  logic [2:0] funct3,
 endmodule // lsu
 
 module datapath(
-   input logic         clk, reset,
+   input logic 	       clk, reset,
    // Fetch stage signals
-   input logic 	    StallF,
+   input logic 	       StallF,
    output logic [31:0] PCF,
    input logic [31:0]  InstrF,
    // Decode stage signals
    output logic [6:0]  opD,
    output logic [2:0]  funct3D, 
-   output logic 	    funct7b5D,
-   input logic 	    StallD, FlushD,
+   output logic        funct7b5D,
+   input logic 	       StallD, FlushD,
    input logic [2:0]   ImmSrcD,
    // Execute stage signals
-   input logic 	    FlushE,
+   input logic 	       FlushE,
    input logic [1:0]   ForwardAE, ForwardBE,
-   input logic 	    PCSrcE,
+   input logic 	       PCSrcE,
    input logic [3:0]   ALUControlE,
-	input logic 	    ALUSrcAE,
-   input logic 	    ALUSrcBE,
-	input logic 	    PCTargetSrcE,
+   input logic 	       ALUSrcAE,
+   input logic 	       ALUSrcBE,
+   input logic 	       PCTargetSrcE,
    output logic [3:0]  FlagsE,
    // Memory stage signals
-   input logic 	    MemWriteM, 
+   input logic 	       MemWriteM, 
    output logic [31:0] WriteDataM, ALUResultM,
    input logic [31:0]  ReadDataM,
-	input logic [2:0]   LoadTypeM,
-	input logic [1:0]   StoreTypeM,
+   input logic [2:0]   LoadTypeM,
+   input logic [1:0]   StoreTypeM,
    // Writeback stage signals
-   input logic 	    RegWriteW, 
+   input logic 	       RegWriteW, 
    input logic [1:0]   ResultSrcW,
    // Hazard Unit signals 
    output logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E,
    output logic [4:0]  RdE, RdM, RdW,
-   input logic 	    DebugControl,
+   input logic 	       DebugControl,
    output logic [31:0] RegIn,
    input logic [31:0]  RegOut,
    input logic [4:0]   RegAddr,
-   input logic 	    DebugRegWrite,
-	// CSR handshake with csr
-	output logic 	    csr_weE,
-	output logic [11:0] CSRAddrE,
-	output logic [31:0] csr_wdataE,
-	input logic [31:0]  csr_rdata,
-	// csr control from controller
-	input logic 	    CsrEnE,
-	input logic [1:0]   CsrOpE,
-	input logic 	    CsrImmE		
+   input logic 	       DebugRegWrite,
+   // CSR handshake with csr
+   output logic        csr_weE,
+   output logic [11:0] CSRAddrE,
+   output logic [31:0] csr_wdataE,
+   input logic [31:0]  csr_rdata,
+   // csr control from controller
+   input logic 	       CsrEnE,
+   input logic [1:0]   CsrOpE,
+   input logic 	       CsrImmE		
 );
    
    // Fetch stage signals
@@ -597,7 +597,7 @@ module datapath(
    assign csr_srcE = CsrImmE ? {27'b0, ZimmE} : RD1E;
    assign csr_oldE = csr_rdata;
 
-  // Compute new CSR value per op
+  // Compute new CSR value per the op
   always_comb begin
     unique case (CsrOpE)
       2'b01: csr_newE = csr_srcE;                 // CSRRW
@@ -613,6 +613,8 @@ module datapath(
    // Drive the external CSR
    assign csr_weE = csr_writeE;
    assign csr_wdataE = csr_newE;
+   assign UseCSRResultE = CsrEnE;
+   assign CSRReadE      = csr_oldE;
 
    // CSR pipe
    flopr #(33) csr_pipe_M (clk, reset, {UseCSRResultE, CSRReadE}, {UseCSRResultM, CSRReadM});
@@ -958,19 +960,19 @@ module wdunit (input  logic [31:0] rd2,
 endmodule // wdunit
 
 module csr(
-   input logic 	       clk,
-	input logic 	       reset,
+        input logic 	    clk,
+	input logic 	    reset,
    
 	// PC for capturing into dpc on entry to debug
 	input logic [31:0]  PC,
    
 	// External debug requests
-	input logic 	       HaltReq,
-	input logic 	       ResumeReq,
-	output logic        DebugMode,
+	input logic 	    HaltReq,
+	input logic 	    ResumeReq,
+	output logic 	    DebugMode,
    
 	// Pipeline CSR access (E stage)
-	input logic 	       csr_we, // write enable for CSR (after RS/RC zero-mask checks)
+	input logic 	    csr_we, // write enable for CSR (after RS/RC zero-mask checks)
 	input logic [11:0]  csr_addr, // CSR address from instruction
 	input logic [31:0]  csr_wdata, // new value to write
 	output logic [31:0] csr_rdata // old/current value (combinational)
@@ -1027,17 +1029,17 @@ module csr(
    // CSR read mux (combinational)
    // ----------------------------
    always_comb begin
-      unique case (csr_addr)
-	      12'h300: csr_rdata = mstatus;
-	      12'h301: csr_rdata = misa;
-	      12'h305: csr_rdata = mtvec;
-	      12'h341: csr_rdata = mepc;
-	      12'h342: csr_rdata = mcause;
-	      12'h343: csr_rdata = mtval;
-	      12'h7B0: csr_rdata = dcsr;
-	      12'h7B1: csr_rdata = dpc;
-	      12'h7B2: csr_rdata = dscratch0;
-	      default: csr_rdata = 32'h0000_0000; 
+      case (csr_addr)
+	12'h300: csr_rdata = mstatus;
+	12'h301: csr_rdata = misa;
+	12'h305: csr_rdata = mtvec;
+	12'h341: csr_rdata = mepc;
+	12'h342: csr_rdata = mcause;
+	12'h343: csr_rdata = mtval;
+	12'h7B0: csr_rdata = dcsr;
+	12'h7B1: csr_rdata = dpc;
+	12'h7B2: csr_rdata = dscratch0;
+	default: csr_rdata = 32'h0000_0000; 
       endcase
    end
    
@@ -1109,10 +1111,10 @@ endmodule // csr
 
 module csrdec(
    input logic [6:0]  op, // Instr[6:0]
-	input logic [2:0]  funct3, // Instr[14:12]
-	output logic 	 CsrEn, // instruction is CSRR*
-	output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
-	output logic 	 CsrImm    // 1: immediate (zimm), 0: rs1
+   input logic [2:0]  funct3, // Instr[14:12]
+   output logic       CsrEn, // instruction is CSRR*
+   output logic [1:0] CsrOp, // 01=RW, 10=RS, 11=RC
+   output logic       CsrImm    // 1: immediate (zimm), 0: rs1
 );
    
    // SYSTEM opcode = 0x73 = 7'b1110011
@@ -1125,14 +1127,14 @@ module csrdec(
       CsrOp  = 2'b00;
       CsrImm = 1'b0;
       if (is_system && (funct3 != 3'b000)) begin
-	      CsrEn  = 1'b1;
-	      CsrImm = funct3[2];
-	      unique case (funct3[1:0]) // lower 2 bits decide op
-            2'b01: CsrOp = 2'b01; // CSRRW / CSRRWI
-            2'b10: CsrOp = 2'b10; // CSRRS / CSRRSI
-            2'b11: CsrOp = 2'b11; // CSRRC / CSRRCI
-            default: CsrOp = 2'b00;
-	      endcase
+	 CsrEn  = 1'b1;
+	 CsrImm = funct3[2];
+	 case (funct3[1:0]) // lower 2 bits decide op
+           2'b01: CsrOp = 2'b01; // CSRRW / CSRRWI
+           2'b10: CsrOp = 2'b10; // CSRRS / CSRRSI
+           2'b11: CsrOp = 2'b11; // CSRRC / CSRRCI
+           default: CsrOp = 2'b00;
+	 endcase
       end
    end
 endmodule
