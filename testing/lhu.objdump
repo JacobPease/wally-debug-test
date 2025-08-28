@@ -1,6 +1,12 @@
 
 lhu.elf:     file format elf32-littleriscv
 
+Contents of section .data:
+ 80001000 ff0000ff f00f0ff0                    ........        
+Contents of section .riscv.attributes:
+ 0000 41220000 00726973 63760001 18000000  A"...riscv......
+ 0010 05727633 32693270 315f7a69 63737232  .rv32i2p1_zicsr2
+ 0020 703000                               p0.             
 Contents of section .text:
  80000000 93051000 97100000 9380c0ff 03df0000  ................
  80000010 930ef00f 631adf27 93052000 97100000  ....c..'.. .....
@@ -44,11 +50,44 @@ Contents of section .text:
  80000270 13012000 930e2000 6318d101 1305a000  .. ... .c.......
  80000280 2322a006 6ff09fff 13051001 2322a006  #"..o.......#"..
  80000290 6ff09fff                             o...            
-Contents of section .data:
- 80001000 ff0000ff f00f0ff0                    ........        
-Contents of section .riscv.attributes:
- 0000 41190000 00726973 63760001 0f000000  A....riscv......
- 0010 05727633 32693270 3100               .rv32i2p1.      
+
+Disassembly of section .data:
+
+80001000 <tdat>:
+tdat():
+80001000:	 	.dword	0xf00f0ff0ff0000ff
+
+80001002 <tdat2>:
+tdat2():
+80001002:	ff00                	.insn	2, 0xff00
+
+80001004 <tdat3>:
+tdat3():
+80001004:	0ff0                	.insn	2, 0x0ff0
+
+80001006 <tdat4>:
+tdat4():
+80001006:	f00f                	.short	0xf00f
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2241                	.insn	2, 0x2241
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
+   c:	0018                	.insn	2, 0x0018
+   e:	0000                	.insn	2, 0x0000
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	5f31                	.insn	2, 0x5f31
+  1a:	697a                	.insn	2, 0x697a
+  1c:	32727363          	bgeu	tp,t2,342 <__start-0x7ffffcbe>
+  20:	3070                	.insn	2, 0x3070
+	...
 
 Disassembly of section .text:
 
@@ -294,38 +333,3 @@ fail():
 80000288:	01100513          	li	a0,17
 8000028c:	06a02223          	sw	a0,100(zero) # 64 <__start-0x7fffff9c>
 80000290:	ff9ff06f          	j	80000288 <fail>
-
-Disassembly of section .data:
-
-80001000 <tdat>:
-tdat():
-80001000:	Address 0x80001000 is out of bounds.
-
-
-80001002 <tdat2>:
-tdat2():
-80001002:	ff00                	.insn	2, 0xff00
-
-80001004 <tdat3>:
-tdat3():
-80001004:	0ff0                	.insn	2, 0x0ff0
-
-80001006 <tdat4>:
-tdat4():
-80001006:	Address 0x80001006 is out of bounds.
-
-
-Disassembly of section .riscv.attributes:
-
-00000000 <.riscv.attributes>:
-   0:	1941                	.insn	2, 0x1941
-   2:	0000                	.insn	2, 0x
-   4:	7200                	.insn	2, 0x7200
-   6:	7369                	.insn	2, 0x7369
-   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
-   c:	0000000f          	fence	unknown,unknown
-  10:	7205                	.insn	2, 0x7205
-  12:	3376                	.insn	2, 0x3376
-  14:	6932                	.insn	2, 0x6932
-  16:	7032                	.insn	2, 0x7032
-  18:	0031                	.insn	2, 0x0031

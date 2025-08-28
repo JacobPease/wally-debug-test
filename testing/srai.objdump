@@ -1,6 +1,10 @@
 
 srai.elf:     file format elf32-littleriscv
 
+Contents of section .riscv.attributes:
+ 0000 41220000 00726973 63760001 18000000  A"...riscv......
+ 0010 05727633 32693270 315f7a69 63737232  .rv32i2p1_zicsr2
+ 0020 703000                               p0.             
 Contents of section .text:
  80000000 93051000 93000000 13df0040 930e0000  ...........@....
  80000010 6318df2b 93052000 b7000080 13df1040  c..+.. ........@
@@ -47,9 +51,26 @@ Contents of section .text:
  800002a0 93058001 93001002 13d0a040 930e0000  ...........@....
  800002b0 6318d001 1305a000 2322a006 6ff09fff  c.......#"..o...
  800002c0 13051001 2322a006 6ff09fff           ....#"..o...    
-Contents of section .riscv.attributes:
- 0000 41190000 00726973 63760001 0f000000  A....riscv......
- 0010 05727633 32693270 3100               .rv32i2p1.      
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2241                	.insn	2, 0x2241
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
+   c:	0018                	.insn	2, 0x0018
+   e:	0000                	.insn	2, 0x0000
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	5f31                	.insn	2, 0x5f31
+  1a:	697a                	.insn	2, 0x697a
+  1c:	32727363          	bgeu	tp,t2,342 <__start-0x7ffffcbe>
+  20:	3070                	.insn	2, 0x3070
+	...
 
 Disassembly of section .text:
 
@@ -147,47 +168,47 @@ test10():
 test11():
 800000f0:	00b00593          	li	a1,11
 800000f4:	818180b7          	lui	ra,0x81818
-800000f8:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817eb5>
+800000f8:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817181>
 800000fc:	4000df13          	srai	t5,ra,0x0
 80000100:	81818eb7          	lui	t4,0x81818
-80000104:	181e8e93          	addi	t4,t4,385 # 81818181 <_end+0x1817eb5>
+80000104:	181e8e93          	addi	t4,t4,385 # 81818181 <_end+0x1817181>
 80000108:	1bdf1c63          	bne	t5,t4,800002c0 <fail>
 
 8000010c <test12>:
 test12():
 8000010c:	00c00593          	li	a1,12
 80000110:	818180b7          	lui	ra,0x81818
-80000114:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817eb5>
+80000114:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817181>
 80000118:	4010df13          	srai	t5,ra,0x1
 8000011c:	c0c0ceb7          	lui	t4,0xc0c0c
-80000120:	0c0e8e93          	addi	t4,t4,192 # c0c0c0c0 <_end+0x40c0bdf4>
+80000120:	0c0e8e93          	addi	t4,t4,192 # c0c0c0c0 <_end+0x40c0b0c0>
 80000124:	19df1e63          	bne	t5,t4,800002c0 <fail>
 
 80000128 <test13>:
 test13():
 80000128:	00d00593          	li	a1,13
 8000012c:	818180b7          	lui	ra,0x81818
-80000130:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817eb5>
+80000130:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817181>
 80000134:	4070df13          	srai	t5,ra,0x7
 80000138:	ff030eb7          	lui	t4,0xff030
-8000013c:	303e8e93          	addi	t4,t4,771 # ff030303 <_end+0x7f030037>
+8000013c:	303e8e93          	addi	t4,t4,771 # ff030303 <_end+0x7f02f303>
 80000140:	19df1063          	bne	t5,t4,800002c0 <fail>
 
 80000144 <test14>:
 test14():
 80000144:	00e00593          	li	a1,14
 80000148:	818180b7          	lui	ra,0x81818
-8000014c:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817eb5>
+8000014c:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817181>
 80000150:	40e0df13          	srai	t5,ra,0xe
 80000154:	fffe0eb7          	lui	t4,0xfffe0
-80000158:	606e8e93          	addi	t4,t4,1542 # fffe0606 <_end+0x7ffe033a>
+80000158:	606e8e93          	addi	t4,t4,1542 # fffe0606 <_end+0x7ffdf606>
 8000015c:	17df1263          	bne	t5,t4,800002c0 <fail>
 
 80000160 <test15>:
 test15():
 80000160:	00f00593          	li	a1,15
 80000164:	818180b7          	lui	ra,0x81818
-80000168:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817eb5>
+80000168:	18108093          	addi	ra,ra,385 # 81818181 <_end+0x1817181>
 8000016c:	41f0df13          	srai	t5,ra,0x1f
 80000170:	fff00e93          	li	t4,-1
 80000174:	15df1663          	bne	t5,t4,800002c0 <fail>
@@ -327,18 +348,3 @@ fail():
 800002c0:	01100513          	li	a0,17
 800002c4:	06a02223          	sw	a0,100(zero) # 64 <__start-0x7fffff9c>
 800002c8:	ff9ff06f          	j	800002c0 <fail>
-
-Disassembly of section .riscv.attributes:
-
-00000000 <.riscv.attributes>:
-   0:	1941                	.insn	2, 0x1941
-   2:	0000                	.insn	2, 0x
-   4:	7200                	.insn	2, 0x7200
-   6:	7369                	.insn	2, 0x7369
-   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
-   c:	0000000f          	fence	unknown,unknown
-  10:	7205                	.insn	2, 0x7205
-  12:	3376                	.insn	2, 0x3376
-  14:	6932                	.insn	2, 0x6932
-  16:	7032                	.insn	2, 0x7032
-  18:	0031                	.insn	2, 0x0031

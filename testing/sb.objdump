@@ -1,6 +1,12 @@
 
 sb.elf:     file format elf32-littleriscv
 
+Contents of section .data:
+ 80001000 efefefef efefefef efef               ..........      
+Contents of section .riscv.attributes:
+ 0000 41220000 00726973 63760001 18000000  A"...riscv......
+ 0010 05727633 32693270 315f7a69 63737232  .rv32i2p1_zicsr2
+ 0020 703000                               p0.             
 Contents of section .text:
  80000000 93051000 97100000 9380c0ff 1301a0fa  ................
  80000010 23802000 038f0000 930ea0fa 6318df3d  #. .........c..=
@@ -66,11 +72,68 @@ Contents of section .text:
  800003d0 631edf01 13021200 93022000 e31a52fc  c......... ...R.
  800003e0 1305a000 2322a006 6ff09fff 13051001  ....#"..o.......
  800003f0 2322a006 6ff09fff                    #"..o...        
-Contents of section .data:
- 80001000 efefefef efefefef efef               ..........      
-Contents of section .riscv.attributes:
- 0000 41190000 00726973 63760001 0f000000  A....riscv......
- 0010 05727633 32693270 3100               .rv32i2p1.      
+
+Disassembly of section .data:
+
+80001000 <tdat>:
+tdat():
+80001000:	          	jal	t6,7ffff6fe <__start-0x902>
+
+80001001 <tdat2>:
+tdat2():
+80001001:	          	jal	t6,7ffff6ff <__start-0x901>
+
+80001002 <tdat3>:
+tdat3():
+80001002:	          	jal	t6,7ffff700 <__start-0x900>
+
+80001003 <tdat4>:
+tdat4():
+80001003:	          	jal	t6,7ffff701 <__start-0x8ff>
+
+80001004 <tdat5>:
+tdat5():
+80001004:	          	jal	t6,7ffff702 <__start-0x8fe>
+
+80001005 <tdat6>:
+tdat6():
+80001005:	          	jal	t6,7ffff703 <__start-0x8fd>
+
+80001006 <tdat7>:
+tdat7():
+80001006:	          	jal	t6,7ffff704 <__start-0x8fc>
+
+80001007 <tdat8>:
+tdat8():
+80001007:	               	.word	0xefefef
+
+80001008 <tdat9>:
+tdat9():
+80001008:	                	.short	0xefef
+
+80001009 <tdat10>:
+tdat10():
+80001009:	ef                	.byte	0xef
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2241                	.insn	2, 0x2241
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
+   c:	0018                	.insn	2, 0x0018
+   e:	0000                	.insn	2, 0x0000
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	5f31                	.insn	2, 0x5f31
+  1a:	697a                	.insn	2, 0x697a
+  1c:	32727363          	bgeu	tp,t2,342 <__start-0x7ffffcbe>
+  20:	3070                	.insn	2, 0x3070
+	...
 
 Disassembly of section .text:
 
@@ -102,11 +165,11 @@ test03():
 80000044:	00001097          	auipc	ra,0x1
 80000048:	fbc08093          	addi	ra,ra,-68 # 80001000 <tdat>
 8000004c:	fffff137          	lui	sp,0xfffff
-80000050:	fa010113          	addi	sp,sp,-96 # ffffefa0 <_end+0x7fffdf96>
+80000050:	fa010113          	addi	sp,sp,-96 # ffffefa0 <_end+0x7fffcfa0>
 80000054:	00208123          	sb	sp,2(ra)
 80000058:	00209f03          	lh	t5,2(ra)
 8000005c:	fffffeb7          	lui	t4,0xfffff
-80000060:	fa0e8e93          	addi	t4,t4,-96 # ffffefa0 <_end+0x7fffdf96>
+80000060:	fa0e8e93          	addi	t4,t4,-96 # ffffefa0 <_end+0x7fffcfa0>
 80000064:	39df1463          	bne	t5,t4,800003ec <fail>
 
 80000068 <test04>:
@@ -435,63 +498,3 @@ fail():
 800003ec:	01100513          	li	a0,17
 800003f0:	06a02223          	sw	a0,100(zero) # 64 <__start-0x7fffff9c>
 800003f4:	ff9ff06f          	j	800003ec <fail>
-
-Disassembly of section .data:
-
-80001000 <tdat>:
-tdat():
-80001000:	          	jal	t6,7ffff6fe <__start-0x902>
-
-80001001 <tdat2>:
-tdat2():
-80001001:	          	jal	t6,7ffff6ff <__start-0x901>
-
-80001002 <tdat3>:
-tdat3():
-80001002:	          	jal	t6,7ffff700 <__start-0x900>
-
-80001003 <tdat4>:
-tdat4():
-80001003:	          	jal	t6,7ffff701 <__start-0x8ff>
-
-80001004 <tdat5>:
-tdat5():
-80001004:	          	jal	t6,7ffff702 <__start-0x8fe>
-
-80001005 <tdat6>:
-tdat6():
-80001005:	          	jal	t6,7ffff703 <__start-0x8fd>
-
-80001006 <tdat7>:
-tdat7():
-80001006:	          	jal	t6,7ffff704 <__start-0x8fc>
-
-80001007 <tdat8>:
-tdat8():
-80001007:	Address 0x80001007 is out of bounds.
-
-
-80001008 <tdat9>:
-tdat9():
-80001008:	Address 0x80001008 is out of bounds.
-
-
-80001009 <tdat10>:
-tdat10():
-80001009:	Address 0x80001009 is out of bounds.
-
-
-Disassembly of section .riscv.attributes:
-
-00000000 <.riscv.attributes>:
-   0:	1941                	.insn	2, 0x1941
-   2:	0000                	.insn	2, 0x
-   4:	7200                	.insn	2, 0x7200
-   6:	7369                	.insn	2, 0x7369
-   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
-   c:	0000000f          	fence	unknown,unknown
-  10:	7205                	.insn	2, 0x7205
-  12:	3376                	.insn	2, 0x3376
-  14:	6932                	.insn	2, 0x6932
-  16:	7032                	.insn	2, 0x7032
-  18:	0031                	.insn	2, 0x0031

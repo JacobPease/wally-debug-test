@@ -1,6 +1,10 @@
 
 xori.elf:     file format elf32-littleriscv
 
+Contents of section .riscv.attributes:
+ 0000 41220000 00726973 63760001 18000000  A"...riscv......
+ 0010 05727633 32693270 315f7a69 63737232  .rv32i2p1_zicsr2
+ 0020 703000                               p0.             
 Contents of section .text:
  80000000 93051000 b710ff00 938000f0 13cff0f0  ................
  80000010 b7fe00ff 938efe00 631adf1d 93052000  ........c..... .
@@ -34,9 +38,26 @@ Contents of section .text:
  800001d0 9380f00f 13c0f070 930e0000 6318d001  .......p....c...
  800001e0 1305a000 2322a006 6ff09fff 13051001  ....#"..o.......
  800001f0 2322a006 6ff09fff                    #"..o...        
-Contents of section .riscv.attributes:
- 0000 41190000 00726973 63760001 0f000000  A....riscv......
- 0010 05727633 32693270 3100               .rv32i2p1.      
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2241                	.insn	2, 0x2241
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
+   c:	0018                	.insn	2, 0x0018
+   e:	0000                	.insn	2, 0x0000
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	5f31                	.insn	2, 0x5f31
+  1a:	697a                	.insn	2, 0x697a
+  1c:	32727363          	bgeu	tp,t2,342 <__start-0x7ffffcbe>
+  20:	3070                	.insn	2, 0x3070
+	...
 
 Disassembly of section .text:
 
@@ -47,7 +68,7 @@ test01():
 80000008:	f0008093          	addi	ra,ra,-256 # ff0f00 <__start-0x7f00f100>
 8000000c:	f0f0cf13          	xori	t5,ra,-241
 80000010:	ff00feb7          	lui	t4,0xff00f
-80000014:	00fe8e93          	addi	t4,t4,15 # ff00f00f <_end+0x7f00ee17>
+80000014:	00fe8e93          	addi	t4,t4,15 # ff00f00f <_end+0x7f00e00f>
 80000018:	1ddf1a63          	bne	t5,t4,800001ec <fail>
 
 8000001c <test02>:
@@ -74,20 +95,20 @@ test03():
 test04():
 80000054:	00400593          	li	a1,4
 80000058:	f00ff0b7          	lui	ra,0xf00ff
-8000005c:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fee17>
+8000005c:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fe00f>
 80000060:	0f00cf13          	xori	t5,ra,240
 80000064:	f00ffeb7          	lui	t4,0xf00ff
-80000068:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fef07>
+80000068:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fe0ff>
 8000006c:	19df1063          	bne	t5,t4,800001ec <fail>
 
 80000070 <test05>:
 test05():
 80000070:	00500593          	li	a1,5
 80000074:	ff00f0b7          	lui	ra,0xff00f
-80000078:	70008093          	addi	ra,ra,1792 # ff00f700 <_end+0x7f00f508>
+80000078:	70008093          	addi	ra,ra,1792 # ff00f700 <_end+0x7f00e700>
 8000007c:	70f0c093          	xori	ra,ra,1807
 80000080:	ff00feb7          	lui	t4,0xff00f
-80000084:	00fe8e93          	addi	t4,t4,15 # ff00f00f <_end+0x7f00ee17>
+80000084:	00fe8e93          	addi	t4,t4,15 # ff00f00f <_end+0x7f00e00f>
 80000088:	17d09263          	bne	ra,t4,800001ec <fail>
 
 8000008c <test06>:
@@ -135,7 +156,7 @@ test08():
 800000f8 <label1_test08>:
 label1_test08():
 800000f8:	f00ff0b7          	lui	ra,0xf00ff
-800000fc:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fee17>
+800000fc:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fe00f>
 80000100:	0f00cf13          	xori	t5,ra,240
 80000104:	00000013          	nop
 80000108:	00000013          	nop
@@ -144,7 +165,7 @@ label1_test08():
 80000114:	00200293          	li	t0,2
 80000118:	fe5210e3          	bne	tp,t0,800000f8 <label1_test08>
 8000011c:	f00ffeb7          	lui	t4,0xf00ff
-80000120:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fef07>
+80000120:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fe0ff>
 80000124:	0dd31463          	bne	t1,t4,800001ec <fail>
 
 80000128 <test09>:
@@ -190,7 +211,7 @@ test11():
 8000018c <label1_test11>:
 label1_test11():
 8000018c:	f00ff0b7          	lui	ra,0xf00ff
-80000190:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fee17>
+80000190:	00f08093          	addi	ra,ra,15 # f00ff00f <_end+0x700fe00f>
 80000194:	00000013          	nop
 80000198:	00000013          	nop
 8000019c:	0f00cf13          	xori	t5,ra,240
@@ -198,7 +219,7 @@ label1_test11():
 800001a4:	00200293          	li	t0,2
 800001a8:	fe5212e3          	bne	tp,t0,8000018c <label1_test11>
 800001ac:	f00ffeb7          	lui	t4,0xf00ff
-800001b0:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fef07>
+800001b0:	0ffe8e93          	addi	t4,t4,255 # f00ff0ff <_end+0x700fe0ff>
 800001b4:	03df1c63          	bne	t5,t4,800001ec <fail>
 
 800001b8 <test12>:
@@ -228,18 +249,3 @@ fail():
 800001ec:	01100513          	li	a0,17
 800001f0:	06a02223          	sw	a0,100(zero) # 64 <__start-0x7fffff9c>
 800001f4:	ff9ff06f          	j	800001ec <fail>
-
-Disassembly of section .riscv.attributes:
-
-00000000 <.riscv.attributes>:
-   0:	1941                	.insn	2, 0x1941
-   2:	0000                	.insn	2, 0x
-   4:	7200                	.insn	2, 0x7200
-   6:	7369                	.insn	2, 0x7369
-   8:	01007663          	bgeu	zero,a6,14 <__start-0x7fffffec>
-   c:	0000000f          	fence	unknown,unknown
-  10:	7205                	.insn	2, 0x7205
-  12:	3376                	.insn	2, 0x3376
-  14:	6932                	.insn	2, 0x6932
-  16:	7032                	.insn	2, 0x7032
-  18:	0031                	.insn	2, 0x0031
