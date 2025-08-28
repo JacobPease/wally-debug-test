@@ -102,7 +102,7 @@ module testbench();
    initial begin
       string memfilename;
       string dmemfilename;
-      memfilename = {"../testing/testCSR3.memfile"};
+      memfilename = {"../testing/riscvtestCSR.memfile"};
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end
@@ -647,7 +647,7 @@ module datapath(
    mux2 #(32) debugwritemux(ResultFinalW2, RegOut, DebugControl, ResultW);   
 endmodule
 
-// HazardUnit: forward, stall, and flush
+// HazardUnit: forward, stall, and flush (modified to handle csrStallD)
 module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               input logic 	 PCSrcE, ResultSrcEb0, 
               input logic 	 RegWriteM, RegWriteW,
@@ -860,9 +860,9 @@ module imem #(parameter MEM_INIT_FILE)
    
 endmodule // imem
 
-module dmem (input  logic        clk, we,
-	     input  logic [31:0] a, wd,
-	     output logic [31:0] rd);
+module dmem(input  logic        clk, we,
+	    input logic [31:0] 	a, wd,
+	    output logic [31:0] rd);
    
    logic [31:0] 		 RAM[8191:0];
    
@@ -963,23 +963,22 @@ module wdunit (input  logic [31:0] rd2,
    
 endmodule // wdunit
 
-module csr(
-        input logic 	    clk,
-	input logic 	    reset,
+module csr(input logic 	    clk,
+	   input logic 	       reset,
    
-	// PC for capturing into dpc on entry to debug
-	input logic [31:0]  PC,
+	   // PC for capturing into dpc on entry to debug
+	   input logic [31:0]  PC,
    
-	// External debug requests
-	input logic 	    HaltReq,
-	input logic 	    ResumeReq,
-	output logic 	    DebugMode,
+	   // External debug requests
+	   input logic 	       HaltReq,
+	   input logic 	       ResumeReq,
+	   output logic        DebugMode,
    
-	// Pipeline CSR access (E stage)
-	input logic 	    csr_we, // write enable for CSR (after RS/RC zero-mask checks)
-	input logic [11:0]  csr_addr, // CSR address from instruction
-	input logic [31:0]  csr_wdata, // new value to write
-	output logic [31:0] csr_rdata // old/current value (combinational)
+	   // Pipeline CSR access (E stage)
+	   input logic 	       csr_we, // write enable for CSR (after RS/RC zero-mask checks)
+	   input logic [11:0]  csr_addr, // CSR address from instruction
+	   input logic [31:0]  csr_wdata, // new value to write
+	   output logic [31:0] csr_rdata // old/current value (combinational)
 );
    
    // ----------------------------

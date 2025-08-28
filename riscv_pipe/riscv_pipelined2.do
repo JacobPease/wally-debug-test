@@ -102,7 +102,7 @@ configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
 -- Run the Simulation
-run 380 ns
+run 585 ns
 
 -- Add schematic
 add schematic -full sim:/testbench/dut/rv32pipe
