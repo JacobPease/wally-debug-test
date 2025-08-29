@@ -102,7 +102,7 @@ module testbench();
    initial begin
       string memfilename;
       string dmemfilename;
-      memfilename = {"../testing/andi.memfile"};
+      memfilename = {"../testing/template.memfile"};
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end

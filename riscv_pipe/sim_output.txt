@@ -5,7 +5,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:22 on Aug 29,2025
+# Start time: 00:36:59 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -41,10 +41,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:22 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:36:59 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:22 on Aug 29,2025
+# Start time: 00:36:59 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -120,7 +120,7 @@ Reading pref.tcl
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:23 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:36:59 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: andi.memfile =====
 
@@ -131,7 +131,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:23 on Aug 29,2025
+# Start time: 00:37:00 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -167,10 +167,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:23 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:00 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:23 on Aug 29,2025
+# Start time: 00:37:00 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -242,11 +242,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 4835 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:24 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:00 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: add.memfile =====
 
@@ -257,7 +257,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:24 on Aug 29,2025
+# Start time: 00:37:01 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -293,10 +293,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:24 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:01 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:24 on Aug 29,2025
+# Start time: 00:37:01 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -368,11 +368,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2185 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:25 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:01 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: addi.memfile =====
 
@@ -383,7 +383,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:25 on Aug 29,2025
+# Start time: 00:37:02 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -419,10 +419,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:25 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:02 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:25 on Aug 29,2025
+# Start time: 00:37:02 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -494,11 +494,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 295 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:26 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:02 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lui.memfile =====
 
@@ -509,7 +509,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:26 on Aug 29,2025
+# Start time: 00:37:03 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -545,10 +545,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:26 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:03 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:26 on Aug 29,2025
+# Start time: 00:37:03 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -620,11 +620,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2675 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:27 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:03 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lhu.memfile =====
 
@@ -635,7 +635,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:27 on Aug 29,2025
+# Start time: 00:37:04 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -671,10 +671,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:27 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:04 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:27 on Aug 29,2025
+# Start time: 00:37:04 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -746,11 +746,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2605 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:28 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:04 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lh.memfile =====
 
@@ -761,7 +761,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:28 on Aug 29,2025
+# Start time: 00:37:05 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -797,10 +797,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:28 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:05 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:28 on Aug 29,2025
+# Start time: 00:37:05 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -872,11 +872,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2485 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:28 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:05 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lbu.memfile =====
 
@@ -887,7 +887,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:29 on Aug 29,2025
+# Start time: 00:37:06 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -923,10 +923,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:29 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:06 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:29 on Aug 29,2025
+# Start time: 00:37:06 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -998,11 +998,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2485 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:29 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:06 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lb.memfile =====
 
@@ -1013,7 +1013,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:30 on Aug 29,2025
+# Start time: 00:37:07 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1049,10 +1049,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:30 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:07 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:30 on Aug 29,2025
+# Start time: 00:37:07 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1124,11 +1124,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 155 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:30 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:07 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: jal.memfile =====
 
@@ -1139,7 +1139,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:31 on Aug 29,2025
+# Start time: 00:37:08 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1175,10 +1175,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:31 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:08 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:31 on Aug 29,2025
+# Start time: 00:37:08 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1250,11 +1250,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 905 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:31 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:08 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: jalr.memfile =====
 
@@ -1265,7 +1265,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:32 on Aug 29,2025
+# Start time: 00:37:09 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1301,10 +1301,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:32 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:09 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:32 on Aug 29,2025
+# Start time: 00:37:09 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1376,11 +1376,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 3025 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:32 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:09 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: bne.memfile =====
 
@@ -1391,7 +1391,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:33 on Aug 29,2025
+# Start time: 00:37:10 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1427,10 +1427,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:33 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:10 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:33 on Aug 29,2025
+# Start time: 00:37:10 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1502,11 +1502,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 3235 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:33 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:10 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: bltu.memfile =====
 
@@ -1517,7 +1517,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:34 on Aug 29,2025
+# Start time: 00:37:11 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1553,10 +1553,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:34 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:11 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:34 on Aug 29,2025
+# Start time: 00:37:11 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1628,11 +1628,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2985 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:34 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:11 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: blt.memfile =====
 
@@ -1643,7 +1643,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:35 on Aug 29,2025
+# Start time: 00:37:12 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1679,10 +1679,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:35 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:12 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:35 on Aug 29,2025
+# Start time: 00:37:12 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1754,11 +1754,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 3595 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:35 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:12 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: bgeu.memfile =====
 
@@ -1769,7 +1769,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:36 on Aug 29,2025
+# Start time: 00:37:13 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1805,10 +1805,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:36 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:13 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:36 on Aug 29,2025
+# Start time: 00:37:13 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -1880,11 +1880,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 3345 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:36 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:13 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: bge.memfile =====
 
@@ -1895,7 +1895,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:37 on Aug 29,2025
+# Start time: 00:37:14 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -1931,10 +1931,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:37 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:14 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:37 on Aug 29,2025
+# Start time: 00:37:14 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2006,11 +2006,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2985 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:37 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:14 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: beq.memfile =====
 
@@ -2021,7 +2021,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:38 on Aug 29,2025
+# Start time: 00:37:15 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2057,10 +2057,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:38 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:15 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:38 on Aug 29,2025
+# Start time: 00:37:15 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2132,11 +2132,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 345 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:38 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:15 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: auipc.memfile =====
 
@@ -2147,7 +2147,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:39 on Aug 29,2025
+# Start time: 00:37:16 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2183,10 +2183,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:39 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:16 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:39 on Aug 29,2025
+# Start time: 00:37:16 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2258,11 +2258,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5035 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:39 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:16 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: and.memfile =====
 
@@ -2273,7 +2273,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:40 on Aug 29,2025
+# Start time: 00:37:17 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2309,10 +2309,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:40 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:17 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:40 on Aug 29,2025
+# Start time: 00:37:17 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2384,11 +2384,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5245 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:40 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:17 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: srl.memfile =====
 
@@ -2399,7 +2399,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:41 on Aug 29,2025
+# Start time: 00:37:18 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2435,10 +2435,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:41 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:18 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:41 on Aug 29,2025
+# Start time: 00:37:18 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2510,11 +2510,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2265 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:41 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:18 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: srli.memfile =====
 
@@ -2525,7 +2525,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:42 on Aug 29,2025
+# Start time: 00:37:19 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2561,10 +2561,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:42 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:19 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:42 on Aug 29,2025
+# Start time: 00:37:19 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2636,11 +2636,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5305 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:42 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:19 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sra.memfile =====
 
@@ -2651,7 +2651,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:43 on Aug 29,2025
+# Start time: 00:37:20 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2687,10 +2687,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:43 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:20 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:43 on Aug 29,2025
+# Start time: 00:37:20 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2762,11 +2762,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2325 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:43 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:20 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: srai.memfile =====
 
@@ -2777,7 +2777,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:44 on Aug 29,2025
+# Start time: 00:37:21 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2813,10 +2813,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:44 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:21 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:44 on Aug 29,2025
+# Start time: 00:37:21 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -2888,11 +2888,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 4775 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:44 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:21 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sltu.memfile =====
 
@@ -2903,7 +2903,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:45 on Aug 29,2025
+# Start time: 00:37:22 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -2939,10 +2939,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:45 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:22 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:45 on Aug 29,2025
+# Start time: 00:37:22 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3014,11 +3014,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 4775 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:45 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:22 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: slt.memfile =====
 
@@ -3029,7 +3029,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:46 on Aug 29,2025
+# Start time: 00:37:23 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3065,10 +3065,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:46 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:23 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:46 on Aug 29,2025
+# Start time: 00:37:23 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3140,11 +3140,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2135 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:46 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:23 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sltiu.memfile =====
 
@@ -3155,7 +3155,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:47 on Aug 29,2025
+# Start time: 00:37:24 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3191,10 +3191,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:47 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:24 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:47 on Aug 29,2025
+# Start time: 00:37:24 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3266,11 +3266,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2135 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:47 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:24 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: slti.memfile =====
 
@@ -3281,7 +3281,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:48 on Aug 29,2025
+# Start time: 00:37:25 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3317,10 +3317,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:48 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:25 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:48 on Aug 29,2025
+# Start time: 00:37:25 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3392,11 +3392,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5115 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:48 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:25 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sll.memfile =====
 
@@ -3407,7 +3407,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:49 on Aug 29,2025
+# Start time: 00:37:26 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3443,10 +3443,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:49 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:26 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:49 on Aug 29,2025
+# Start time: 00:37:26 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3518,11 +3518,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2175 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:49 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:26 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: slli.memfile =====
 
@@ -3533,7 +3533,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:50 on Aug 29,2025
+# Start time: 00:37:27 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3569,10 +3569,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:50 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:27 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:50 on Aug 29,2025
+# Start time: 00:37:27 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3644,11 +3644,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5025 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:50 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:27 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sh.memfile =====
 
@@ -3659,7 +3659,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:51 on Aug 29,2025
+# Start time: 00:37:28 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3695,10 +3695,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:51 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:28 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:51 on Aug 29,2025
+# Start time: 00:37:28 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3770,11 +3770,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 4495 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:51 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:28 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: sb.memfile =====
 
@@ -3785,7 +3785,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:52 on Aug 29,2025
+# Start time: 00:37:29 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3821,10 +3821,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:52 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:29 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:52 on Aug 29,2025
+# Start time: 00:37:29 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -3896,11 +3896,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5065 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:52 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:29 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: or.memfile =====
 
@@ -3911,7 +3911,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:53 on Aug 29,2025
+# Start time: 00:37:30 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -3947,10 +3947,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:53 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:30 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:53 on Aug 29,2025
+# Start time: 00:37:30 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4022,11 +4022,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 1815 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:53 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:30 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: ori.memfile =====
 
@@ -4037,7 +4037,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:54 on Aug 29,2025
+# Start time: 00:37:30 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -4073,10 +4073,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:54 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:31 on Aug 29,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:54 on Aug 29,2025
+# Start time: 00:37:31 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4148,11 +4148,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 2725 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:54 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:31 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: lw.memfile =====
 
@@ -4163,7 +4163,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:54 on Aug 29,2025
+# Start time: 00:37:31 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -4199,10 +4199,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:55 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:32 on Aug 29,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:55 on Aug 29,2025
+# Start time: 00:37:32 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4274,11 +4274,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5055 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:55 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:32 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: xor.memfile =====
 
@@ -4289,7 +4289,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:55 on Aug 29,2025
+# Start time: 00:37:32 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -4325,10 +4325,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:56 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:32 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:56 on Aug 29,2025
+# Start time: 00:37:33 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4400,11 +4400,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 1835 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:56 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:33 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 ===== End Test: xori.memfile =====
 
@@ -4415,7 +4415,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:56 on Aug 29,2025
+# Start time: 00:37:33 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -4451,10 +4451,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:56 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:33 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:56 on Aug 29,2025
+# Start time: 00:37:33 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4526,11 +4526,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 5135 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:57 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:34 on Aug 29,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 ===== End Test: sw.memfile =====
 
@@ -4541,7 +4541,7 @@ Reading pref.tcl
 
 # do riscv_pipelined3.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 00:25:57 on Aug 29,2025
+# Start time: 00:37:34 on Aug 29,2025
 # vlog riscv_pipelined3.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -4577,10 +4577,10 @@ Reading pref.tcl
 # 
 # Top level modules:
 # 	testbench
-# End time: 00:25:57 on Aug 29,2025, Elapsed time: 0:00:00
+# End time: 00:37:34 on Aug 29,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 00:25:57 on Aug 29,2025
+# Start time: 00:37:34 on Aug 29,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -4652,11 +4652,11 @@ Reading pref.tcl
 # configure wave not supported in batch mode
 # Simulation succeeded
 # ** Note: $stop    : riscv_pipelined3.sv(130)
-#    Time: 1745 ns  Iteration: 1  Instance: /testbench
+#    Time: 4755 ns  Iteration: 1  Instance: /testbench
 # Break in Module testbench at riscv_pipelined3.sv line 130
 # Stopped at riscv_pipelined3.sv line 130
 # add schematic not supported in batch mode
-# End time: 00:25:58 on Aug 29,2025, Elapsed time: 0:00:01
+# End time: 00:37:35 on Aug 29,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 ===== End Test: sub.memfile =====
 
