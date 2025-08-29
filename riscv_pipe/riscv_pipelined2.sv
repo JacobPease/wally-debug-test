@@ -4,7 +4,6 @@
 // Built from Section 7.6 of Digital Design & Computer Architecture: RISC-V Edition
 // David_Harris@hmc.edu 
 // Sarah.Harris@unlv.edu
-// james.stine@okstate.edu
 
 module testbench();
 
