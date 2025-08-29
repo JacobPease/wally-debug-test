@@ -167,7 +167,6 @@ module riscv(
    output logic        MemWriteM,
    output logic [31:0] ALUResultM, WriteDataM,
    input logic [31:0]  ReadDataM,
-   // Debug Stuff
    input logic         HaltReq,
    input logic         ResumeReq,
    output logic        DebugMode,
