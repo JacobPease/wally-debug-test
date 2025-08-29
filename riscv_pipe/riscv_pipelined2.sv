@@ -6,7 +6,6 @@
 // Sarah.Harris@unlv.edu
 // james.stine@okstate.edu
 
-
 module testbench();
 
    logic        clk;
@@ -223,6 +222,7 @@ module controller(input logic 	     clk, reset,
 
    bu branchunit (BranchE, FlagsE, funct3E, BranchTakenE);
    lsu lsu (funct3E, LoadTypeE, StoreTypeE);
+   
    assign RegWriteFinalD = RegWriteD | CsrEnD;   
    assign PCSrcE = BranchTakenE | JumpE;  
    assign ResultSrcEb0 = ResultSrcE[0];
@@ -233,9 +233,7 @@ module controller(input logic 	     clk, reset,
                           {RegWriteM, ResultSrcM, MemWriteM, LoadTypeM, StoreTypeM});
    
    // Writeback stage pipeline control register
-   flopr #(3) controlregW(clk, reset,
-                          {RegWriteM, ResultSrcM},
-                          {RegWriteW, ResultSrcW});     
+   flopr #(3) controlregW(clk, reset, {RegWriteM, ResultSrcM}, {RegWriteW, ResultSrcW});     
 endmodule // controller
 
 module bu (input logic       Branch,
@@ -482,7 +480,7 @@ module datapath(input logic 	       clk, reset,
    mux2 #(32)    jalrmux (PCRelativeTargetE, ALUResultE, PCTargetSrcE, PCTargetE);
 
    // ---- CSR operation (Execute) ----
-   // Used SrcAEforward instead for RD1E to get forwarded value (fix)
+   //   used SrcAEforward instead for RD1E to get forwarded value (fix - jes)
    assign csr_srcE = CsrImmE ? {27'b0, ZimmE} : SrcAEforward;
    assign csr_oldE = csr_rdata;
 
