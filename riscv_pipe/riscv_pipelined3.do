@@ -27,7 +27,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog riscv_pipelined2.sv
+vlog riscv_pipelined3.sv
 
 # start and run simulation
 vsim -debugdb -voptargs=+acc work.testbench

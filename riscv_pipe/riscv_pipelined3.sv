@@ -102,7 +102,7 @@ module testbench();
    initial begin
       string memfilename;
       string dmemfilename;
-      memfilename = {"../testing/template.memfile"};
+      memfilename = {"../testing/andi.memfile"};
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end
@@ -134,7 +134,7 @@ module testbench();
            end
 	      end
       end
-endmodule
+endmodule // testbench
 
 module top(input logic         clk, reset, 
            output logic [31:0] WriteDataM, DataAdrM, 
@@ -154,7 +154,7 @@ module top(input logic         clk, reset,
    riscv rv32pipe(clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
 		  WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
 		  RegIn, RegOut, RegAddr, DebugRegWrite);
-   imem #("../testing/riscvtestCSR.memfile") imem(PCF, InstrF);
+   imem imem(PCF, InstrF);
    dmem dmem(clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
 endmodule
@@ -810,17 +810,10 @@ module mux5 #(parameter WIDTH = 8) (
   assign y = s[2] ? d4 : (s[1] ? (s[0] ? d3 : d2) : (s[0] ? d1 : d0)); 
 endmodule
 
-module imem #(parameter MEM_INIT_FILE)
-    (input  logic [31:0] a,
-     output logic [31:0] rd);
+module imem (input  logic [31:0] a,
+	     output logic [31:0] rd);
    
-   logic [31:0]      RAM[127:0];
-
-   initial begin
-      if (MEM_INIT_FILE != "") begin
-        $readmemh(MEM_INIT_FILE, RAM);
-      end
-   end
+   logic [31:0] 		 RAM[2047:0];
    
    assign rd = RAM[a[31:2]]; // word aligned
    

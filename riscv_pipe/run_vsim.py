@@ -3,8 +3,8 @@ import shutil
 import re
 
 # File paths
-riscv_sv = "riscv_pipelined.sv"
-backup_sv = "riscv_pipelined_backup.sv"
+riscv_sv = "riscv_pipelined3.sv"
+backup_sv = "riscv_pipelined3_backup.sv"
 tests_file = "tests.txt"
 output_log = "sim_output.txt"
 
@@ -34,7 +34,7 @@ for testfile in tests:
     # Run the simulation and capture the output
     try:
         result = subprocess.run(
-            ["vsim", "-do", "riscv_pipelined.do", "-c"],
+            ["vsim", "-do", "riscv_pipelined3.do", "-c"],
             capture_output=True,
             text=True,
             check=False
