@@ -955,29 +955,29 @@ module csr(input logic 	       clk,
    // On entry to debug: latch PC into dpc and set dcsr.cause
    always_ff @(posedge clk) begin
       if (reset) begin
-                        // | Name      | Access | Status          | Description                                                                  |
-                        // |-----------+--------+-----------------+------------------------------------------------------------------------------|
-         dcsr <= {4'd4, // | debugver  | R      | implemented     | Debug Version                                                                |
-                  1'b0, // | reserved  | -      | -               |                                                                              |
-                  3'd0, // | extcause  | R      | optional=0      | Reserved for extra debug causes when dcause=other                            |
-                  4'd0, // | reserved  | -      | -               |                                                                              |
-                  1'b0, // | cetrig    | WARL   | unimplemented=0 | Optional Smdbltrp extension                                                  |
-                  1'b0, // | pelp      | WARL   | unimplemented=0 | Zicfilp extension                                                            |
-                  1'b0, // | ebreakvs  | WARL   | unimplemented=0 | VS-mode debug ebreak                                                         |
-                  1'b0, // | ebreakvu  | WARL   | unimplmeneted=0 | VU-mode debug ebreak                                                         |
-                  1'b0, // | ebreakm   | R/W    | mandatory       | M-mode debug ebreak                                                          |
-                  1'b0, // | reserved  | -      | -               | -                                                                            |
-                  1'b0, // | ebreaks   | WARL   | unimplemented=0 | S-mode debug ebreak                                                          |
-                  1'b0, // | ebreaku   | WARL   | unimplemented=0 | U-mode debug ebreak                                                          |
-                  1'b0, // | stepie    | WARL   | unimplemented=0 | Interrupt enable during single stepping.                                     |
-                  1'b0, // | stopcount | WARL   | continue=0      | Increment or freeze counters in debug mode (e.g.cycle)                       |
-                  1'b0, // | stoptime  | WARL   | continue=0      | Increment or freeze mtime                                                    |
-                  3'd0, // | cause     | R      | mandatory       | Explains why debug mode was entered                                          |
-                  1'b0, // | v         | WARL   | unimplemented=0 | Extends the prv field with virtualization enabled                            |
-                  1'b0, // | mprven    | WARL   | unimplemented=0 | 0 means mprv in mstatus is ignored in Debug Mode                             |
-                  1'b0, // | nmip      | R      | unimplemented=0 | Set = non-maskable interrupt. Implementation dependent                       |
-                  1'b0, // | step      | R/W    | mandatory       | Execute single instruction, re-enter debug mode. Debugger sets in Debug mode |
-                  2'd3  // | prv       | WARL   | reset=3         | Privileged mode when debug mode was entered                                  |
+                        // | Name      | Access | Status          | Description                                            |
+                        // |-----------+--------+-----------------+--------------------------------------------------------|
+         dcsr <= {4'd4, // | debugver  | R      | implemented     | Debug Version                                          |
+                  1'b0, // | reserved  | -      | -               |                                                        |
+                  3'd0, // | extcause  | R      | optional=0      | Reserved for extra debug causes when dcause=other      |
+                  4'd0, // | reserved  | -      | -               |                                                        |
+                  1'b0, // | cetrig    | WARL   | unimplemented=0 | Optional Smdbltrp extension                            |
+                  1'b0, // | pelp      | WARL   | unimplemented=0 | Zicfilp extension                                      |
+                  1'b0, // | ebreakvs  | WARL   | unimplemented=0 | VS-mode debug ebreak                                   |
+                  1'b0, // | ebreakvu  | WARL   | unimplmeneted=0 | VU-mode debug ebreak                                   |
+                  1'b0, // | ebreakm   | R/W    | mandatory       | M-mode debug ebreak                                    |
+                  1'b0, // | reserved  | -      | -               | -                                                      |
+                  1'b0, // | ebreaks   | WARL   | unimplemented=0 | S-mode debug ebreak                                    |
+                  1'b0, // | ebreaku   | WARL   | unimplemented=0 | U-mode debug ebreak                                    |
+                  1'b0, // | stepie    | WARL   | unimplemented=0 | Interrupt enable during single stepping.               |
+                  1'b0, // | stopcount | WARL   | continue=0      | Increment or freeze counters in debug mode (e.g.cycle) |
+                  1'b0, // | stoptime  | WARL   | continue=0      | Increment or freeze mtime                              |
+                  3'd0, // | cause     | R      | mandatory       | Explains why debug mode was entered                    |
+                  1'b0, // | v         | WARL   | unimplemented=0 | Extends the prv field with virtualization enabled      |
+                  1'b0, // | mprven    | WARL   | unimplemented=0 | 0 means mprv in mstatus is ignored in Debug Mode       |
+                  1'b0, // | nmip      | R      | unimplemented=0 | Set = non-maskable interrupt. Implementation dependent |
+                  1'b0, // | step      | R/W    | mandatory       | EX single instr, re-enter dbg mode. Dbger sets in Dbg  |
+                  2'd3  // | prv       | WARL   | reset=3         | Privileged mode when debug mode was entered            |
          };
       end else if (state == RUNNING && state_n == HALTED) begin // Debug Mode
          // dcsr[8:6] = cause (simplified placement into bits[8:6])
