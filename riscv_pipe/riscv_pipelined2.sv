@@ -102,7 +102,7 @@ module testbench();
    initial begin
       string memfilename;
       string dmemfilename;
-      memfilename = {"../testing/riscvtestCSR.memfile"};
+      memfilename = {"../testing/template.memfile"};
       $readmemh(memfilename, dut.imem.RAM);
       $readmemh(memfilename, dut.dmem.RAM);	
    end
@@ -232,40 +232,6 @@ module riscv(
    hazard  hu(Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               PCSrcE, ResultSrcEb0, RegWriteM, RegWriteW,
               ForwardAE, ForwardBE, StallF, StallD, FlushD, FlushE, CsrEnE, DebugMode);
-endmodule
-
-module debugcsr(
-   input logic 	      clk, 
-   input logic 	      reset,
-   input logic [31:0] PC,
-   input logic 	      HaltReq,
-   input logic 	      ResumeReq,
-   output logic       DebugMode
-);
-   logic [31:0] dcsr;
-   logic [31:0] dpc;
-   logic [31:0] dscratch0;
-
-   logic [2:0]  dcause;
-
-   enum logic {RUNNING, HALTED} DebugState;
-
-   always_ff @(posedge clk) begin
-      if (reset) begin
-         DebugState <= RUNNING;
-      end else begin
-         case(DebugState)
-            RUNNING: if (HaltReq) DebugState <= HALTED;
-            HALTED: if (ResumeReq) DebugState <= RUNNING;
-            default: DebugState <= RUNNING;
-         endcase
-      end
-   end
-
-   // Needs to update cause when halting, not after halt.
-   assign dcause = HaltReq ? 3'b011 : 3'b000;
-   flopr #(32) dcsr_reg(clk, reset, {23'b0, dcause, 6'b0}, dcsr);
-   assign DebugMode = (DebugState == HALTED);
 endmodule
 
 module controller(
@@ -649,7 +615,7 @@ module datapath(
 endmodule
 
 // HazardUnit: forward, stall, and flush (modified to handle csrStallD)
-module hazard(input  logic [4:0] Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
+module hazard(input logic [4:0]  Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
               input logic 	 PCSrcE, ResultSrcEb0, 
               input logic 	 RegWriteM, RegWriteW,
               output logic [1:0] ForwardAE, ForwardBE,
@@ -964,7 +930,7 @@ module wdunit (input  logic [31:0] rd2,
    
 endmodule // wdunit
 
-module csr(input logic 	    clk,
+module csr(input logic 	       clk,
 	   input logic 	       reset,
    
 	   // PC for capturing into dpc on entry to debug
@@ -1020,19 +986,17 @@ module csr(input logic 	    clk,
    
    // Next-state debug mode
    always_comb begin
-      // state_n = state;
-      unique case (state)
-	      RUNNING: if (HaltReq) state_n = HALTED;
-	      HALTED:  if (ResumeReq) state_n = RUNNING;
-         default: state_n = RUNNING;
+      case (state)
+	RUNNING: if (HaltReq) state_n = HALTED;
+	HALTED:  if (ResumeReq) state_n = RUNNING;
+        default: state_n = RUNNING;
       endcase
    end
-   
+
+   // Output of FSM
    assign DebugMode = (state == HALTED);
    
-   // ----------------------------
    // CSR read mux (combinational)
-   // ----------------------------
    always_comb begin
       case (csr_addr)
 	12'h300: csr_rdata = mstatus;
@@ -1049,8 +1013,10 @@ module csr(input logic 	    clk,
    end
    
    // misa default: RV32I => MXL=01 in [31:30], 'I' bit (bit 8) set, others 0.
+   // i.e., RV32I and XLEN = 32
    localparam [31:0] MISA_RV32I = (32'h1 << 30) | (32'h1 << 8);
 
+   // CSRs stored in registers
    csr_reg_en #(32, 12) mstatus_reg(clk, reset, 12'h300, csr_we, csr_addr, csr_wdata, mstatus);
    csr_reg_en #(32, 12) mtvec_reg(clk, reset, 12'h305, csr_we, csr_addr, csr_wdata, mtvec);
    csr_reg_en #(32, 12) mepc_reg(clk, reset, 12'h341, csr_we, csr_addr, csr_wdata, mepc);
@@ -1059,12 +1025,6 @@ module csr(input logic 	    clk,
    csr_reg_en #(32, 12) dscratch0_reg(clk, reset, 12'h7b2, csr_we, csr_addr, csr_wdata, dscratch0);
    misa_reg_en #(32, 12) misa_reg(clk, reset, 12'h301, csr_we, csr_addr, csr_wdata, misa);
    
-   /// FIXME:  have to implement correctly as a FSM :(
-   // ----------------------------
-   // Debug Registers
-   // ----------------------------
-
-
    // DPC
    always_ff @(posedge clk) begin
       if (reset) begin
