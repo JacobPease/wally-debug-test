@@ -5,102 +5,106 @@
 // David_Harris@hmc.edu 
 // Sarah.Harris@unlv.edu
 
-module testbench();
+// module testbench();
 
-   logic        clk;
-   logic        reset;
+//    logic        clk;
+//    logic        reset;
 
-   logic [31:0] WriteData, DataAdr;
-   logic        MemWrite;
-   logic        HaltReq;
-   logic        ResumeReq;
-   logic        DebugMode;
-   logic 	DebugControl;   
+//    logic [31:0] WriteData, DataAdr;
+//    logic        MemWrite;
+//    logic        HaltReq;
+//    logic        ResumeReq;
+//    logic        DebugMode;
+//    logic 	DebugControl;
+//    logic    CSRDebugEnable;
 
-   logic [31:0] RegIn;
-   logic [31:0] RegOut;   
-   logic [4:0] 	RegAddr;   
-   logic 	DebugRegWrite;   
+//    logic [31:0] RegIn;
+//    logic [31:0] RegOut;   
+//    logic [11:0] 	RegAddr;   
+//    logic 	DebugRegWrite;   
 
-   // instantiate device to be tested
-   top dut(clk, reset, WriteData, DataAdr, MemWrite, HaltReq, ResumeReq, 
-	   DebugMode, DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite);
+//    // instantiate device to be tested
+//    top dut(clk, reset, WriteData, DataAdr, MemWrite, HaltReq, ResumeReq, 
+// 	   DebugMode, DebugControl, CSRDebugEnable, RegIn, RegOut, RegAddr, DebugRegWrite);
 	
-   initial begin
-      string memfilename;
-      string dmemfilename;
-      memfilename = {"../testing/riscvtestCSR.memfile"};
-      $readmemh(memfilename, dut.imem.RAM);
-      $readmemh(memfilename, dut.dmem.RAM);	
-   end
+//    initial begin
+//       string memfilename;
+//       string dmemfilename;
+//       memfilename = {"../testing/riscvtestCSR.memfile"};
+//       $readmemh(memfilename, dut.imem.RAM);
+//       $readmemh(memfilename, dut.dmem.RAM);	
+//    end
    
-   // initialize test
-   initial begin
-      HaltReq = 0;
-      ResumeReq = 0;
-      DebugRegWrite = 1'b0;
-      DebugControl = 1'b0;      
-      reset <= 1; # 22; reset <= 0;       
-   end
+//    // initialize test
+//    initial begin
+//       HaltReq = 0;
+//       ResumeReq = 0;
+//       DebugRegWrite = 1'b0;
+//       DebugControl = 1'b0;
+//       CSRDebugEnable = 1'b0;
+//       reset <= 1; # 22; reset <= 0;
+//    end
    
-   // generate clock to sequence tests
-   always begin
-      clk <= 1; # 5; clk <= 0; # 5;
-   end
+//    // generate clock to sequence tests
+//    always begin
+//       clk <= 1; # 5; clk <= 0; # 5;
+//    end
    
-   // check results
-   always @(negedge clk)
-      begin
-	      if(MemWrite) begin
-            if(DataAdr === 100 & WriteData === 10) begin
-               $display("Simulation succeeded");
-               $stop;
-           end else if (DataAdr === 100 & WriteData === 17) begin
-              $display("Simulation failed");
-              $stop;
-           end
-	      end
-      end
-endmodule
+//    // check results
+//    always @(negedge clk)
+//       begin
+// 	      if(MemWrite) begin
+//             if(DataAdr === 100 & WriteData === 10) begin
+//                $display("Simulation succeeded");
+//                $stop;
+//            end else if (DataAdr === 100 & WriteData === 17) begin
+//               $display("Simulation failed");
+//               $stop;
+//            end
+// 	      end
+//       end
+// endmodule
 
-module top(input logic         clk, reset, 
-           output logic [31:0] WriteDataM, DataAdrM, 
-           output logic        MemWriteM,
-           input logic 	       HaltReq, ResumeReq,
-           output logic        DebugMode,
-           input logic 	       DebugControl,
-           output logic [31:0] RegIn,
-           input logic [31:0]  RegOut,
-           input logic [4:0]   RegAddr,
-           input logic 	       DebugRegWrite
-);
+// module top(input logic         clk, reset, 
+//            output logic [31:0] WriteDataM, DataAdrM, 
+//            output logic        MemWriteM,
+//            input logic         HaltReq, ResumeReq,
+//            output logic        DebugMode,
+//            input logic         DebugControl,
+//            input logic         CSRDebugEnable,
+//            output logic [31:0] RegIn,
+//            input logic [31:0]  RegOut,
+//            input logic [11:0]   RegAddr,
+//            input logic         DebugRegWrite
+// );
 
-   logic [31:0] 	       PCF, InstrF, ReadDataM;
+//    logic [31:0] 	       PCF, InstrF, ReadDataM;
 
-   // instantiate processor and memories
-   riscv rv32pipe(clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
-		  WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
-		  RegIn, RegOut, RegAddr, DebugRegWrite);
-   imem #("../testing/riscvtestCSR.memfile") imem(PCF, InstrF);
-   dmem dmem(clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
+//    // instantiate processor and memories
+//    riscv rv32pipe(clk, reset, PCF, InstrF, MemWriteM, DataAdrM, 
+// 		  WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
+// 		  RegIn, RegOut, RegAddr, DebugRegWrite);
+//    imem #("../testing/riscvtestCSR.memfile") imem(PCF, InstrF);
+//    dmem dmem(clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
-endmodule
+// endmodule
 
-module riscv(input logic 	 clk, 
-	     input logic 	 reset,
-	     output logic [31:0] PCF,
-	     input logic [31:0]  InstrF,
-	     output logic 	 MemWriteM,
-	     output logic [31:0] ALUResultM, WriteDataM,
-	     input logic [31:0]  ReadDataM,
-	     input logic 	 HaltReq,
-	     input logic 	 ResumeReq,
-	     output logic 	 DebugMode,
-	     input logic 	 DebugControl,
-	     output logic [31:0] RegIn,
-	     input logic [31:0]  RegOut,
-	     input logic [4:0] 	 RegAddr,
-	     input logic 	 DebugRegWrite
+module riscv(input logic         clk, 
+	          input logic         reset,
+	          output logic [31:0] PCF,
+	          input logic [31:0]  InstrF,
+	          output logic        MemWriteM,
+	          output logic [31:0] ALUResultM, WriteDataM,
+	          input logic [31:0]  ReadDataM,
+	          input logic         HaltReq,
+	          input logic         ResumeReq,
+	          output logic        DebugMode,
+	          input logic         DebugControl,
+             input logic         CSRDebugEnable,
+	          output logic [31:0] RegIn,
+	          input logic [31:0]  RegOut,
+	          input logic [11:0]   RegAddr,
+	          input logic         DebugRegWrite
 	     );
 
    logic [6:0] 			 opD;
@@ -123,10 +127,10 @@ module riscv(input logic 	 clk,
    logic [1:0] 			 ForwardAE, ForwardBE;
    logic 			 StallF, StallD, FlushD, FlushE;
 
-   logic 			 csr_weE;
-   logic [11:0] 		 csr_addrE;
-   logic [31:0] 		 csr_wdataE;
-   logic [31:0] 		 csr_rdata;
+   logic           csr_weE; // csr_debug_we;
+   logic [11:0]    csr_addrE, csr_debug_addr;
+   logic [31:0] 		 csr_wdataE, csr_debug_wdata;
+   logic [31:0]       csr_rdata;
 
    logic 			 CsrEnE;
    logic [1:0] 			 CsrOpE;
@@ -134,8 +138,17 @@ module riscv(input logic 	 clk,
 
    logic [4:0] 			 Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW;
 
-   csr csr0(clk, reset, PCF, HaltReq, ResumeReq, DebugMode, 
-	    csr_weE, csr_addrE, csr_wdataE, csr_rdata);
+   logic [31:0]          RD1D;
+
+   // csr muxes
+   mux2 #(12) csraddrmux (csr_addrE, RegAddr, CSRDebugEnable, csr_debug_addr);
+   mux2 #(32) csrwdatamux (csr_wdataE, RegOut, CSRDebugEnable, csr_debug_wdata);
+   
+   csr csr0(clk, reset, PCF, HaltReq, ResumeReq, DebugMode,
+	         csr_weE | (CSRDebugEnable & DebugRegWrite), csr_debug_addr, csr_debug_wdata, csr_rdata);
+   
+   // Output mux
+   mux2 #(32) debugreadmux (RD1D, csr_rdata, CSRDebugEnable, RegIn);
    
    controller c(clk, reset,
 		opD, funct3D, funct7b5D, ImmSrcD,
@@ -150,7 +163,7 @@ module riscv(input logic 	 clk,
                MemWriteM, WriteDataM, ALUResultM, ReadDataM,
 	       LoadTypeM, StoreTypeM, RegWriteW, ResultSrcW,
                Rs1D, Rs2D, Rs1E, Rs2E, RdE, RdM, RdW,
-	       DebugControl, RegIn, RegOut, RegAddr, DebugRegWrite,
+	       DebugControl, RD1D, RegOut, RegAddr[4:0], DebugRegWrite,
 	       csr_weE, csr_addrE, csr_wdataE, csr_rdata,
 	       CsrEnE, CsrOpE, CsrImmE);
 
@@ -849,19 +862,20 @@ module wdunit (input  logic [31:0] rd2,
    
 endmodule // wdunit
 
-module csr(input logic 	       clk,
-	   input logic 	       reset,
+module csr(input logic         clk,
+	        input logic         reset,
 	   // PC for capturing into dpc on entry to debug
-	   input logic [31:0]  PC,
+	        input logic [31:0]  PC,
 	   // External debug requests
-	   input logic 	       HaltReq,
-	   input logic 	       ResumeReq,
-	   output logic        DebugMode,
+	        input logic         HaltReq,
+	        input logic         ResumeReq,
+	        output logic        DebugMode,
+           // input logic         DebugControl,
 	   // Pipeline CSR access (E stage)
-	   input logic 	       csr_we, // write enable for CSR (after RS/RC zero-mask checks)
-	   input logic [11:0]  csr_addr, // CSR address from instruction
-	   input logic [31:0]  csr_wdata, // new value to write
-	   output logic [31:0] csr_rdata // old/current value (combinational)
+	        input logic         csr_we,    // write enable for CSR (after RS/RC zero-mask checks)
+	        input logic [11:0]  csr_addr,  // CSR address from instruction
+	        input logic [31:0]  csr_wdata, // new value to write
+	        output logic [31:0] csr_rdata  // old/current value (combinational)
 	   );
    
    // ----------------------------

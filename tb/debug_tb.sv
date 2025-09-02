@@ -17,11 +17,12 @@ module debug_tb;
    logic ResumeReq;
    logic DebugMode;
    logic DebugControl;
+   logic CSRDebugEnable;
 
    // Debug Register Access
    logic [31:0] RegIn;
    logic [31:0] RegOut;
-   logic [4:0]  RegAddr;
+   logic [11:0]  RegAddr;
    logic        DebugRegWrite;
 
    // CPU Signals
@@ -37,7 +38,7 @@ module debug_tb;
       dmi_req, dmi_rsp);
 
    dm debugmodule (clk, rst, dmi_req,
-      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl,
+      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
       RegIn, RegOut, RegAddr, DebugRegWrite
    );
 
@@ -48,7 +49,7 @@ module debug_tb;
    
    // instantiate processor and memories
    riscv rv32pipe (clk, rst, PCF, InstrF, MemWriteM, DataAdrM, 
-		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
+		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
          RegIn, RegOut, RegAddr, DebugRegWrite
    );
    imem #("testing/riscvtestCSR.memfile") imem (PCF, InstrF);
@@ -185,7 +186,7 @@ module debug_tb;
       #(tcktime*30)
       assert(DebugMode) $display("Halted");
       else $display("Not");
-      #(tcktime*10) dmireg.write({7'h17, 32'h0020_0005, 2'b10}, dmi_result);
+      #(tcktime*10) dmireg.write({7'h17, 32'h0020_0301, 2'b10}, dmi_result);
 
       #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
 

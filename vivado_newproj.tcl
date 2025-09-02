@@ -3,7 +3,7 @@ set project_name      "debugfpga"
 set project_dir       "./$project_name"
 set top_module_name   "top"                              ;# Must match module name inside the top .sv file
 set part_name         "xc7a100tcsg324-1"                 ;# target FPGA part
-set source_dirs       [list "./fpga" "./riscv_pipe" "./src"]  ;# HDL files
+set source_dirs       [list "./fpga" "./src"]  ;# HDL files
 set xdc_file          "./fpga/Arty_Master.xdc"                ;# XDC constraint file
 
 # ==== MMCM CONFIGURATION VARIABLES ====
@@ -64,6 +64,7 @@ foreach dir $source_dirs {
     }
 }
 
+import_files -fileset sources_1 "./riscv_pipe/riscv_pipelined2.sv"
 import_files -fileset sources_1 "./src/include/debug.vh"
 import_files -fileset sources_1 "./testing/riscvtest.memfile"
 

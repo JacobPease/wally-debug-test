@@ -15,6 +15,19 @@ add wave -noupdate -expand -group dtm /debug_tb/dtm/*
 add wave -noupdate -divider -height 32 "dm"
 add wave -noupdate -expand -group dm /debug_tb/debugmodule/*
 
+add wave -noupdate -divider -height 32 "CSR"
+add wave -hex /debug_tb/rv32pipe/csr0/*
+add wave -noupdate -divider -height 32 "CSR Regs"
+add wave -hex /debug_tb/rv32pipe/csr0/mstatus
+add wave -hex /debug_tb/rv32pipe/csr0/mtvec
+add wave -hex /debug_tb/rv32pipe/csr0/mepc
+add wave -hex /debug_tb/rv32pipe/csr0/mcause
+add wave -hex /debug_tb/rv32pipe/csr0/mtval
+add wave -hex /debug_tb/rv32pipe/csr0/dcsr
+add wave -hex /debug_tb/rv32pipe/csr0/dpc
+add wave -hex /debug_tb/rv32pipe/csr0/dscratch0
+add wave -hex /debug_tb/rv32pipe/csr0/misa
+
 add wave -noupdate -divider -height 32 "Instructions"
 add wave -noupdate -expand -group Instructions -color Orange /debug_tb/rv32pipe/*
 
