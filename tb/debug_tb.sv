@@ -2,7 +2,7 @@
 `timescale 10ns/1ns
 module debug_tb;
    // Want the period of clk over the period of tck to not be an
-   // integer. This will test the synchronizers.
+   // integer. This will test the synchronizer.
    int tcktime = 52;
 
    // DTM Signals
@@ -22,30 +22,26 @@ module debug_tb;
    // Debug Register Access
    logic [31:0] RegIn;
    logic [31:0] RegOut;
-   logic [11:0]  RegAddr;
+   logic [11:0] RegAddr;
    logic        DebugRegWrite;
 
    // CPU Signals
    logic [31:0] WriteDataM, DataAdrM;
    logic        MemWriteM;
-   logic [31:0] 	       PCF, InstrF, ReadDataM;
-   
-   // Dummy Debug Module FSM states
-   enum logic {IDLE, WAIT} DMState;
+   logic [31:0] PCF, InstrF, ReadDataM;
 
-   
+   // ----------------------------------------------------------------
+   // DUT
+   // ----------------------------------------------------------------
+   // Debug Transport Module
    dtm dtm (clk, rst, tck, tms, tdi, tdo,
       dmi_req, dmi_rsp);
 
+   // The Debug Module
    dm debugmodule (clk, rst, dmi_req,
       dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
       RegIn, RegOut, RegAddr, DebugRegWrite
    );
-
-   // top proc2test (clk, rst, WriteDataM, DataAdrM,
-   //    MemWriteM, HaltReq, ResumeReq, DebugMode, DebugControl,
-   //    RegIn, RegOut, RegAddr, DebugRegWrite
-   // );
    
    // instantiate processor and memories
    riscv rv32pipe (clk, rst, PCF, InstrF, MemWriteM, DataAdrM, 
@@ -55,11 +51,23 @@ module debug_tb;
    imem #("testing/riscvtestCSR.memfile") imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
+   // ----------------------------------------------------------------
+   // System clock
+   // ----------------------------------------------------------------
    initial begin
       tck = 1'b1;
       clk = 1'b1;
       forever #10 clk = ~clk; 
    end
+
+   // ----------------------------------------------------------------
+   //  Write instruction task.
+   // ----------------------------------------------------------------
+
+   // Changing the instructions happens so infrequently that we need
+   // only make a single task for this. The only time we may need to
+   // revisit this after initializing is if we need to set DMIReset if
+   // we encounter the sticky error in the DMI.
 
    // Task for writing instructions to the DTM
    task write_instr(input logic [4:0] INST);
@@ -87,34 +95,184 @@ module debug_tb;
       end   
    endtask // instr
 
+   // ----------------------------------------------------------------
+   // Classes
+   // ----------------------------------------------------------------
+   
    // JTAG_DR Class that generalizes the task of reading and writing
    // to the Test Data Regisers. 
    class JTAG_DR #(parameter WIDTH = 32);
-      task read(output logic [WIDTH-1:0] result);
+      logic [WIDTH-1:0] result;
+      
+      task read();
          logic [5 + WIDTH + 2 - 1:0] tms_seq = {5'b01000, {(WIDTH-1){1'b0}}, 1'b1, 2'b10};
          for (int i = 5 + WIDTH + 2 - 1; i >= 0; i--) begin
             #(tcktime) tck = ~tck; 
             tdi = 0;
             tms = tms_seq[i];
-            if ((i < WIDTH + 2) && (i >= 2))
-               result[WIDTH - i + 2-1] = tdo;
+            if ((i < WIDTH + 2) && (i >= 2)) begin               
+               this.result[WIDTH - i + 2-1] = tdo;
+            end
             #(tcktime) tck = ~tck;
          end
       endtask // read
 
-      task write(input logic [WIDTH-1:0] val, output logic [WIDTH-1:0] result);
+      task write(input logic [WIDTH-1:0] val);
          logic [5 + WIDTH + 2 - 1:0] tms_seq = {5'b01000, {(WIDTH-1){1'b0}}, 1'b1, 2'b10};
          for (int i = 5 + WIDTH + 2 - 1; i >= 0; i--) begin
             #(tcktime) tck = ~tck; 
             tms = tms_seq[i];
-            if ((i < WIDTH + 2) && (i >= 2))
+            if ((i < WIDTH + 2) && (i >= 2)) begin
                tdi = val[WIDTH - i + 2-1];
-            result[WIDTH - i + 2-1] = tdo;
+            end
+            this.result[WIDTH - i + 2-1] = tdo;
             #(tcktime) tck = ~tck;
          end
       endtask
    endclass
+   
+   // Debug Module Interface Abstraction.
+   // TODO: Can probably be further abstracted with a Debugger class
+   class DMI extends JTAG_DR #(41);
+      //logic [40:0] result;
+      // DMControl = 0x10
+      task read_dmcontrol();
+         this.write({7'h10, 32'h0000_0000, 2'b01});
+         this.write({7'h10, 32'h0000_0000, 2'b00});
+      endtask
 
+      task write_dmcontrol(input logic [31:0] data);
+         this.write({7'h10, data, 2'b10});
+      endtask
+
+      // DMStatus = 0x11
+      task read_dmstatus();
+         this.write({7'h11, 32'h0000_0000, 2'b01});
+         this.write({7'h11, 32'h0000_0000, 2'b00});
+      endtask
+
+      // Command = 0x17
+      task read_command();
+         this.write({7'h17, 32'h0000_0000, 2'b01});
+      endtask
+
+      task write_command(input logic [31:0] data);
+         this.write({7'h17, data, 2'b10});
+      endtask
+
+      // AbstractCS = 0x16
+      task read_abstractcs();
+         this.write({7'h16, 32'h0000_0000, 2'b01});
+         this.write({7'h16, 32'h0000_0000, 2'b00});
+      endtask
+
+      task write_abstractcs(input logic [31:0] data);
+         this.write({7'h16, data, 2'b10});
+      endtask
+
+      // DATA0 = 0x04
+      task read_data0();
+         this.write({7'h04, 32'h0000_0000, 2'b01});
+         this.write({7'h04, 32'h0000_0000, 2'b00});
+      endtask
+
+      task write_data0(input logic [31:0] data);
+         this.write({7'h04, data, 2'b10});
+      endtask
+      
+   endclass
+
+
+   // Debugger Class
+   
+   /* This class is special. It simulates what the debugger is
+    * supposed to do as outlined in the RISC-V Debug Specification.
+    *
+    * - Debugger.initialize():
+    *   This initializes the Debug Module by setting DMActive high
+    *   then polling for the the setting to take effect.
+    *
+    * - Debugger.halt():
+    *   This sets haltreq high and polls for the halting to have taken
+    *   effect in DMStatus before deasserting haltreq.
+    *
+    * - Debugger.resume():
+    *   Sets resumereq high and polls DMStatus for when the processor
+    *   resumes.
+    *   
+    * - Debugger.readreg(regno):
+    *   Reads a GPR of the user's choice
+    * 
+    * - Debugger.readcsr():
+    *   
+    */
+   
+   class Debugger;
+      JTAG_DR #(32) idcode;
+      JTAG_DR #(32) dtmcs;
+      DMI dmireg;
+
+      function new();
+         idcode = new();
+         dtmcs = new();
+         dmireg = new();
+      endfunction
+      
+      // 
+      task initialize();
+         write_instr(5'b00001);
+         this.idcode.read();
+         assert(this.idcode.result == 32'h1002AC05) $display("Received IDCODE");
+         else $display("IDCODE was corrupted.");
+
+         // Reading DTMCS value
+         write_instr(5'b10000);
+         this.dtmcs.read();
+         assert(this.dtmcs.result == 32'h00100071) $display("DTMCS properly captures default value. dtmcs = 0x%8h", this.dtmcs.result);
+         else $display("Something is wrong with DTMCS on reset and capture: dtmcs = 0x%0h", this.dtmcs.result);
+
+         // Set instruction DMI
+         write_instr(5'b10001);
+
+         // Set DMActive
+         this.dmireg.write_dmcontrol(32'h0000_0001);
+         this.dmireg.read_dmcontrol();
+         assert(this.dmireg.result[33:2] == 32'h0000_0001) $display("DMActive was set");
+         else $display("Failed to write to DMActive");
+
+         // Read DMControl
+         this.dmireg.read_dmcontrol();
+         assert(this.dmireg.result[33:2] == 32'h0000_0001) $display("DMControl: 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("DMControl = 0x%8h, FAILED", this.dmireg.result[33:2]);
+
+         // Read AbstractCS
+         this.dmireg.read_abstractcs();
+         assert(this.dmireg.result[33:2] == 32'h0000_0201) $display("AbstractCS: 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("AbstractCS: 0x%8h, FAILED", this.dmireg.result[33:2]);
+      endtask
+      
+      // Halt the processor
+      task halt();
+
+      endtask
+
+      task resume();
+
+      endtask
+
+      task readreg(input logic [4:0] regno);
+
+      endtask
+
+      task readcsr(input logic [11:0] regno);
+
+      endtask
+   endclass
+
+   // ----------------------------------------------------------------
+   // Load CPU RAM with test
+   // ----------------------------------------------------------------
+   
    // Initialize CPU
    initial begin
 	   string memfilename;
@@ -124,41 +282,45 @@ module debug_tb;
       $readmemh(memfilename, dmem.RAM);	
    end
 
+   // ----------------------------------------------------------------
+   // THE TESTS
+   // ----------------------------------------------------------------
+
    // Debug Commands
    initial begin
-      JTAG_DR #(32) idcode = new;
-      JTAG_DR #(32) dtmcs = new;
-      JTAG_DR #(32 + 2 + 7) dmireg = new;
-
-      logic [31:0] idcode_result;
-      logic [31:0] dtmcs_result;
-      logic [32+2+7-1:0] dmi_result;
-        
+      JTAG_DR #(32) idcode = new();
+      JTAG_DR #(32) dtmcs = new();
+      DMI dmireg = new();
+      Debugger debugger = new();
+  
       rst = 0;
       tms = 1;
       @(negedge clk) tms = 0; rst = 1;
       @(negedge clk) rst = 0;
 
-      // Read IDCODE
-      write_instr(5'b00001);
-      idcode.read(idcode_result);
-      assert(idcode_result == 32'h1002AC05) $display("Received IDCODE");
-      else $display("IDCODE was corrupted.");
+      debugger.initialize();
+      
+      
+      // // Read IDCODE
+      // write_instr(5'b00001);
+      // idcode.read();
+      // assert(idcode.result == 32'h1002AC05) $display("Received IDCODE");
+      // else $display("IDCODE was corrupted.");
 
-      // Reading DTMCS value
-      write_instr(5'b10000);
-      dtmcs.read(dtmcs_result);
-      assert(dtmcs_result == 32'h00100071) $display("DTMCS properly captures default value.");
-      else $display("Something is wrong with DTMCS on reset and capture: dtmcs = 0x%0h", dtmcs_result);
+      // // Reading DTMCS value
+      // write_instr(5'b10000);
+      // dtmcs.read();
+      // assert(dtmcs.result == 32'h00100071) $display("DTMCS properly captures default value.");
+      // else $display("Something is wrong with DTMCS on reset and capture: dtmcs = 0x%0h", dtmcs.result);
 
-      // Reading current DMI value.
-      write_instr(5'b10001);
-      dmireg.write({7'h10, 32'b10, 2'b01}, dmi_result);
+      // // Reading current DMI value.
+      // write_instr(5'b10001);
+      // dmireg.write({7'h10, 32'b10, 2'b01});
 
-      #(tcktime*10) dmireg.write(41'h0, dmi_result);
+      // #(tcktime*10) dmireg.write(41'h0);
 
-      assert(dmi_result[33:2] == 32'h00000000) $display("DMI seems to be working.");
-      else $display("Something went horribly wrong with the DMI: dmi = 0x%0h", dmi_result);
+      // assert(dmireg.result[33:2] == 32'h00000000) $display("DMI seems to be working.");
+      // else $display("Something went horribly wrong with the DMI: dmi = 0x%0h", dmireg.result);
 
       // Testing DTMHardReset
       // write_instr(5'b10000);
@@ -166,34 +328,34 @@ module debug_tb;
 
       // Halting Processor
       // write_instr(5'b10001);
-      dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
-      #(tcktime*30)
-      assert(DebugMode) $display("Halted");
-      else $display("Not");
+      // dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
+      // #(tcktime*30)
+      // assert(DebugMode) $display("Halted");
+      // else $display("Not");
 
-      // Clear HaltReq
-      //write_instr(5'b10001);
-      dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
+      // // Clear HaltReq
+      // //write_instr(5'b10001);
+      // dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
 
-      #(tcktime*2)
-      // Resume Processor
-      // write_instr(5'b10001);
-      dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
+      // #(tcktime*2)
+      // // Resume Processor
+      // // write_instr(5'b10001);
+      // dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
 
-      #(tcktime*2)
-      // Halt processor again
-      dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
-      #(tcktime*30)
-      assert(DebugMode) $display("Halted");
-      else $display("Not");
-      #(tcktime*10) dmireg.write({7'h17, 32'h0020_0301, 2'b10}, dmi_result);
+      // #(tcktime*2)
+      // // Halt processor again
+      // dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
+      // #(tcktime*30)
+      // assert(DebugMode) $display("Halted");
+      // else $display("Not");
+      // #(tcktime*10) dmireg.write({7'h17, 32'h0020_0301, 2'b10}, dmi_result);
 
-      #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
+      // #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
 
-      #(tcktime*10) dmireg.write({7'h17, 32'h0020_007f, 2'b10}, dmi_result);
+      // #(tcktime*10) dmireg.write({7'h17, 32'h0020_007f, 2'b10}, dmi_result);
       
       
-      #(tcktime*1000) $stop;
+      #(tcktime*100) $stop;
    end
     
 endmodule

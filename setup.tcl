@@ -24,7 +24,7 @@ puts $fd $last_compiled
 close $fd
 
 vopt {*}[get_libraries $library_file_list] +acc $top_module -o testbenchopt
-vsim testbenchopt
+vsim -classdebug testbenchopt
 
 if [file exists wave.do] {
     do wave.do
@@ -53,7 +53,7 @@ proc r {} {
 
     # Resimulate
     vopt {*}[get_libraries $library_file_list] +acc $top_module -o testbenchopt
-    vsim testbenchopt
+    vsim -classdebug testbenchopt
 
     noview wave
     if [file exists wave.do] {
