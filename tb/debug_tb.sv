@@ -253,19 +253,61 @@ module debug_tb;
       
       // Halt the processor
       task halt();
+         this.dmireg.read_dmcontrol();
+         this.dmireg.write_dmcontrol(32'h8000_0000 | this.dmireg.result);
+         this.dmireg.read_dmstatus();
+         // 0000_0000_0000_0000_0000_0011_0000_0000
+         // 00000300
+         assert(|(this.dmireg.result[33:2] & 32'h0000_0300)) $display("Hart Halted. DMStatus = 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("Hart not halted. DMStatus = 0x%8h, FAILED", this.dmireg.result[33:2]);
 
+         this.dmireg.read_dmcontrol();
+         this.dmireg.write_dmcontrol(32'h7fff_ffff & this.dmireg.result);
+         this.dmireg.read_dmcontrol();
+
+         assert(|(this.dmireg.result[33:2] & 32'h8000_0000) == 0) $display("Haltreq de-asserted. DMControl = 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("Haltreq NOT de-asserted. DMControl = 0x%8h, FAILED", this.dmireg.result[33:2]);
       endtask
 
       task resume();
+         this.dmireg.read_dmcontrol();
+         this.dmireg.write_dmcontrol(32'h4000_0000 | this.dmireg.result);
 
+         this.dmireg.read_dmstatus();
+         assert(|(this.dmireg.result[33:2] & 32'h0000_0c00)) $display("Hart resumed! DMStatus = 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("Hart not resumed. DMStatus = 0x%8h, FAILED", this.dmireg.result[33:2]);
+
+         this.dmireg.read_dmcontrol();
+         this.dmireg.write_dmcontrol(32'hbfff_ffff & this.dmireg.result);
+         this.dmireg.read_dmcontrol();
+         
+         assert(|(this.dmireg.result[33:2] & 32'h4000_0000) == 0) $display("Resumereq de-asserted. DMControl = 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         else $display("Resumereq NOT de-asserted. DMControl = 0x%8h, FAILED", this.dmireg.result[33:2]);
+      endtask
+
+      task command(input logic [31:0] cmd);
+         this.dmireg.write_command(cmd);
+         this.dmireg.read_data0();
+         $display("COMMAND: Data0:\n  op: 0b%2b,\n  data: 0x%8h,\n  addr: 0x%2h", this.dmireg.result[1:0], this.dmireg.result[33:2], this.dmireg.result[40:34]);
+      endtask
+
+      task read_abstractcs();
+         this.dmireg.read_abstractcs();
+         $display("AbstractCS: op: 0b%2b, data: 0x%8h, addr: 0x%2h", this.dmireg.result[1:0], this.dmireg.result[33:2], this.dmireg.result[40:34]);
       endtask
 
       task readreg(input logic [4:0] regno);
-
+         // 32'h0020_0301
+         this.dmireg.write_command({16'h0022, 11'b0001_0000_000, regno});
+         this.dmireg.read_data0();
+         $display("GPR: Data0:\n  op: 0b%2b,\n  data: 0x%8h,\n  addr: 0x%2h", this.dmireg.result[1:0], this.dmireg.result[33:2], this.dmireg.result[40:34]);
       endtask
 
       task readcsr(input logic [11:0] regno);
-
+         this.dmireg.write_command({16'h0022, 4'b0, regno});
+         this.read_abstractcs();
+         this.dmireg.read_data0();
+         $display("CSR: Data0 =\n  op: 0b%2b,\n  data: 0x%8h,\n  addr: 0x%2h\n", this.dmireg.result[1:0], this.dmireg.result[33:2], this.dmireg.result[40:34]);
       endtask
    endclass
 
@@ -299,7 +341,14 @@ module debug_tb;
       @(negedge clk) rst = 0;
 
       debugger.initialize();
-      
+      debugger.halt();
+      debugger.readreg(5'b00101);
+      debugger.resume();
+      debugger.halt();
+      debugger.command(32'h0032_1008);
+      debugger.read_abstractcs();
+      debugger.readcsr(12'h301);
+      debugger.read_abstractcs();
       
       // // Read IDCODE
       // write_instr(5'b00001);

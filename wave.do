@@ -8,6 +8,7 @@ add wave -color gold -noupdate /debug_tb/clk
 add wave -color gold -noupdate /debug_tb/rst
 add wave -noupdate -divider -height 32 "Top"
 add wave -noupdate -expand -group Top /debug_tb/*
+add wave sim:/@Debugger@1.dmireg.super.result
 
 add wave -noupdate -divider -height 32 "dtm"
 add wave -noupdate -expand -group dtm /debug_tb/dtm/*
@@ -32,7 +33,7 @@ add wave -noupdate -divider -height 32 "Instructions"
 add wave -noupdate -expand -group Instructions -color Orange /debug_tb/rv32pipe/*
 
 add wave -noupdate -divider -height 32 "Datapath"
-add wave -hex /debug_tb/rv32pipe/d/*
+add wave -hex /debug_tb/rv32pipe/dp/*
 
 add wave -noupdate -divider -height 32 "Control"
 add wave -hex /debug_tb/rv32pipe/c/*

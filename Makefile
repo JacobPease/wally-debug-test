@@ -25,6 +25,8 @@ src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 
 clean:
 	@rm -rf $(SRC_DIR)
+
+cleanVivado:
 	@rm -rf ./debugfpga
 	@rm -rf *.jou
 	@rm -rf vivado_*.log
