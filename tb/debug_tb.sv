@@ -208,17 +208,22 @@ module debug_tb;
     */
    
    class Debugger;
+      // Primary JTAG Registers
       JTAG_DR #(32) idcode;
       JTAG_DR #(32) dtmcs;
       DMI dmireg;
 
+      // For running testvectors instead of the encapsulated tests.
+      logic [40:0] testvectors[$];
+      logic [40:0] expected_outputs[$];
+      
       function new();
          idcode = new();
          dtmcs = new();
          dmireg = new();
       endfunction
       
-      // 
+      // Confirm the DTM is working 
       task initialize();
          write_instr(5'b00001);
          this.idcode.read();
@@ -233,7 +238,9 @@ module debug_tb;
 
          // Set instruction DMI
          write_instr(5'b10001);
+      endtask
 
+      task init_dm();
          // Set DMActive
          this.dmireg.write_dmcontrol(32'h0000_0001);
          this.dmireg.read_dmcontrol();
@@ -247,11 +254,11 @@ module debug_tb;
 
          // Read AbstractCS
          this.dmireg.read_abstractcs();
-         assert(this.dmireg.result[33:2] == 32'h0000_0201) $display("AbstractCS: 0x%8h, CORRECT", this.dmireg.result[33:2]);
+         assert(this.dmireg.result[33:2] == 32'h0000_0001) $display("AbstractCS: 0x%8h, CORRECT", this.dmireg.result[33:2]);
          else $display("AbstractCS: 0x%8h, FAILED", this.dmireg.result[33:2]);
       endtask
       
-      // Halt the processor
+      // Halt the processor, and confirm halted
       task halt();
          this.dmireg.read_dmcontrol();
          this.dmireg.write_dmcontrol(32'h8000_0000 | this.dmireg.result);
@@ -269,6 +276,7 @@ module debug_tb;
          else $display("Haltreq NOT de-asserted. DMControl = 0x%8h, FAILED", this.dmireg.result[33:2]);
       endtask
 
+      // Resume the processor, and confirm resume
       task resume();
          this.dmireg.read_dmcontrol();
          this.dmireg.write_dmcontrol(32'h4000_0000 | this.dmireg.result);
@@ -309,6 +317,35 @@ module debug_tb;
          this.dmireg.read_data0();
          $display("CSR: Data0 =\n  op: 0b%2b,\n  data: 0x%8h,\n  addr: 0x%2h\n", this.dmireg.result[1:0], this.dmireg.result[33:2], this.dmireg.result[40:34]);
       endtask
+
+      // TESTVECTOR READING. Reading testvectors grabbed from openocd.log
+      function void get_testvectors(string filename);
+         string line;
+         string items[$];
+         int    file = $fopen(filename, "r");
+         
+         while (!$feof(file)) begin
+            if ($fgets(line, file)) begin
+               items = split(line, " "); 
+               this.testvectors.push_back({items[2].substr(1, 2).atohex(), items[1].atohex(), op_decode(items[0], 0)});
+               this.expected_outputs.push_back({items[6].substr(1, 2).atohex(), items[5].atohex(), op_decode(items[4], 1)});
+            end
+         end
+
+         // foreach (this.testvectors[i]) begin
+         //    $display("testvector[%0d]:\n  addr: %2h, data: %8h, op: %2b", i, this.testvectors[i][40:34], this.testvectors[i][33:2], this.testvectors[i][1:0]);
+         // end
+         
+      endfunction
+
+      task run_testvectors();
+         foreach (testvectors[i]) begin
+            this.dmireg.write(testvectors[i]);
+            assert(this.dmireg.result == expected_outputs[i]) $display("Simulation matches FPGA.");
+            else $display("FAILED: Simulation does not match FPGA.\n Expected: %11h, got %11h", expected_outputs[i], this.dmireg.result );
+         end
+      endtask
+      
    endclass
 
    // ----------------------------------------------------------------
@@ -341,70 +378,62 @@ module debug_tb;
       @(negedge clk) rst = 0;
 
       debugger.initialize();
-      debugger.halt();
-      debugger.readreg(5'b00101);
-      debugger.resume();
-      debugger.halt();
-      debugger.command(32'h0032_1008);
-      debugger.read_abstractcs();
-      debugger.readcsr(12'h301);
-      debugger.read_abstractcs();
-      
-      // // Read IDCODE
-      // write_instr(5'b00001);
-      // idcode.read();
-      // assert(idcode.result == 32'h1002AC05) $display("Received IDCODE");
-      // else $display("IDCODE was corrupted.");
+      // debugger.init_dm();
+      // debugger.halt();
+      // debugger.readreg(5'b00101);
+      // debugger.resume();
+      // debugger.halt();
+      // debugger.command(32'h0032_1008);
+      // debugger.read_abstractcs();
+      // debugger.readcsr(12'h301);
+      // debugger.read_abstractcs();
 
-      // // Reading DTMCS value
-      // write_instr(5'b10000);
-      // dtmcs.read();
-      // assert(dtmcs.result == 32'h00100071) $display("DTMCS properly captures default value.");
-      // else $display("Something is wrong with DTMCS on reset and capture: dtmcs = 0x%0h", dtmcs.result);
-
-      // // Reading current DMI value.
-      // write_instr(5'b10001);
-      // dmireg.write({7'h10, 32'b10, 2'b01});
-
-      // #(tcktime*10) dmireg.write(41'h0);
-
-      // assert(dmireg.result[33:2] == 32'h00000000) $display("DMI seems to be working.");
-      // else $display("Something went horribly wrong with the DMI: dmi = 0x%0h", dmireg.result);
-
-      // Testing DTMHardReset
-      // write_instr(5'b10000);
-      // dtmcs.write(32'h00110071, dtmcs_result);
-
-      // Halting Processor
-      // write_instr(5'b10001);
-      // dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
-      // #(tcktime*30)
-      // assert(DebugMode) $display("Halted");
-      // else $display("Not");
-
-      // // Clear HaltReq
-      // //write_instr(5'b10001);
-      // dmireg.write({7'h10, 32'h0000_0000, 2'b10}, dmi_result);
-
-      // #(tcktime*2)
-      // // Resume Processor
-      // // write_instr(5'b10001);
-      // dmireg.write({7'h10, 32'h4000_0000, 2'b10}, dmi_result);
-
-      // #(tcktime*2)
-      // // Halt processor again
-      // dmireg.write({7'h10, 32'h8000_0000, 2'b10}, dmi_result);
-      // #(tcktime*30)
-      // assert(DebugMode) $display("Halted");
-      // else $display("Not");
-      // #(tcktime*10) dmireg.write({7'h17, 32'h0020_0301, 2'b10}, dmi_result);
-
-      // #(tcktime*10) dmireg.write({7'h04, 32'h0, 2'b01}, dmi_result);
-
-      // #(tcktime*10) dmireg.write({7'h17, 32'h0020_007f, 2'b10}, dmi_result);
-      
+      debugger.get_testvectors("./testvectors1.tv");
+      debugger.run_testvectors();
       
       #(tcktime*100) $stop;
    end
     
 endmodule
+
+typedef string stringarr[];
+   
+// No native split function in System Verilog. Coming up with a way
+// of doing this natively for better testvector parsing.
+function automatic stringarr split(string str, string delimiter);
+   string result[$];
+   int    strlen = str.len();
+   string temp = "";
+   for (int i = 0; i <= strlen; i++) begin
+      if (str[i] == delimiter[0] || (i == strlen && temp.len() != 0) || str[i] == "\n") begin
+         result.push_back(temp);
+         temp = "";
+      end else begin
+         temp = {temp, str[i]};
+      end
+   end
+   return result;
+endfunction
+
+function automatic logic [1:0] op_decode(string op_str, logic response);
+   if (response) begin
+      if (op_str == "+") begin
+         return 2'b00;
+      end else if (op_str == "b") begin
+         return 2'b11;
+      end else begin
+         return 2'b01; // reserved
+      end
+   end else begin
+      if (op_str == "r") begin
+         return 2'b01;
+      end else if (op_str == "w") begin
+         return 2'b10;
+      end else if (op_str == "-") begin
+         return 2'b00;
+      end else begin
+         return 2'b11;
+      end
+   end
+   return 2'b00;
+endfunction

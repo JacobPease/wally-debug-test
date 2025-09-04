@@ -26,6 +26,7 @@ src/*.vh: $(WALLY)/src/debug/*.vh | $(SRC_DIR)
 clean:
 	@rm -rf $(SRC_DIR)
 
+# Delete Vivado results to start fresh
 cleanVivado:
 	@rm -rf ./debugfpga
 	@rm -rf *.jou
@@ -38,5 +39,11 @@ sim:
 gui:
 	vsim -do setup.tcl
 
+# Verilator linting
 lint: src/*.sv
 	verilator --lint-only src/*.sv tb/*.sv -Isrc/include --top-module debug_tb
+
+# Use this command to grab testvectors from the OpenOCD log file.
+# example usage: make tv > testvectors0.tv
+tv:
+	grep "41b" openocd.log | sed 's/.*41b \([^;]*\).*/\1/'
