@@ -6,10 +6,11 @@ module debug_tb;
    int tcktime = 52;
 
    // ANSII color codes
-   string red    = "\033[31m"; // Red text
-   string green  = "\033[32m"; // Green text
-   string yellow = "\033[33m"; // Yellow text
+   string red    = "\033[1;31m"; // Red text
+   string green  = "\033[1;32m"; // Green text
+   string yellow = "\033[1;33m"; // Yellow text
    string normal  = "\033[0m";  // Reset to default
+   string bold = "\033[1m";
 
    // DTM Signals
    logic clk, rst;
@@ -347,12 +348,13 @@ module debug_tb;
       task run_testvectors();
          foreach (testvectors[i]) begin
             this.dmireg.write(testvectors[i]);
+            $display("\n\033[1mtestvector\033[0m[%0d]: \033[1m addr:\033[0m %2h, data: %8h, op: %2b", i, this.testvectors[i][40:34], this.testvectors[i][33:2], this.testvectors[i][1:0]);
             assert(this.dmireg.result == expected_outputs[i]) begin 
                $display("%sMATCHES%s", green, normal);
             end else begin 
                $display("%sFAILED:%s Simulation does not match FPGA.", red, normal);
             end
-            $display("  Expected[%0d] = addr: %2h, data: %8h, op: %2b", i, this.expected_outputs[i][40:34], this.expected_outputs[i][33:2], this.expected_outputs[i][1:0]);
+            $display("  Expected[%0d] = \033[1m addr:\033[0m %2h, data: %8h, op: %2b", i, this.expected_outputs[i][40:34], this.expected_outputs[i][33:2], this.expected_outputs[i][1:0]);
             $display("  Actual[%0d] =  addr: %2h, data: %8h, op: %2b", i, this.dmireg.result[40:34], this.dmireg.result[33:2], this.dmireg.result[1:0]);
          end
       endtask
