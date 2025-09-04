@@ -1,3 +1,27 @@
+radix define DMADDR {
+	 "7'h04" "DATA0"             
+	 "7'h05" "DATA1"            
+	 "7'h06" "DATA2"            
+	 "7'h07" "DATA3"            
+	 "7'h08" "DATA4"            
+	 "7'h09" "DATA5"            
+	 "7'h0a" "DATA6"            
+	 "7'h0b" "DATA7"            
+	 "7'h0c" "DATA8"            
+	 "7'h0d" "DATA9"            
+	 "7'h0e" "DATA10"          
+	 "7'h0f" "DATA11"          
+	 "7'h10" "DMCONTROL"    
+	 "7'h11" "DMSTATUS"      
+	 "7'h12" "HARTINFO"      
+	 "7'h40" "HALTSUM0"      
+	 "7'h13" "HALTSUM1"      
+	 "7'h17" "COMMAND"       
+	 "7'h16" "ABSTRACTCS"  
+	 "7'h18" "ABSTRACTAUTO"
+}
+
+
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 
@@ -12,6 +36,7 @@ add wave sim:/@Debugger@1.dmireg.super.result
 
 add wave -noupdate -divider -height 32 "dtm"
 add wave -noupdate -expand -group dtm /debug_tb/dtm/*
+add wave -noupdate -expand -group dtm -radix DMADDR /debug_tb/dtm/dmi_req.addr
 
 add wave -noupdate -divider -height 32 "dm"
 add wave -noupdate -expand -group dm /debug_tb/debugmodule/*

@@ -341,8 +341,13 @@ module debug_tb;
       task run_testvectors();
          foreach (testvectors[i]) begin
             this.dmireg.write(testvectors[i]);
-            assert(this.dmireg.result == expected_outputs[i]) $display("Simulation matches FPGA.");
-            else $display("FAILED: Simulation does not match FPGA.\n Expected: %11h, got %11h", expected_outputs[i], this.dmireg.result );
+            assert(this.dmireg.result == expected_outputs[i]) begin 
+               $display("Simulation matches FPGA.");
+            end else begin 
+               $display("FAILED: Simulation does not match FPGA.");
+               $display("  Expected[%0d] = addr: %2h, data: %8h, op: %2b", i, this.testvectors[i][40:34], this.testvectors[i][33:2], this.testvectors[i][1:0]);
+               $display("  Actual[%0d] =  addr: %2h, data: %8h, op: %2b", i, this.dmireg.result[40:34], this.dmireg.result[33:2], this.dmireg.result[1:0]);
+            end
          end
       endtask
       
