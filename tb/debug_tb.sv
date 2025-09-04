@@ -5,6 +5,12 @@ module debug_tb;
    // integer. This will test the synchronizer.
    int tcktime = 52;
 
+   // ANSII color codes
+   string red    = "\033[31m"; // Red text
+   string green  = "\033[32m"; // Green text
+   string yellow = "\033[33m"; // Yellow text
+   string normal  = "\033[0m";  // Reset to default
+
    // DTM Signals
    logic clk, rst;
    logic tck, tms, tdi, tdo;
@@ -330,7 +336,7 @@ module debug_tb;
                this.testvectors.push_back({items[2].substr(1, 2).atohex(), items[1].atohex(), op_decode(items[0], 0)});
                this.expected_outputs.push_back({items[6].substr(1, 2).atohex(), items[5].atohex(), op_decode(items[4], 1)});
             end
-         end
+         end 
 
          // foreach (this.testvectors[i]) begin
          //    $display("testvector[%0d]:\n  addr: %2h, data: %8h, op: %2b", i, this.testvectors[i][40:34], this.testvectors[i][33:2], this.testvectors[i][1:0]);
@@ -342,12 +348,12 @@ module debug_tb;
          foreach (testvectors[i]) begin
             this.dmireg.write(testvectors[i]);
             assert(this.dmireg.result == expected_outputs[i]) begin 
-               $display("Simulation matches FPGA.");
+               $display("%sMATCHES%s", green, normal);
             end else begin 
-               $display("FAILED: Simulation does not match FPGA.");
-               $display("  Expected[%0d] = addr: %2h, data: %8h, op: %2b", i, this.testvectors[i][40:34], this.testvectors[i][33:2], this.testvectors[i][1:0]);
-               $display("  Actual[%0d] =  addr: %2h, data: %8h, op: %2b", i, this.dmireg.result[40:34], this.dmireg.result[33:2], this.dmireg.result[1:0]);
+               $display("%sFAILED:%s Simulation does not match FPGA.", red, normal);
             end
+            $display("  Expected[%0d] = addr: %2h, data: %8h, op: %2b", i, this.expected_outputs[i][40:34], this.expected_outputs[i][33:2], this.expected_outputs[i][1:0]);
+            $display("  Actual[%0d] =  addr: %2h, data: %8h, op: %2b", i, this.dmireg.result[40:34], this.dmireg.result[33:2], this.dmireg.result[1:0]);
          end
       endtask
       
