@@ -46,4 +46,4 @@ lint: src/*.sv
 # Use this command to grab testvectors from the OpenOCD log file.
 # example usage: make tv > testvectors0.tv
 tv:
-	grep "41b" openocd.log | sed 's/.*41b \([^;]*\).*/\1/'
+	@grep "41b" openocd.log | sed 's/.*41b \([^;]*\).*/\1/'

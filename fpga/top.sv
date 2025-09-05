@@ -1,6 +1,6 @@
 `include "debug.vh"
 
-module top #(parameter IMEM_INIT_FILE="./testing/riscvtest.memfile") (
+module top #(parameter IMEM_INIT_FILE="riscvtest.mem") (
    // jtag logic
    (* mark_debug = "true" *) input logic  tck,tdi,tms,trst,
    (* mark_debug = "true" *) output logic tdo,
@@ -19,11 +19,12 @@ module top #(parameter IMEM_INIT_FILE="./testing/riscvtest.memfile") (
    (* mark_debug = "true" *) logic ResumeReq;
    (* mark_debug = "true" *) logic DebugMode;
    (* mark_debug = "true" *) logic DebugControl;
+   (* mark_debug = "true" *) logic CSRDebugEnable;
 
    // Debug Register Access
    (* mark_debug = "true" *) logic [31:0] RegIn;
    (* mark_debug = "true" *) logic [31:0] RegOut;
-   (* mark_debug = "true" *) logic [4:0]  RegAddr;
+   (* mark_debug = "true" *) logic [11:0]  RegAddr;
    (* mark_debug = "true" *) logic        DebugRegWrite;
 
    // CPU Signals
@@ -46,16 +47,16 @@ module top #(parameter IMEM_INIT_FILE="./testing/riscvtest.memfile") (
       dmi_req, dmi_rsp);
 
    dm debugmodule (clk, sys_reset, dmi_req,
-      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl,
+      dmi_rsp, NDMReset, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
       RegIn, RegOut, RegAddr, DebugRegWrite
    );
    
    // instantiate processor and memories
    riscv rv32pipe (clk, sys_reset, PCF, InstrF, MemWriteM, DataAdrM, 
-		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl,
+		   WriteDataM, ReadDataM, HaltReq, ResumeReq, DebugMode, DebugControl, CSRDebugEnable,
          RegIn, RegOut, RegAddr, DebugRegWrite
    );
-   imem #(IMEM_INIT_FILE) imem (PCF, InstrF);
+   imem #("riscvtest.mem") imem (PCF, InstrF);
    dmem dmem (clk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
 endmodule

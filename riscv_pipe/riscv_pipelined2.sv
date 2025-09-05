@@ -743,7 +743,7 @@ module mux5 #(parameter WIDTH = 8) (
   assign y = s[2] ? d4 : (s[1] ? (s[0] ? d3 : d2) : (s[0] ? d1 : d0)); 
 endmodule
 
-module imem #(parameter MEM_INIT_FILE)
+module imem #(parameter MEM_INIT_FILE = "")
     (input  logic [31:0] a,
      output logic [31:0] rd);
    
@@ -917,9 +917,15 @@ module csr(input logic         clk,
    // Next-state debug mode
    always_comb begin
       case (state)
-	RUNNING: if (HaltReq) state_n = HALTED;
-	HALTED:  if (ResumeReq) state_n = RUNNING;
-        default: state_n = RUNNING;
+	      RUNNING: begin 
+            if (HaltReq) state_n = HALTED;
+            else state_n = RUNNING;
+         end
+	      HALTED: begin
+            if (ResumeReq) state_n = RUNNING;
+            else state_n = HALTED;
+         end
+         default: state_n = RUNNING;
       endcase
    end
 

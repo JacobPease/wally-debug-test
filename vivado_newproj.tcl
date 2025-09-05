@@ -66,7 +66,7 @@ foreach dir $source_dirs {
 
 import_files -fileset sources_1 "./riscv_pipe/riscv_pipelined2.sv"
 import_files -fileset sources_1 "./src/include/debug.vh"
-import_files -fileset sources_1 "./testing/riscvtest.memfile"
+import_files -fileset sources_1 "./testing/riscvtest.mem"
 
 if {$added_files == 0} {
     puts "ERROR: No SystemVerilog files found in specified directories."
