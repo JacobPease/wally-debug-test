@@ -40,6 +40,7 @@ add wave -noupdate -expand -group dtm -radix DMADDR /debug_tb/dtm/dmi_req.addr
 
 add wave -noupdate -divider -height 32 "dm"
 add wave -noupdate -expand -group dm /debug_tb/debugmodule/*
+add wave -noupdate -expand -group dm /debug_tb/debugmodule/Data[0]
 
 add wave -noupdate -divider -height 32 "CSR"
 add wave -hex /debug_tb/rv32pipe/csr0/*
