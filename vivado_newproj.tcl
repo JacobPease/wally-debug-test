@@ -117,11 +117,21 @@ puts "MMCM IP files imported into sources_1."
 update_compile_order -fileset sources_1
 
 # ==== (OPTIONAL) RUN SYNTHESIS AND IMPLEMENTATION ====
-launch_runs synth_1 -jobs 16
+
+# Set thread count
+set max_threads 16
+set_param general.maxThreads $max_threads
+
+# Run synthesis
+launch_runs synth_1 -jobs $max_threads
 wait_on_run synth_1
-launch_runs impl_1 - jobs 16
+
+# Run implementation (through route_design)
+launch_runs impl_1 -jobs $max_threads
 wait_on_run impl_1
 
-launch_runs impl_1 -to_step write_bitstream -jobs 16
+# Then generate the bitstream separately
+launch_runs impl_1 -to_step write_bitstream -jobs $max_threads
+wait_on_run impl_1
 
 puts "Vivado project setup complete! Files are managed inside top.srcs"
