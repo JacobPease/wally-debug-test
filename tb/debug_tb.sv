@@ -401,7 +401,7 @@ module debug_tb;
       // debugger.readcsr(12'h301);
       // debugger.read_abstractcs();
 
-      debugger.get_testvectors("./testvectors1.tv");
+      debugger.get_testvectors("./testvectors12.tv");
       debugger.run_testvectors();
       
       #(tcktime*100) $stop;
